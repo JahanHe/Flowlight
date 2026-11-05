@@ -27,7 +27,7 @@ const fs=require('node:fs'),path=require('node:path');
     await Promise.all(pending);
     const ui=await page.evaluate(()=>({status:document.querySelector('#weather-status').textContent,source:document.querySelector('#weather-source').textContent,phase:document.body.dataset.phase,weather:document.body.dataset.weather,cache:JSON.parse(localStorage.getItem('floating-light-weather'))}));
     const result={testedAt:new Date().toISOString(),origin:base,physicalAndroid:false,responses,failures,errors,ui};
-    fs.writeFileSync(path.join(__dirname,'weather-browser-api-probe-20261017.json'),JSON.stringify(result,null,2));
+    fs.writeFileSync(path.join(__dirname,'weather-browser-api-probe.json'),JSON.stringify(result,null,2));
     console.log(JSON.stringify(result,null,2));
   } finally {await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

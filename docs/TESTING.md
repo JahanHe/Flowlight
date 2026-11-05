@@ -28,7 +28,7 @@ npm test
 
 - 实时天气的连续更新与备用源：`node work/check-live-weather-pipeline.cjs`，再运行 `node work/check-live-weather-pipeline.cjs --fallback-only`。测试注入保存的气象站样本，可离线运行。手动检查供应商当下的网络响应可运行 `node work/check-weather-api-live.cjs`，需准备手机版 APK。这两类测试回答不同的问题。
 - 云层与雨势：macOS / Linux 在根目录运行 `CLOCK_HTML=outputs/glass-clock.html CLOCK_QA_DIR=work/qa-weather node work/calendar-demo/check-weather-contrast.cjs`。在 PowerShell 先用 `$env:CLOCK_HTML='outputs/glass-clock.html'` 与 `$env:CLOCK_QA_DIR='work/qa-weather'` 设置变量，再执行相同的 Node 命令。测试检查六类云纹理、不同雨势及连续运动，并在指定目录留下对照图。
-- 电视轻量渲染：`node work/check-tv-lite-scene.cjs` 检查动效、画布缓冲上限和后台暂停。模拟旧内核的功能验证可运行 `node work/check-tv-chromium66.cjs`。
+- 电视轻量渲染：`node work/check-tv-lite-scene.cjs` 检查动效、画布缓冲上限和后台暂停。检查旧内核兼容与相对上一版的开销可运行 `node work/check-tv-lite.cjs`。
 - 原生壳：按构建说明准备 JDK 与 Android SDK 后，运行 `python3 work/android/check-phone-native.py` 或 `python3 work/android/check-tv-native.py`。
 - 日历独立演示：生成或下载对应的演示 HTML 后可运行 `node work/calendar-demo/check.cjs` 和 `node work/calendar-demo/check-term-tap.cjs`。
 
