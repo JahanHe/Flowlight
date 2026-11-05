@@ -1,0 +1,18 @@
+// Final bundled HTML: visible cloud motion and landscape/portrait composition, not phone FPS.
+const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const {chromium}=require('playwright');
+(async()=>{const browser=await chromium.launch({headless:true,executablePath:process.env.CLOCK_CHROMIUM_PATH});try{
+ const html=fs.readFileSync('outputs/glass-clock.html','utf8'),page=await browser.newPage({viewport:{width:960,height:600},deviceScaleFactor:1,timezoneId:'Asia/Shanghai'}),errors=[];
+ page.on('pageerror',e=>errors.push(e.message));await page.addInitScript(()=>{let seed=1217;Math.random=()=>((seed=seed*16807%2147483647)-1)/2147483646;for(const k of ['requestFullscreen','webkitRequestFullscreen'])Object.defineProperty(Element.prototype,k,{value:undefined,configurable:true});localStorage.setItem('floating-light-render-quality','fine');localStorage.setItem('floating-light-clock',JSON.stringify({glass:true,seconds:false,companion:true,size:100,weight:400,spacing:-5,font:'inter',effectsVersion:1,immersive:true,motionSpeed:1}));});
+ await page.route('**/*',r=>new URL(r.request().url()).hostname==='cloud-preview.test'?r.fulfill({body:html,contentType:'text/html'}):r.abort());
+ const at=new Date('2026-10-17T12:10:00+08:00');await page.clock.install({time:at});await page.clock.pauseAt(at);await page.clock.setFixedTime(at);await page.goto('http://cloud-preview.test/');await page.evaluate(()=>document.fonts.ready);await page.clock.runFor(500);
+ const sample=()=>page.evaluate(()=>({transmission:document.querySelector('#weather-canvas').clockSolarTransmission,sky:document.querySelector('#weather-canvas').toDataURL(),time:document.querySelector('.clock').getAttribute('aria-label')}));
+ const rows=[];for(const id of ['noon','cloudy','sunset','rain']){
+  await page.keyboard.press('Escape');await page.evaluate(id=>{document.querySelector('[data-preview="'+id+'"]').click();document.querySelector('#fullscreen').click();},id);await page.clock.runFor(5000);
+  assert(await page.evaluate(id=>document.body.dataset.preview===id,id));const a=await sample();await page.clock.runFor(2000);const b=await sample();assert.notEqual(a.sky,b.sky,id+' sky continues moving');assert(Number.isFinite(b.transmission));rows.push({id,transmission:b.transmission,moving:true});await page.screenshot({path:`outputs/浮光-1.3.5-${id}.png`});
+  if(id==='noon'){fs.mkdirSync('work/cloud-preview-frames',{recursive:true});for(let i=0;i<60;i++){await page.clock.runFor(100);await page.screenshot({path:`work/cloud-preview-frames/${String(i).padStart(3,'0')}.png`});}}
+ }
+ await page.keyboard.press('Escape');await page.setViewportSize({width:390,height:844});await page.evaluate(()=>{document.querySelector('[data-preview="noon"]').click();document.querySelector('#fullscreen').click();});await page.clock.runFor(5000);await page.screenshot({path:'outputs/浮光-1.3.5-portrait.png'});
+ assert(await page.evaluate(()=>[...document.querySelectorAll('.tile:not([hidden])')].filter(e=>e.getBoundingClientRect().width).every(e=>{const r=e.getBoundingClientRect();return r.left>=-1&&r.right<=innerWidth+1})), 'portrait digits fit');assert.deepEqual(errors,[]);
+ fs.writeFileSync('work/cloud-preview-results.json',JSON.stringify({pass:true,htmlSha256:crypto.createHash('sha256').update(html).digest('hex'),rows,portrait:true,errors,scope:'Offline desktop Chromium with virtual animation time; no physical-phone performance claim.'},null,2));console.log('PASS: final HTML cloudy/noon/sunset/rain motion, portrait and no script errors');
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

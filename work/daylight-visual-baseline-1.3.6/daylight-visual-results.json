@@ -1,0 +1,1144 @@
+{
+  "pass": true,
+  "htmlSha256": "1f59e0cd75f4b7ca6ed0d8fb84357181e77b80c59c5c3b0f72287688d763ab6a",
+  "scope": "Final bundled app; fixed 11:11 clock, seeded random, clear CMA fixture, real Hangzhou solar positions, identical 6-second animation age. Mac desktop Chromium, not physical-phone verification.",
+  "failures": [],
+  "samples": [
+    {
+      "name": "dawn",
+      "label": "清晨",
+      "hour": "06:08",
+      "path": "work/daylight-visual-dawn.png",
+      "errors": [],
+      "scene": {
+        "timeline": true,
+        "idealCycle": false,
+        "idealPolar": null,
+        "dayProgress": 0.25555555555555554,
+        "phase": "sunrise",
+        "sunVisible": true,
+        "sunAltitude": 0.5051835414946351,
+        "sunProgress": 0.005952185668059642,
+        "moonVisible": false,
+        "moonAltitude": -82.27262792500713,
+        "moonProgress": 1,
+        "moonPhase": 0.2574954604125992,
+        "condition": "clear",
+        "variant": "",
+        "cloudCover": 0.08,
+        "intensity": 0,
+        "wind": 3.767135400333305,
+        "hail": false,
+        "rainAmount": 0,
+        "snowAmount": 0,
+        "fogAmount": 0,
+        "stormAmount": 0,
+        "hailAmount": 0,
+        "overcastAmount": 0,
+        "enhancedSky": true
+      },
+      "light": {
+        "x": 289.31591981544284,
+        "y": 524.4001002686911,
+        "rgb": "248,196,133",
+        "strength": 0.13825030906664956,
+        "shadowX": 60.62556934040691,
+        "shadowY": -23.442276812449595,
+        "elevation": -7.085018933953222,
+        "isDay": true,
+        "visible": true,
+        "visibility": 0.3723089594807445,
+        "daylight": 0.6842010561644603
+      },
+      "palette": {
+        "warmth": 0.99483233878276,
+        "environmentWarmth": 0.9271837397455323,
+        "rgb": "255,195,122",
+        "halo": "255,185,116",
+        "rim": "255,216,155"
+      },
+      "quality": 1,
+      "motion": 5.9670000000000005,
+      "weather": {
+        "width": 960,
+        "height": 540,
+        "hash": 3701867814,
+        "r": 75.29932870370371,
+        "g": 77.3040586419753,
+        "b": 88.57970679012345,
+        "ink": 129600,
+        "coverage": 1,
+        "cornerAlpha": 255
+      },
+      "glass": [
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 2672465348,
+          "r": 217.71849427168576,
+          "g": 201.2291325695581,
+          "b": 201.51718494271685,
+          "ink": 1222,
+          "coverage": 0.13038839095177124,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 2780505783,
+          "r": 218.1358024691358,
+          "g": 196.22092267706302,
+          "b": 190.31578947368422,
+          "ink": 1539,
+          "coverage": 0.16421254801536492,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 3737060842,
+          "r": 186.67921440261867,
+          "g": 186.9328968903437,
+          "b": 198.5597381342062,
+          "ink": 1222,
+          "coverage": 0.13038839095177124,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 2038051691,
+          "r": 172.74723846653671,
+          "g": 169.64782326185835,
+          "b": 177.51072124756334,
+          "ink": 1539,
+          "coverage": 0.16421254801536492,
+          "cornerAlpha": 0
+        }
+      ],
+      "clock": [
+        "11",
+        "11"
+      ],
+      "transparent": [
+        {
+          "class": "date-line",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "clock",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "glassReady": true,
+      "solarTransmission": 0.9951102327966269,
+      "glassMean": [
+        198.82018740249424,
+        188.5076938497058,
+        191.97585844954264
+      ]
+    },
+    {
+      "name": "morning",
+      "label": "上午",
+      "hour": "09:00",
+      "path": "work/daylight-visual-morning.png",
+      "errors": [],
+      "scene": {
+        "timeline": true,
+        "idealCycle": false,
+        "idealPolar": null,
+        "dayProgress": 0.375,
+        "phase": "day",
+        "sunVisible": true,
+        "sunAltitude": 33.6674974617178,
+        "sunProgress": 0.25862095053010004,
+        "moonVisible": false,
+        "moonAltitude": -53.39195020780918,
+        "moonProgress": 0,
+        "moonPhase": 0.26112721729202804,
+        "condition": "clear",
+        "variant": "",
+        "cloudCover": 0.08,
+        "intensity": 0,
+        "wind": 3.7670425731208437,
+        "hail": false,
+        "rainAmount": 0,
+        "snowAmount": 0,
+        "fogAmount": 0,
+        "stormAmount": 0,
+        "hailAmount": 0,
+        "overcastAmount": 0,
+        "enhancedSky": true
+      },
+      "light": {
+        "x": 429.9036753413991,
+        "y": 306.85149584811944,
+        "rgb": "255,255,255",
+        "strength": 0.9019927288713504,
+        "shadowX": 32.150383521198656,
+        "shadowY": 12.540323310047217,
+        "elevation": 33.667497461717794,
+        "isDay": true,
+        "visible": true,
+        "visibility": 0.8787275641828626,
+        "daylight": 1
+      },
+      "palette": {
+        "warmth": 0,
+        "environmentWarmth": 0,
+        "rgb": "255,255,255",
+        "halo": "255,255,255",
+        "rim": "255,255,255"
+      },
+      "quality": 1,
+      "motion": 5.968,
+      "weather": {
+        "width": 960,
+        "height": 540,
+        "hash": 1780310640,
+        "r": 49.95851851851852,
+        "g": 84.4028163580247,
+        "b": 121.99807098765432,
+        "ink": 129600,
+        "coverage": 1,
+        "cornerAlpha": 255
+      },
+      "glass": [
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 1155685798,
+          "r": 180.4099836333879,
+          "g": 217.08346972176759,
+          "b": 249.30605564648118,
+          "ink": 1222,
+          "coverage": 0.13038839095177124,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 2068692213,
+          "r": 164.2729044834308,
+          "g": 194.05717998700456,
+          "b": 223.1410006497726,
+          "ink": 1539,
+          "coverage": 0.16421254801536492,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 2116082563,
+          "r": 163.81914893617022,
+          "g": 206.31096563011457,
+          "b": 246.5212765957447,
+          "ink": 1222,
+          "coverage": 0.13038839095177124,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 3026342226,
+          "r": 154.18908382066277,
+          "g": 185.82651072124756,
+          "b": 217.46393762183237,
+          "ink": 1539,
+          "coverage": 0.16421254801536492,
+          "cornerAlpha": 0
+        }
+      ],
+      "clock": [
+        "11",
+        "11"
+      ],
+      "transparent": [
+        {
+          "class": "date-line",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "clock",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "glassReady": true,
+      "solarTransmission": 0.9583734078967944,
+      "glassMean": [
+        165.67278021841292,
+        200.81953151503356,
+        234.10806762845772
+      ]
+    },
+    {
+      "name": "noon",
+      "label": "正午",
+      "hour": "12:00",
+      "path": "work/daylight-visual-noon.png",
+      "errors": [],
+      "scene": {
+        "timeline": true,
+        "idealCycle": false,
+        "idealPolar": null,
+        "dayProgress": 0.5,
+        "phase": "day",
+        "sunVisible": true,
+        "sunAltitude": 49.617717449423644,
+        "sunProgress": 0.523041750967119,
+        "moonVisible": false,
+        "moonAltitude": -16.405019465124127,
+        "moonProgress": 0.09258536312963643,
+        "moonPhase": 0.2649340306824115,
+        "condition": "clear",
+        "variant": "",
+        "cloudCover": 0.08,
+        "intensity": 0,
+        "wind": 3.767135400333305,
+        "hail": false,
+        "rainAmount": 0,
+        "snowAmount": 0,
+        "fogAmount": 0,
+        "stormAmount": 0,
+        "hailAmount": 0,
+        "overcastAmount": 0,
+        "enhancedSky": true
+      },
+      "light": {
+        "x": 660.0555400417804,
+        "y": 227.72051672305827,
+        "rgb": "255,255,255",
+        "strength": 0.6704370196057263,
+        "shadowX": -2.854617402979421,
+        "shadowY": 22.927345524846313,
+        "elevation": 49.61771744942365,
+        "isDay": true,
+        "visible": true,
+        "visibility": 0.5522769733219943,
+        "daylight": 1
+      },
+      "palette": {
+        "warmth": 0,
+        "environmentWarmth": 0,
+        "rgb": "255,255,255",
+        "halo": "255,255,255",
+        "rim": "255,255,255"
+      },
+      "quality": 1,
+      "motion": 5.9670000000000005,
+      "weather": {
+        "width": 960,
+        "height": 540,
+        "hash": 1754076221,
+        "r": 49.33006172839506,
+        "g": 83.85422067901234,
+        "b": 121.52826388888889,
+        "ink": 129600,
+        "coverage": 1,
+        "cornerAlpha": 255
+      },
+      "glass": [
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 1721220130,
+          "r": 156.83469721767594,
+          "g": 201.75531914893617,
+          "b": 243.01718494271685,
+          "ink": 1222,
+          "coverage": 0.13038839095177124,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 728658966,
+          "r": 154.94152046783626,
+          "g": 186.69720597790774,
+          "b": 218.39831059129304,
+          "ink": 1539,
+          "coverage": 0.16421254801536492,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 584938461,
+          "r": 166.0998363338789,
+          "g": 207.84206219312603,
+          "b": 246.6873977086743,
+          "ink": 1222,
+          "coverage": 0.13038839095177124,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 946931279,
+          "r": 155.7556855100715,
+          "g": 187.46588693957116,
+          "b": 218.87459389213774,
+          "ink": 1539,
+          "coverage": 0.16421254801536492,
+          "cornerAlpha": 0
+        }
+      ],
+      "clock": [
+        "11",
+        "11"
+      ],
+      "transparent": [
+        {
+          "class": "date-line",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "clock",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "glassReady": true,
+      "solarTransmission": 0.6061287701658246,
+      "glassMean": [
+        158.40793488236562,
+        195.94011856488527,
+        231.7443717837055
+      ]
+    },
+    {
+      "name": "afternoon",
+      "label": "下午",
+      "hour": "15:00",
+      "path": "work/daylight-visual-afternoon.png",
+      "errors": [],
+      "scene": {
+        "timeline": true,
+        "idealCycle": false,
+        "idealPolar": null,
+        "dayProgress": 0.625,
+        "phase": "day",
+        "sunVisible": true,
+        "sunAltitude": 28.18486568022063,
+        "sunProgress": 0.7874625514041381,
+        "moonVisible": true,
+        "moonAltitude": 16.72663417750972,
+        "moonProgress": 0.21831203250109374,
+        "moonPhase": 0.2687475988855681,
+        "condition": "clear",
+        "variant": "",
+        "cloudCover": 0.08,
+        "intensity": 0,
+        "wind": 3.7670425731208437,
+        "hail": false,
+        "rainAmount": 0,
+        "snowAmount": 0,
+        "fogAmount": 0,
+        "stormAmount": 0,
+        "hailAmount": 0,
+        "overcastAmount": 0,
+        "enhancedSky": true
+      },
+      "light": {
+        "x": 890.207404742162,
+        "y": 338.16346737116294,
+        "rgb": "255,255,255",
+        "strength": 0.8659109552921201,
+        "shadowX": -38.247129126478185,
+        "shadowY": 7.740386436476663,
+        "elevation": 28.18486568022063,
+        "isDay": true,
+        "visible": true,
+        "visibility": 0.82785897973288,
+        "daylight": 1
+      },
+      "palette": {
+        "warmth": 0,
+        "environmentWarmth": 0,
+        "rgb": "255,255,255",
+        "halo": "255,255,255",
+        "rim": "255,255,255"
+      },
+      "quality": 1,
+      "motion": 5.968,
+      "weather": {
+        "width": 960,
+        "height": 540,
+        "hash": 3595734712,
+        "r": 50.01925925925926,
+        "g": 84.46561728395062,
+        "b": 122.16790895061729,
+        "ink": 129600,
+        "coverage": 1,
+        "cornerAlpha": 255
+      },
+      "glass": [
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 1932493892,
+          "r": 157.21849427168576,
+          "g": 202.06873977086744,
+          "b": 243.5973813420622,
+          "ink": 1222,
+          "coverage": 0.13038839095177124,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 192479805,
+          "r": 153.37556855100715,
+          "g": 185.09746588693957,
+          "b": 216.7933723196881,
+          "ink": 1539,
+          "coverage": 0.16421254801536492,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 1240657456,
+          "r": 183.99018003273324,
+          "g": 219.8404255319149,
+          "b": 251.291325695581,
+          "ink": 1222,
+          "coverage": 0.13038839095177124,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 3698779335,
+          "r": 164.18908382066277,
+          "g": 193.82716049382717,
+          "b": 223.3892137751787,
+          "ink": 1539,
+          "coverage": 0.16421254801536492,
+          "cornerAlpha": 0
+        }
+      ],
+      "clock": [
+        "11",
+        "11"
+      ],
+      "transparent": [
+        {
+          "class": "date-line",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "clock",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "glassReady": true,
+      "solarTransmission": 0.9038684843024758,
+      "glassMean": [
+        164.69333166902223,
+        200.20844792088727,
+        233.76782328312748
+      ]
+    },
+    {
+      "name": "sunset",
+      "label": "傍晚",
+      "hour": "17:05",
+      "path": "work/daylight-visual-sunset.png",
+      "errors": [],
+      "scene": {
+        "timeline": true,
+        "idealCycle": false,
+        "idealPolar": null,
+        "dayProgress": 0.7118055555555556,
+        "phase": "sunset",
+        "sunVisible": true,
+        "sunAltitude": 3.534666868139134,
+        "sunProgress": 0.9710881072631791,
+        "moonVisible": true,
+        "moonAltitude": 33.36004960661759,
+        "moonProgress": 0.3596305215121144,
+        "moonPhase": 0.27140014018567626,
+        "condition": "clear",
+        "variant": "",
+        "cloudCover": 0.08,
+        "intensity": 0,
+        "wind": 3.767135400333305,
+        "hail": false,
+        "rainAmount": 0,
+        "snowAmount": 0,
+        "fogAmount": 0,
+        "stormAmount": 0,
+        "hailAmount": 0,
+        "overcastAmount": 0,
+        "enhancedSky": true
+      },
+      "light": {
+        "x": 1050.0350885618711,
+        "y": 494.8734247854809,
+        "rgb": "255,207,150",
+        "strength": 0.43510186882828206,
+        "shadowX": -59.64562130082074,
+        "shadowY": -15.429936367217064,
+        "elevation": 3.5346668681391336,
+        "isDay": true,
+        "visible": true,
+        "visibility": 0.8894915961324272,
+        "daylight": 0.9589082681349992
+      },
+      "palette": {
+        "warmth": 0.7908240859292118,
+        "environmentWarmth": 0.7370480480860254,
+        "rgb": "255,207,150",
+        "halo": "255,200,144",
+        "rim": "255,224,175"
+      },
+      "quality": 1,
+      "motion": 5.9670000000000005,
+      "weather": {
+        "width": 960,
+        "height": 540,
+        "hash": 3854788026,
+        "r": 85.49181327160494,
+        "g": 84.6185262345679,
+        "b": 99.34584104938271,
+        "ink": 129600,
+        "coverage": 1,
+        "cornerAlpha": 255
+      },
+      "glass": [
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 367764452,
+          "r": 196.14320785597383,
+          "g": 194.10474631751228,
+          "b": 206.94517184942717,
+          "ink": 1222,
+          "coverage": 0.13038839095177124,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 1059715540,
+          "r": 187.23586744639377,
+          "g": 180.74593892137753,
+          "b": 188.73944119558155,
+          "ink": 1539,
+          "coverage": 0.16421254801536492,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 3418439925,
+          "r": 223.1088379705401,
+          "g": 202.1988543371522,
+          "b": 202.04746317512274,
+          "ink": 1222,
+          "coverage": 0.13038839095177124,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 2482531695,
+          "r": 225.33398310591292,
+          "g": 196.51591942820014,
+          "b": 186.65367121507472,
+          "ink": 1539,
+          "coverage": 0.16421254801536492,
+          "cornerAlpha": 0
+        }
+      ],
+      "clock": [
+        "11",
+        "11"
+      ],
+      "transparent": [
+        {
+          "class": "date-line",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "clock",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "glassReady": true,
+      "solarTransmission": 0.9702251758533882,
+      "glassMean": [
+        207.95547409470515,
+        193.39136475106054,
+        196.09643685880155
+      ]
+    },
+    {
+      "name": "twilight",
+      "label": "黄昏",
+      "hour": "17:45",
+      "path": "work/daylight-visual-twilight.png",
+      "errors": [],
+      "scene": {
+        "timeline": true,
+        "idealCycle": false,
+        "idealPolar": null,
+        "dayProgress": 0.7395833333333334,
+        "phase": "sunset",
+        "sunVisible": false,
+        "sunAltitude": -4.6741017313478235,
+        "sunProgress": 1,
+        "moonVisible": true,
+        "moonAltitude": 36.357511248327484,
+        "moonProgress": 0.4178658702565624,
+        "moonPhase": 0.2722497171434952,
+        "condition": "clear",
+        "variant": "",
+        "cloudCover": 0.08,
+        "intensity": 0,
+        "wind": 3.7673212095418975,
+        "hail": false,
+        "rainAmount": 0,
+        "snowAmount": 0,
+        "fogAmount": 0,
+        "stormAmount": 0,
+        "hailAmount": 0,
+        "overcastAmount": 0,
+        "enhancedSky": true
+      },
+      "light": {
+        "x": 605.6514646844479,
+        "y": 311.04083461125316,
+        "rgb": "185,206,233",
+        "strength": 0.3020916066791213,
+        "shadowX": 14.046780405047778,
+        "shadowY": 31.799490448751957,
+        "elevation": 33.34983996674738,
+        "isDay": false,
+        "visible": true,
+        "visibility": 0.9266986827188605,
+        "daylight": 0.09814097077076163
+      },
+      "palette": {
+        "warmth": 1,
+        "environmentWarmth": 0.9319999999999999,
+        "rgb": "255,194,122",
+        "halo": "255,185,115",
+        "rim": "255,216,154"
+      },
+      "quality": 1,
+      "motion": 5.965,
+      "weather": {
+        "width": 960,
+        "height": 540,
+        "hash": 132095732,
+        "r": 26.598472222222224,
+        "g": 22.23551697530864,
+        "b": 25.56641975308642,
+        "ink": 129600,
+        "coverage": 1,
+        "cornerAlpha": 255
+      },
+      "glass": [
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 3879032691,
+          "r": 156.37070376432078,
+          "g": 153.34206219312603,
+          "b": 161.4558101472995,
+          "ink": 1222,
+          "coverage": 0.13038839095177124,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 1398764185,
+          "r": 143.11825860948667,
+          "g": 139.5906432748538,
+          "b": 145.49447693307343,
+          "ink": 1539,
+          "coverage": 0.16421254801536492,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 4028179293,
+          "r": 179.01063829787233,
+          "g": 160.14648117839607,
+          "b": 159.98281505728315,
+          "ink": 1222,
+          "coverage": 0.13038839095177124,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 1867900910,
+          "r": 168.86029889538662,
+          "g": 149.52631578947367,
+          "b": 147.5873944119558,
+          "ink": 1539,
+          "coverage": 0.16421254801536492,
+          "cornerAlpha": 0
+        }
+      ],
+      "clock": [
+        "11",
+        "11"
+      ],
+      "transparent": [
+        {
+          "class": "date-line",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "clock",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "glassReady": true,
+      "solarTransmission": 0.9978191278778004,
+      "glassMean": [
+        161.8399748917666,
+        150.65137560896238,
+        153.63012413740296
+      ]
+    },
+    {
+      "name": "night",
+      "label": "夜晚",
+      "hour": "21:00",
+      "path": "work/daylight-visual-night.png",
+      "errors": [],
+      "scene": {
+        "timeline": true,
+        "idealCycle": false,
+        "idealPolar": null,
+        "dayProgress": 0.875,
+        "phase": "night",
+        "sunVisible": false,
+        "sunAltitude": -46.32325823327108,
+        "sunProgress": 1,
+        "moonVisible": true,
+        "moonAltitude": 28.33579951299282,
+        "moonProgress": 0.7079766155357737,
+        "moonPhase": 0.2763969348196156,
+        "condition": "clear",
+        "variant": "",
+        "cloudCover": 0.08,
+        "intensity": 0,
+        "wind": 3.766671779548247,
+        "hail": false,
+        "rainAmount": 0,
+        "snowAmount": 0,
+        "fogAmount": 0,
+        "stormAmount": 0,
+        "hailAmount": 0,
+        "overcastAmount": 0,
+        "enhancedSky": true
+      },
+      "light": {
+        "x": 821.0228461623375,
+        "y": 337.2780415955508,
+        "rgb": "180,207,242",
+        "strength": 0.32275045913173744,
+        "shadowX": -37.409209669704495,
+        "shadowY": 10.647251357529678,
+        "elevation": 28.33579951299282,
+        "isDay": false,
+        "visible": true,
+        "visibility": 1,
+        "daylight": 0
+      },
+      "palette": {
+        "warmth": 1,
+        "environmentWarmth": 0.9319999999999999,
+        "rgb": "255,194,122",
+        "halo": "255,185,115",
+        "rim": "255,216,154"
+      },
+      "quality": 1,
+      "motion": 5.956,
+      "weather": {
+        "width": 960,
+        "height": 540,
+        "hash": 924853326,
+        "r": 5.745663580246913,
+        "g": 8.35110339506173,
+        "b": 12.822577160493827,
+        "ink": 129600,
+        "coverage": 1,
+        "cornerAlpha": 255
+      },
+      "glass": [
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 3954769812,
+          "r": 137.19230769230768,
+          "g": 143.12602291325695,
+          "b": 154.20294599018004,
+          "ink": 1222,
+          "coverage": 0.13038839095177124,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 3091603664,
+          "r": 117.65627030539311,
+          "g": 124.39831059129305,
+          "b": 134.33268356075374,
+          "ink": 1539,
+          "coverage": 0.16421254801536492,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 3682861719,
+          "r": 134.5859247135843,
+          "g": 143.03764320785598,
+          "b": 155.2356792144026,
+          "ink": 1222,
+          "coverage": 0.13038839095177124,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 283,
+          "height": 132,
+          "hash": 1432608461,
+          "r": 117.67771280051981,
+          "g": 124.79402209226771,
+          "b": 135.0942170240416,
+          "ink": 1539,
+          "coverage": 0.16421254801536492,
+          "cornerAlpha": 0
+        }
+      ],
+      "clock": [
+        "11",
+        "11"
+      ],
+      "transparent": [
+        {
+          "class": "date-line",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "clock",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "glassReady": true,
+      "solarTransmission": 1,
+      "glassMean": [
+        126.77805387795122,
+        133.8389997011684,
+        144.71638144734447
+      ]
+    },
+    {
+      "name": "portrait",
+      "label": "手机 · 傍晚",
+      "hour": "17:05",
+      "path": "work/daylight-visual-portrait.png",
+      "errors": [],
+      "scene": {
+        "timeline": true,
+        "idealCycle": false,
+        "idealPolar": null,
+        "dayProgress": 0.7118055555555556,
+        "phase": "sunset",
+        "sunVisible": true,
+        "sunAltitude": 3.534666868139134,
+        "sunProgress": 0.9710881072631791,
+        "moonVisible": true,
+        "moonAltitude": 33.36004960661759,
+        "moonProgress": 0.3596305215121144,
+        "moonPhase": 0.27140014018567626,
+        "condition": "clear",
+        "variant": "",
+        "cloudCover": 0.08,
+        "intensity": 0,
+        "wind": 3.767135400333305,
+        "hail": false,
+        "rainAmount": 0,
+        "snowAmount": 0,
+        "fogAmount": 0,
+        "stormAmount": 0,
+        "hailAmount": 0,
+        "overcastAmount": 0,
+        "enhancedSky": true
+      },
+      "light": {
+        "x": 319.9325660461951,
+        "y": 580.1016257207582,
+        "rgb": "255,207,150",
+        "strength": 0.4443672174403673,
+        "shadowX": -43.66737569899389,
+        "shadowY": -43.46082576551217,
+        "elevation": 3.5346668681391336,
+        "isDay": true,
+        "visible": true,
+        "visibility": 0.9168,
+        "daylight": 0.9589082681349992
+      },
+      "palette": {
+        "warmth": 0.7908240859292118,
+        "environmentWarmth": 0.7370480480860254,
+        "rgb": "255,207,150",
+        "halo": "255,200,144",
+        "rim": "255,224,175"
+      },
+      "quality": 1,
+      "motion": 5.9670000000000005,
+      "weather": {
+        "width": 390,
+        "height": 844,
+        "hash": 3110229267,
+        "r": 74.13199659739944,
+        "g": 76.5136590108154,
+        "b": 96.05445376108884,
+        "ink": 82290,
+        "coverage": 1,
+        "cornerAlpha": 255
+      },
+      "glass": [
+        {
+          "width": 118,
+          "height": 60,
+          "hash": 3993004131,
+          "r": 189.30582524271844,
+          "g": 184.7766990291262,
+          "b": 194.5873786407767,
+          "ink": 206,
+          "coverage": 0.11638418079096045,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 118,
+          "height": 60,
+          "hash": 2520318871,
+          "r": 181.02941176470588,
+          "g": 175.92857142857142,
+          "b": 185.38235294117646,
+          "ink": 238,
+          "coverage": 0.1344632768361582,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 118,
+          "height": 60,
+          "hash": 2482980339,
+          "r": 227.48543689320388,
+          "g": 193.70388349514562,
+          "b": 186.20388349514562,
+          "ink": 206,
+          "coverage": 0.11638418079096045,
+          "cornerAlpha": 0
+        },
+        {
+          "width": 118,
+          "height": 60,
+          "hash": 476879258,
+          "r": 233.1386554621849,
+          "g": 192.01260504201682,
+          "b": 177.5966386554622,
+          "ink": 238,
+          "coverage": 0.1344632768361582,
+          "cornerAlpha": 0
+        }
+      ],
+      "clock": [
+        "11",
+        "11"
+      ],
+      "transparent": [
+        {
+          "class": "date-line",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "clock",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "class": "tile",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "glassReady": true,
+      "solarTransmission": 1,
+      "glassMean": [
+        207.7398323407033,
+        186.605439748715,
+        185.94256343314026
+      ]
+    }
+  ]
+}

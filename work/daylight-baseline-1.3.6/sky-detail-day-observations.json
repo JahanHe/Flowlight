@@ -1,0 +1,1211 @@
+[
+  {
+    "scene": {
+      "timeline": true,
+      "idealCycle": true,
+      "idealPolar": "",
+      "dayProgress": 0.25331666666666663,
+      "cycleElapsed": 10.24,
+      "phase": "sunrise",
+      "sunVisible": true,
+      "sunAltitude": 1.3544519937241535,
+      "sunProgress": 0.006633333333333269,
+      "moonVisible": false,
+      "moonAltitude": -1.1460747639204376,
+      "moonProgress": 0,
+      "moonPhase": 0.46,
+      "condition": "clear",
+      "variant": "",
+      "cloudCover": 0.11976095908419976,
+      "intensity": 0,
+      "wind": 8,
+      "hail": false,
+      "rainAmount": 0,
+      "snowAmount": 0,
+      "fogAmount": 0,
+      "stormAmount": 0,
+      "hailAmount": 0,
+      "overcastAmount": 0,
+      "enhancedSky": true
+    },
+    "light": {
+      "x": 210.46693623563777,
+      "y": 509.6877486236792,
+      "rgb": "254,199,133",
+      "strength": 0.19389015275243854,
+      "shadowX": 61.36046734786856,
+      "shadowY": -17.26928466733799,
+      "elevation": 1.3082336042782146,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.7367605766861323,
+      "daylight": 0.7792002802027718
+    },
+    "solarTransmission": 0.9898040356178585,
+    "baseLight": {
+      "x": 210.46693623563777,
+      "y": 509.6877486236792,
+      "rgb": "254,199,133",
+      "strength": 0.1951009128125236,
+      "shadowX": 61.36046734786856,
+      "shadowY": -17.26928466733799,
+      "elevation": 1.3082336042782146,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.7433057570386258,
+      "daylight": 0.7792002802027718
+    },
+    "weather": [
+      {
+        "width": 960,
+        "height": 540,
+        "hash": 783180251,
+        "ink": 30988,
+        "r": 107.54224215825481,
+        "g": 106.98551052020137,
+        "b": 118.80114883180586,
+        "cornerAlpha": 255
+      }
+    ],
+    "detail": [
+      {
+        "width": 1280,
+        "height": 720,
+        "hash": 103197520,
+        "ink": 39982,
+        "r": 14.117177969959036,
+        "g": 14.826053709604006,
+        "b": 15.175512061902594,
+        "cornerAlpha": 0
+      }
+    ],
+    "foreground": [
+      {
+        "width": 624,
+        "height": 351,
+        "hash": 3789959090,
+        "ink": 1382,
+        "r": 57.544255253873295,
+        "g": 58.44055836784783,
+        "b": 59.195198650099705,
+        "cornerAlpha": 0
+      }
+    ]
+  },
+  {
+    "scene": {
+      "timeline": true,
+      "idealCycle": true,
+      "idealPolar": "",
+      "dayProgress": 0.3365166666666668,
+      "cycleElapsed": 15.232,
+      "phase": "day",
+      "sunVisible": true,
+      "sunAltitude": 33.61934014382203,
+      "sunProgress": 0.1730333333333336,
+      "moonVisible": false,
+      "moonAltitude": -28.44713396784941,
+      "moonProgress": 0,
+      "moonPhase": 0.46,
+      "condition": "clear",
+      "variant": "",
+      "cloudCover": 0.11998507106315412,
+      "intensity": 0,
+      "wind": 8,
+      "hail": false,
+      "rainAmount": 0,
+      "snowAmount": 0,
+      "fogAmount": 0,
+      "stormAmount": 0,
+      "hailAmount": 0,
+      "overcastAmount": 0,
+      "enhancedSky": true
+    },
+    "light": {
+      "x": 355.40821333333355,
+      "y": 307.11850928083226,
+      "rgb": "255,255,255",
+      "strength": 0.8041297224039409,
+      "shadowX": 33.20731807610487,
+      "shadowY": 9.530925944882553,
+      "elevation": 33.61934014382203,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.7460746388986158,
+      "daylight": 1
+    },
+    "solarTransmission": 0.8379448139037259,
+    "baseLight": {
+      "x": 355.40821333333355,
+      "y": 307.11850928083226,
+      "rgb": "255,255,255",
+      "strength": 0.896801364683811,
+      "shadowX": 33.20731807610487,
+      "shadowY": 9.530925944882553,
+      "elevation": 33.61934014382203,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.8752155260943197,
+      "daylight": 1
+    },
+    "weather": [
+      {
+        "width": 960,
+        "height": 540,
+        "hash": 3613718398,
+        "ink": 30988,
+        "r": 71.27772040789984,
+        "g": 109.08048276752291,
+        "b": 148.96795533755002,
+        "cornerAlpha": 255
+      }
+    ],
+    "detail": [
+      {
+        "width": 1280,
+        "height": 720,
+        "hash": 2517752047,
+        "ink": 0,
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "cornerAlpha": 0
+      }
+    ],
+    "foreground": [
+      {
+        "width": 624,
+        "height": 351,
+        "hash": 793895436,
+        "ink": 0,
+        "r": 47.3550391164289,
+        "g": 48.99593495934959,
+        "b": 49.57646878355576,
+        "cornerAlpha": 0
+      }
+    ]
+  },
+  {
+    "scene": {
+      "timeline": true,
+      "idealCycle": true,
+      "idealPolar": "",
+      "dayProgress": 0.4197166666666665,
+      "cycleElapsed": 20.224,
+      "phase": "day",
+      "sunVisible": true,
+      "sunAltitude": 56.904097687388116,
+      "sunProgress": 0.33943333333333303,
+      "moonVisible": false,
+      "moonAltitude": -48.149621120097635,
+      "moonProgress": 0,
+      "moonPhase": 0.46,
+      "condition": "clear",
+      "variant": "",
+      "cloudCover": 0.11999906763595428,
+      "intensity": 0,
+      "wind": 8,
+      "hail": false,
+      "rainAmount": 0,
+      "snowAmount": 0,
+      "fogAmount": 0,
+      "stormAmount": 0,
+      "hailAmount": 0,
+      "overcastAmount": 0,
+      "enhancedSky": true
+    },
+    "light": {
+      "x": 500.2427733333331,
+      "y": 198.71163471130814,
+      "rgb": "255,255,255",
+      "strength": 0.5545256654432806,
+      "shadowX": 11.209286019545583,
+      "shadowY": 15.246115756080671,
+      "elevation": 56.904097687388116,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.3959255071254931,
+      "daylight": 1
+    },
+    "solarTransmission": 0.451850912251777,
+    "baseLight": {
+      "x": 500.2427733333331,
+      "y": 198.71163471130814,
+      "rgb": "255,255,255",
+      "strength": 0.8992629543461585,
+      "shadowX": 11.209286019545583,
+      "shadowY": 15.246115756080671,
+      "elevation": 56.904097687388116,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.8752009696586076,
+      "daylight": 1
+    },
+    "weather": [
+      {
+        "width": 960,
+        "height": 540,
+        "hash": 1936886869,
+        "ink": 30988,
+        "r": 71.87963082483542,
+        "g": 108.68681425067768,
+        "b": 147.58038595585387,
+        "cornerAlpha": 255
+      }
+    ],
+    "detail": [
+      {
+        "width": 1280,
+        "height": 720,
+        "hash": 2517752047,
+        "ink": 0,
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "cornerAlpha": 0
+      }
+    ],
+    "foreground": [
+      {
+        "width": 624,
+        "height": 351,
+        "hash": 3486088831,
+        "ink": 0,
+        "r": 8.837014879582759,
+        "g": 9.324589660990949,
+        "b": 9.743979137904587,
+        "cornerAlpha": 0
+      }
+    ]
+  },
+  {
+    "scene": {
+      "timeline": true,
+      "idealCycle": true,
+      "idealPolar": "",
+      "dayProgress": 0.5030000000000001,
+      "cycleElapsed": 25.221,
+      "phase": "day",
+      "sunVisible": true,
+      "sunAltitude": 64.98845290475258,
+      "sunProgress": 0.5060000000000002,
+      "moonVisible": false,
+      "moonAltitude": -54.99022938094449,
+      "moonProgress": 0,
+      "moonPhase": 0.46,
+      "condition": "clear",
+      "variant": "",
+      "cloudCover": 0.11999994193214535,
+      "intensity": 0,
+      "wind": 8,
+      "hail": false,
+      "rainAmount": 0,
+      "snowAmount": 0,
+      "fogAmount": 0,
+      "stormAmount": 0,
+      "hailAmount": 0,
+      "overcastAmount": 0,
+      "enhancedSky": true
+    },
+    "light": {
+      "x": 645.2224000000002,
+      "y": 172.5854572397874,
+      "rgb": "255,255,255",
+      "strength": 0.5382691485745548,
+      "shadowX": -0.36601048731401864,
+      "shadowY": 15.153337576600757,
+      "elevation": 64.98845290475256,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.373184648437331,
+      "daylight": 1
+    },
+    "solarTransmission": 0.42654575704138453,
+    "baseLight": {
+      "x": 645.2224000000002,
+      "y": 172.5854572397874,
+      "rgb": "255,255,255",
+      "strength": 0.8993753608313492,
+      "shadowX": -0.36601048731401864,
+      "shadowY": 15.153337576600757,
+      "elevation": 64.98845290475256,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.8752000603905689,
+      "daylight": 1
+    },
+    "weather": [
+      {
+        "width": 960,
+        "height": 540,
+        "hash": 2148995623,
+        "ink": 30988,
+        "r": 69.37469342971472,
+        "g": 107.10907448044404,
+        "b": 147.1844907706209,
+        "cornerAlpha": 255
+      }
+    ],
+    "detail": [
+      {
+        "width": 1280,
+        "height": 720,
+        "hash": 2517752047,
+        "ink": 0,
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "cornerAlpha": 0
+      }
+    ],
+    "foreground": [
+      {
+        "width": 624,
+        "height": 351,
+        "hash": 2629578257,
+        "ink": 0,
+        "r": 25.435649639515262,
+        "g": 25.748581070716366,
+        "b": 25.826813928516643,
+        "cornerAlpha": 0
+      }
+    ]
+  },
+  {
+    "scene": {
+      "timeline": true,
+      "idealCycle": true,
+      "idealPolar": "",
+      "dayProgress": 0.5882499999999999,
+      "cycleElapsed": 30.336,
+      "phase": "day",
+      "sunVisible": true,
+      "sunAltitude": 55.26095184233796,
+      "sunProgress": 0.6764999999999999,
+      "moonVisible": false,
+      "moonAltitude": -46.759266943516735,
+      "moonProgress": 0,
+      "moonPhase": 0.46,
+      "condition": "clear",
+      "variant": "",
+      "cloudCover": 0.11999999661299662,
+      "intensity": 0,
+      "wind": 8,
+      "hail": false,
+      "rainAmount": 0,
+      "snowAmount": 0,
+      "fogAmount": 0,
+      "stormAmount": 0,
+      "hailAmount": 0,
+      "overcastAmount": 0,
+      "enhancedSky": true
+    },
+    "light": {
+      "x": 793.6255999999998,
+      "y": 204.8179579602987,
+      "rgb": "255,255,255",
+      "strength": 0.6537311654317415,
+      "shadowX": -12.692819520421915,
+      "shadowY": 15.200922597591864,
+      "elevation": 55.26095184233796,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.5358845620708687,
+      "daylight": 1
+    },
+    "solarTransmission": 0.6122995428634068,
+    "baseLight": {
+      "x": 793.6255999999998,
+      "y": 204.8179579602987,
+      "rgb": "255,255,255",
+      "strength": 0.8972309638101532,
+      "shadowX": -12.692819520421915,
+      "shadowY": 15.200922597591864,
+      "elevation": 55.26095184233796,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.8752000035224835,
+      "daylight": 1
+    },
+    "weather": [
+      {
+        "width": 960,
+        "height": 540,
+        "hash": 4183463969,
+        "ink": 30988,
+        "r": 70.74712792048535,
+        "g": 109.04049954821221,
+        "b": 149.87462888860205,
+        "cornerAlpha": 255
+      }
+    ],
+    "detail": [
+      {
+        "width": 1280,
+        "height": 720,
+        "hash": 2517752047,
+        "ink": 0,
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "cornerAlpha": 0
+      }
+    ],
+    "foreground": [
+      {
+        "width": 624,
+        "height": 351,
+        "hash": 12171940,
+        "ink": 0,
+        "r": 21.109602699800583,
+        "g": 22.236999539806718,
+        "b": 22.862555606688144,
+        "cornerAlpha": 0
+      }
+    ]
+  },
+  {
+    "scene": {
+      "timeline": true,
+      "idealCycle": true,
+      "idealPolar": "",
+      "dayProgress": 0.6716666666666666,
+      "cycleElapsed": 35.341,
+      "phase": "day",
+      "sunVisible": true,
+      "sunAltitude": 30.71579971648852,
+      "sunProgress": 0.8433333333333333,
+      "moonVisible": false,
+      "moonAltitude": -25.990292067797977,
+      "moonProgress": 0,
+      "moonPhase": 0.46,
+      "condition": "clear",
+      "variant": "",
+      "cloudCover": 0.11999999978999205,
+      "intensity": 0,
+      "wind": 8,
+      "hail": false,
+      "rainAmount": 0,
+      "snowAmount": 0,
+      "fogAmount": 0,
+      "stormAmount": 0,
+      "hailAmount": 0,
+      "overcastAmount": 0,
+      "enhancedSky": true
+    },
+    "light": {
+      "x": 938.8373333333334,
+      "y": 323.48634862535584,
+      "rgb": "255,255,255",
+      "strength": 0.8144978903505198,
+      "shadowX": -36.055981650732015,
+      "shadowY": 7.880366851218313,
+      "elevation": 30.715799716488522,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.7630584912848818,
+      "daylight": 1
+    },
+    "solarTransmission": 0.8718675629507069,
+    "baseLight": {
+      "x": 938.8373333333334,
+      "y": 323.48634862535584,
+      "rgb": "255,255,255",
+      "strength": 0.8947504822387135,
+      "shadowX": -36.055981650732015,
+      "shadowY": 7.880366851218313,
+      "elevation": 30.715799716488522,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.8752000002184083,
+      "daylight": 1
+    },
+    "weather": [
+      {
+        "width": 960,
+        "height": 540,
+        "hash": 1014840952,
+        "ink": 30988,
+        "r": 69.4229379114496,
+        "g": 109.18800826126242,
+        "b": 151.74432038208337,
+        "cornerAlpha": 255
+      }
+    ],
+    "detail": [
+      {
+        "width": 1280,
+        "height": 720,
+        "hash": 2517752047,
+        "ink": 0,
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "cornerAlpha": 0
+      }
+    ],
+    "foreground": [
+      {
+        "width": 624,
+        "height": 351,
+        "hash": 4010267242,
+        "ink": 0,
+        "r": 14.147798742138365,
+        "g": 15.160990949532136,
+        "b": 15.714833563429973,
+        "cornerAlpha": 3
+      }
+    ]
+  },
+  {
+    "scene": {
+      "timeline": true,
+      "idealCycle": true,
+      "idealPolar": "",
+      "dayProgress": 0.75465,
+      "cycleElapsed": 40.32,
+      "phase": "sunset",
+      "sunVisible": false,
+      "sunAltitude": -1.8988225860399182,
+      "sunProgress": 1,
+      "moonVisible": true,
+      "moonAltitude": 1.6066960343414693,
+      "moonProgress": 0.009300000000000086,
+      "moonPhase": 0.46,
+      "condition": "clear",
+      "variant": "",
+      "cloudCover": 0.1199999999867892,
+      "intensity": 0,
+      "wind": 8,
+      "hail": false,
+      "rainAmount": 0,
+      "snowAmount": 0,
+      "fogAmount": 0,
+      "stormAmount": 0,
+      "hailAmount": 0,
+      "overcastAmount": 0,
+      "enhancedSky": true
+    },
+    "light": {
+      "x": 660.4024621607671,
+      "y": 519.8151035307037,
+      "rgb": "219,202,182",
+      "strength": 0.26732246309777974,
+      "shadowX": -10.001645573547293,
+      "shadowY": -64.22590665627962,
+      "elevation": -0.21255146337697384,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.44433505699649045,
+      "daylight": 0.3884876195985572
+    },
+    "solarTransmission": 0.9801514710251784,
+    "baseLight": {
+      "x": 660.4024621607671,
+      "y": 519.8151035307037,
+      "rgb": "219,202,182",
+      "strength": 0.2718756668841102,
+      "shadowX": -10.001645573547293,
+      "shadowY": -64.22590665627962,
+      "elevation": -0.21255146337697384,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.45522637850565695,
+      "daylight": 0.3884876195985572
+    },
+    "weather": [
+      {
+        "width": 960,
+        "height": 540,
+        "hash": 4055311988,
+        "ink": 30988,
+        "r": 69.69610817090486,
+        "g": 61.646863301923325,
+        "b": 69.0929069317155,
+        "cornerAlpha": 255
+      }
+    ],
+    "detail": [
+      {
+        "width": 1280,
+        "height": 720,
+        "hash": 1191523523,
+        "ink": 28736,
+        "r": 15.174201183431952,
+        "g": 25.133691397360035,
+        "b": 27.2266909421939,
+        "cornerAlpha": 0
+      }
+    ],
+    "foreground": [
+      {
+        "width": 624,
+        "height": 351,
+        "hash": 1692962364,
+        "ink": 0,
+        "r": 38.13261236385949,
+        "g": 39.5694124865777,
+        "b": 40.175333640128855,
+        "cornerAlpha": 1
+      }
+    ]
+  },
+  {
+    "scene": {
+      "timeline": true,
+      "idealCycle": true,
+      "idealPolar": "",
+      "dayProgress": 0.83785,
+      "cycleElapsed": 45.312,
+      "phase": "night",
+      "sunVisible": false,
+      "sunAltitude": -34.084202972911804,
+      "sunProgress": 1,
+      "moonVisible": true,
+      "moonAltitude": 28.84047943861768,
+      "moonProgress": 0.17569999999999997,
+      "moonPhase": 0.46,
+      "condition": "clear",
+      "variant": "",
+      "cloudCover": 0.11999999999917495,
+      "intensity": 0,
+      "wind": 8,
+      "hail": false,
+      "rainAmount": 0,
+      "snowAmount": 0,
+      "fogAmount": 0,
+      "stormAmount": 0,
+      "hailAmount": 0,
+      "overcastAmount": 0,
+      "enhancedSky": true
+    },
+    "light": {
+      "x": 357.72928,
+      "y": 334.32659140416985,
+      "rgb": "180,207,242",
+      "strength": 0.4595961393584783,
+      "shadowX": 37.77256299775043,
+      "shadowY": 7.289456936547279,
+      "elevation": 28.84047943861768,
+      "isDay": false,
+      "visible": true,
+      "visibility": 1,
+      "daylight": 0
+    },
+    "solarTransmission": 1,
+    "baseLight": {
+      "x": 357.72928,
+      "y": 334.32659140416985,
+      "rgb": "180,207,242",
+      "strength": 0.4595961393584783,
+      "shadowX": 37.77256299775043,
+      "shadowY": 7.289456936547279,
+      "elevation": 28.84047943861768,
+      "isDay": false,
+      "visible": true,
+      "visibility": 1,
+      "daylight": 0
+    },
+    "weather": [
+      {
+        "width": 960,
+        "height": 540,
+        "hash": 163844177,
+        "ink": 30988,
+        "r": 8.24706337937266,
+        "g": 11.781366980766748,
+        "b": 18.0008713050213,
+        "cornerAlpha": 255
+      }
+    ],
+    "detail": [
+      {
+        "width": 1280,
+        "height": 720,
+        "hash": 269335231,
+        "ink": 29216,
+        "r": 16.289685935366407,
+        "g": 27.262685480200272,
+        "b": 29.579007737824305,
+        "cornerAlpha": 0
+      }
+    ],
+    "foreground": [
+      {
+        "width": 624,
+        "height": 351,
+        "hash": 2582124477,
+        "ink": 0,
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "cornerAlpha": 0
+      }
+    ]
+  },
+  {
+    "scene": {
+      "timeline": true,
+      "idealCycle": true,
+      "idealPolar": "",
+      "dayProgress": 0.9210500000000001,
+      "cycleElapsed": 50.304,
+      "phase": "night",
+      "sunVisible": false,
+      "sunAltitude": -57.16528229358542,
+      "sunProgress": 1,
+      "moonVisible": true,
+      "moonAltitude": 48.370623479187664,
+      "moonProgress": 0.3421000000000003,
+      "moonPhase": 0.46,
+      "condition": "clear",
+      "variant": "",
+      "cloudCover": 0.11999999999994847,
+      "intensity": 0,
+      "wind": 8,
+      "hail": false,
+      "rainAmount": 0,
+      "snowAmount": 0,
+      "fogAmount": 0,
+      "stormAmount": 0,
+      "hailAmount": 0,
+      "overcastAmount": 0,
+      "enhancedSky": true
+    },
+    "light": {
+      "x": 502.56384000000025,
+      "y": 233.17018519762792,
+      "rgb": "180,207,242",
+      "strength": 0.4606683591697159,
+      "shadowX": 15.813516227386136,
+      "shadowY": 17.906892930087796,
+      "elevation": 48.370623479187664,
+      "isDay": false,
+      "visible": true,
+      "visibility": 1,
+      "daylight": 0
+    },
+    "solarTransmission": 1,
+    "baseLight": {
+      "x": 502.56384000000025,
+      "y": 233.17018519762792,
+      "rgb": "180,207,242",
+      "strength": 0.4606757490042878,
+      "shadowX": 15.813516227386136,
+      "shadowY": 17.906892930087796,
+      "elevation": 48.370623479187664,
+      "isDay": false,
+      "visible": true,
+      "visibility": 1,
+      "daylight": 0
+    },
+    "weather": [
+      {
+        "width": 960,
+        "height": 540,
+        "hash": 475258792,
+        "ink": 30988,
+        "r": 7.669839938040532,
+        "g": 10.9401703885375,
+        "b": 16.59080934555312,
+        "cornerAlpha": 255
+      }
+    ],
+    "detail": [
+      {
+        "width": 1280,
+        "height": 720,
+        "hash": 994951844,
+        "ink": 28057,
+        "r": 16.222849340009102,
+        "g": 28.220446062812925,
+        "b": 30.927628584433318,
+        "cornerAlpha": 0
+      }
+    ],
+    "foreground": [
+      {
+        "width": 624,
+        "height": 351,
+        "hash": 2582124477,
+        "ink": 0,
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "cornerAlpha": 0
+      }
+    ]
+  },
+  {
+    "scene": {
+      "timeline": true,
+      "idealCycle": true,
+      "idealPolar": "",
+      "dayProgress": 0.004249999999999865,
+      "cycleElapsed": 55.296,
+      "phase": "night",
+      "sunVisible": false,
+      "sunAltitude": -64.97682631227048,
+      "sunProgress": 0,
+      "moonVisible": true,
+      "moonAltitude": 54.980391494998095,
+      "moonProgress": 0.5084999999999997,
+      "moonPhase": 0.46,
+      "condition": "clear",
+      "variant": "",
+      "cloudCover": 0.11999999999999676,
+      "intensity": 0,
+      "wind": 8,
+      "hail": false,
+      "rainAmount": 0,
+      "snowAmount": 0,
+      "fogAmount": 0,
+      "stormAmount": 0,
+      "hailAmount": 0,
+      "overcastAmount": 0,
+      "enhancedSky": true
+    },
+    "light": {
+      "x": 647.3983999999998,
+      "y": 205.88650505078854,
+      "rgb": "180,207,242",
+      "strength": 0.46169472082547003,
+      "shadowX": -0.8065696079889935,
+      "shadowY": 19.941131314485027,
+      "elevation": 54.980391494998095,
+      "isDay": false,
+      "visible": true,
+      "visibility": 1,
+      "daylight": 0
+    },
+    "solarTransmission": 1,
+    "baseLight": {
+      "x": 647.3983999999998,
+      "y": 205.88650505078854,
+      "rgb": "180,207,242",
+      "strength": 0.46169472082547003,
+      "shadowX": -0.8065696079889935,
+      "shadowY": 19.941131314485027,
+      "elevation": 54.980391494998095,
+      "isDay": false,
+      "visible": true,
+      "visibility": 1,
+      "daylight": 0
+    },
+    "weather": [
+      {
+        "width": 960,
+        "height": 540,
+        "hash": 4099951872,
+        "ink": 30988,
+        "r": 7.302826900735769,
+        "g": 10.52491286949787,
+        "b": 16.103104427520332,
+        "cornerAlpha": 255
+      }
+    ],
+    "detail": [
+      {
+        "width": 1280,
+        "height": 720,
+        "hash": 3572306381,
+        "ink": 27215,
+        "r": 17.540755575785163,
+        "g": 29.037833409194356,
+        "b": 31.509258079198908,
+        "cornerAlpha": 0
+      }
+    ],
+    "foreground": [
+      {
+        "width": 624,
+        "height": 351,
+        "hash": 2582124477,
+        "ink": 0,
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "cornerAlpha": 0
+      }
+    ]
+  },
+  {
+    "scene": {
+      "timeline": true,
+      "idealCycle": true,
+      "idealPolar": "",
+      "dayProgress": 0.08745000000000003,
+      "cycleElapsed": 60.288,
+      "phase": "night",
+      "sunVisible": false,
+      "sunAltitude": -55.43227755263439,
+      "sunProgress": 0,
+      "moonVisible": true,
+      "moonAltitude": 46.904234852229095,
+      "moonProgress": 0.6749,
+      "moonPhase": 0.46,
+      "condition": "clear",
+      "variant": "",
+      "cloudCover": 0.11999999999999977,
+      "intensity": 0,
+      "wind": 8,
+      "hail": false,
+      "rainAmount": 0,
+      "snowAmount": 0,
+      "fogAmount": 0,
+      "stormAmount": 0,
+      "hailAmount": 0,
+      "overcastAmount": 0,
+      "enhancedSky": true
+    },
+    "light": {
+      "x": 792.23296,
+      "y": 239.75080435945023,
+      "rgb": "180,207,242",
+      "strength": 0.4621833632030899,
+      "shadowX": -17.747935954066854,
+      "shadowY": 17.376759791267652,
+      "elevation": 46.904234852229095,
+      "isDay": false,
+      "visible": true,
+      "visibility": 1,
+      "daylight": 0
+    },
+    "solarTransmission": 1,
+    "baseLight": {
+      "x": 792.23296,
+      "y": 239.75080435945023,
+      "rgb": "180,207,242",
+      "strength": 0.4621855607201353,
+      "shadowX": -17.747935954066854,
+      "shadowY": 17.376759791267652,
+      "elevation": 46.904234852229095,
+      "isDay": false,
+      "visible": true,
+      "visibility": 1,
+      "daylight": 0
+    },
+    "weather": [
+      {
+        "width": 960,
+        "height": 540,
+        "hash": 1803411084,
+        "ink": 30988,
+        "r": 7.771040402736543,
+        "g": 11.196366335355622,
+        "b": 17.10620240092939,
+        "cornerAlpha": 255
+      }
+    ],
+    "detail": [
+      {
+        "width": 1280,
+        "height": 720,
+        "hash": 2624634223,
+        "ink": 26479,
+        "r": 15.558525261720527,
+        "g": 28.08564406008193,
+        "b": 30.825106964041876,
+        "cornerAlpha": 0
+      }
+    ],
+    "foreground": [
+      {
+        "width": 624,
+        "height": 351,
+        "hash": 2582124477,
+        "ink": 0,
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "cornerAlpha": 0
+      }
+    ]
+  },
+  {
+    "scene": {
+      "timeline": true,
+      "idealCycle": true,
+      "idealPolar": "",
+      "dayProgress": 0.17064999999999997,
+      "cycleElapsed": 65.28,
+      "phase": "night",
+      "sunVisible": false,
+      "sunAltitude": -31.081099926677595,
+      "sunProgress": 0,
+      "moonVisible": true,
+      "moonAltitude": 26.299392245650274,
+      "moonProgress": 0.8412999999999999,
+      "moonPhase": 0.46,
+      "condition": "clear",
+      "variant": "",
+      "cloudCover": 0.1199999999999999,
+      "intensity": 0,
+      "wind": 8,
+      "hail": false,
+      "rainAmount": 0,
+      "snowAmount": 0,
+      "fogAmount": 0,
+      "stormAmount": 0,
+      "hailAmount": 0,
+      "overcastAmount": 0,
+      "enhancedSky": true
+    },
+    "light": {
+      "x": 937.0675200000001,
+      "y": 349.32766234502253,
+      "rgb": "180,207,242",
+      "strength": 0.4619770821117227,
+      "shadowX": -40.27760636410898,
+      "shadowY": 5.35181792455257,
+      "elevation": 26.299392245650274,
+      "isDay": false,
+      "visible": true,
+      "visibility": 1,
+      "daylight": 0
+    },
+    "solarTransmission": 1,
+    "baseLight": {
+      "x": 937.0675200000001,
+      "y": 349.32766234502253,
+      "rgb": "180,207,242",
+      "strength": 0.46197369031121505,
+      "shadowX": -40.27760636410898,
+      "shadowY": 5.35181792455257,
+      "elevation": 26.299392245650274,
+      "isDay": false,
+      "visible": true,
+      "visibility": 1,
+      "daylight": 0
+    },
+    "weather": [
+      {
+        "width": 960,
+        "height": 540,
+        "hash": 3815460882,
+        "ink": 30988,
+        "r": 7.972247321543823,
+        "g": 11.630889376532851,
+        "b": 17.881728410997805,
+        "cornerAlpha": 255
+      }
+    ],
+    "detail": [
+      {
+        "width": 1280,
+        "height": 720,
+        "hash": 3953393026,
+        "ink": 25980,
+        "r": 15.289449248975876,
+        "g": 27.948165680473373,
+        "b": 30.70487027765134,
+        "cornerAlpha": 0
+      }
+    ],
+    "foreground": [
+      {
+        "width": 624,
+        "height": 351,
+        "hash": 2582124477,
+        "ink": 0,
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "cornerAlpha": 0
+      }
+    ]
+  },
+  {
+    "scene": {
+      "timeline": true,
+      "idealCycle": true,
+      "idealPolar": "",
+      "dayProgress": 0.2538499999999999,
+      "cycleElapsed": 70.272,
+      "phase": "sunrise",
+      "sunVisible": true,
+      "sunAltitude": 1.5722137775661653,
+      "sunProgress": 0.007699999999999818,
+      "moonVisible": false,
+      "moonAltitude": -1.3303347348636785,
+      "moonProgress": 0,
+      "moonPhase": 0.46,
+      "condition": "clear",
+      "variant": "",
+      "cloudCover": 0.1199999999999999,
+      "intensity": 0,
+      "wind": 8,
+      "hail": false,
+      "rainAmount": 0,
+      "snowAmount": 0,
+      "fogAmount": 0,
+      "stormAmount": 0,
+      "hailAmount": 0,
+      "overcastAmount": 0,
+      "enhancedSky": true
+    },
+    "light": {
+      "x": 211.4466378993783,
+      "y": 508.0899926856697,
+      "rgb": "254,199,134",
+      "strength": 0.21112474476871013,
+      "shadowX": 61.18777126019202,
+      "shadowY": -17.031925150004902,
+      "elevation": 1.5482028157923393,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.7893524573259998,
+      "daylight": 0.8018293887068317
+    },
+    "solarTransmission": 0.9673125139043405,
+    "baseLight": {
+      "x": 211.4466378993783,
+      "y": 508.0899926856697,
+      "rgb": "254,199,134",
+      "strength": 0.21557397711164128,
+      "shadowX": 61.18777126019202,
+      "shadowY": -17.031925150004902,
+      "elevation": 1.5482028157923393,
+      "isDay": true,
+      "visible": true,
+      "visibility": 0.8133709736064493,
+      "daylight": 0.8018293887068317
+    },
+    "weather": [
+      {
+        "width": 960,
+        "height": 540,
+        "hash": 2845257081,
+        "ink": 30988,
+        "r": 92.73183167677811,
+        "g": 98.87236994965794,
+        "b": 117.86139796050084,
+        "cornerAlpha": 255
+      }
+    ],
+    "detail": [
+      {
+        "width": 1280,
+        "height": 720,
+        "hash": 1745426806,
+        "ink": 15430,
+        "r": 11.728247610377787,
+        "g": 21.848029130632682,
+        "b": 22.900446062812925,
+        "cornerAlpha": 0
+      }
+    ],
+    "foreground": [
+      {
+        "width": 624,
+        "height": 351,
+        "hash": 686294481,
+        "ink": 0,
+        "r": 6.630234698573401,
+        "g": 6.708467556373677,
+        "b": 6.84537505752416,
+        "cornerAlpha": 0
+      }
+    ]
+  }
+]

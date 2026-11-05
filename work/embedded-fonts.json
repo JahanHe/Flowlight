@@ -1,0 +1,281 @@
+[
+  {
+    "id": "inter",
+    "label": "现代简洁 · Inter",
+    "family": "Floating Clock Inter",
+    "cssFamily": "Floating Clock Inter",
+    "fallback": "sans-serif",
+    "weight": [
+      300,
+      800
+    ],
+    "originalFamily": "Inter",
+    "weightMin": 300,
+    "weightMax": 800,
+    "sourceAxes": {
+      "opsz": {
+        "min": 14.0,
+        "default": 14.0,
+        "max": 32.0
+      },
+      "wght": {
+        "min": 100.0,
+        "default": 400.0,
+        "max": 900.0
+      }
+    },
+    "pinnedAxes": {
+      "opsz": 32.0
+    },
+    "tabularDigits": true,
+    "tabularMode": "baked original tnum substitution",
+    "unicodeRange": "U+0030-003A",
+    "woff2Bytes": 12440,
+    "sourceURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/inter/Inter%5Bopsz%2Cwght%5D.ttf",
+    "licenseURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/inter/OFL.txt",
+    "metadataURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/inter/METADATA.pb",
+    "repositoryURL": "https://github.com/google/fonts/tree/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/inter",
+    "sourceSHA256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+    "woff2SHA256": "742cc8d5902131ad2ed6e5e6150cdc937231e09969bcef1819571c4b663d8870",
+    "license": "SIL Open Font License 1.1",
+    "modified": "Digits/colon subset, weight range restricted to 300-800, non-weight axes pinned, tabular numeral alternates selected, derivative family renamed."
+  },
+  {
+    "id": "manrope",
+    "label": "几何利落 · Manrope",
+    "family": "Floating Clock Manrope",
+    "cssFamily": "Floating Clock Manrope",
+    "fallback": "sans-serif",
+    "weight": [
+      300,
+      800
+    ],
+    "originalFamily": "Manrope",
+    "weightMin": 300,
+    "weightMax": 800,
+    "sourceAxes": {
+      "wght": {
+        "min": 200.0,
+        "default": 200.0,
+        "max": 800.0
+      }
+    },
+    "pinnedAxes": {},
+    "tabularDigits": true,
+    "tabularMode": "baked original tnum substitution",
+    "unicodeRange": "U+0030-003A",
+    "woff2Bytes": 4592,
+    "sourceURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/manrope/Manrope%5Bwght%5D.ttf",
+    "licenseURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/manrope/OFL.txt",
+    "metadataURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/manrope/METADATA.pb",
+    "repositoryURL": "https://github.com/google/fonts/tree/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/manrope",
+    "sourceSHA256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+    "woff2SHA256": "38ebc83948fd6c9ae984e52c961f1813d034d7f1b44956e2ffde419f290b9faf",
+    "license": "SIL Open Font License 1.1",
+    "modified": "Digits/colon subset, weight range restricted to 300-800, non-weight axes pinned, tabular numeral alternates selected, derivative family renamed."
+  },
+  {
+    "id": "nunito",
+    "label": "柔和圆润 · Nunito",
+    "family": "Floating Clock Nunito",
+    "cssFamily": "Floating Clock Nunito",
+    "fallback": "sans-serif",
+    "weight": [
+      300,
+      800
+    ],
+    "originalFamily": "Nunito",
+    "weightMin": 300,
+    "weightMax": 800,
+    "sourceAxes": {
+      "wght": {
+        "min": 200.0,
+        "default": 200.0,
+        "max": 1000.0
+      }
+    },
+    "pinnedAxes": {},
+    "tabularDigits": true,
+    "tabularMode": "native equal-width digits",
+    "unicodeRange": "U+0030-003A",
+    "woff2Bytes": 8032,
+    "sourceURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/nunito/Nunito%5Bwght%5D.ttf",
+    "licenseURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/nunito/OFL.txt",
+    "metadataURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/nunito/METADATA.pb",
+    "repositoryURL": "https://github.com/google/fonts/tree/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/nunito",
+    "sourceSHA256": "bb55a5ca5c2042335b3991af27c4d0705d0ef41cac6164ac737fd8f2a1e85207",
+    "woff2SHA256": "0afc308ae885a7a3d2a5db5c721a1c15c3d5b292f58dae046246573abb6ac58d",
+    "license": "SIL Open Font License 1.1",
+    "modified": "Digits/colon subset, weight range restricted to 300-800, non-weight axes pinned, tabular numeral alternates selected, derivative family renamed."
+  },
+  {
+    "id": "montserrat",
+    "label": "宽阔几何 · Montserrat",
+    "family": "Floating Clock Montserrat",
+    "cssFamily": "Floating Clock Montserrat",
+    "fallback": "sans-serif",
+    "weight": [
+      300,
+      800
+    ],
+    "originalFamily": "Montserrat",
+    "weightMin": 300,
+    "weightMax": 800,
+    "sourceAxes": {
+      "wght": {
+        "min": 100.0,
+        "default": 100.0,
+        "max": 900.0
+      }
+    },
+    "pinnedAxes": {},
+    "tabularDigits": true,
+    "tabularMode": "baked original tnum substitution",
+    "unicodeRange": "U+0030-003A",
+    "woff2Bytes": 11312,
+    "sourceURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/montserrat/Montserrat%5Bwght%5D.ttf",
+    "licenseURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/montserrat/OFL.txt",
+    "metadataURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/montserrat/METADATA.pb",
+    "repositoryURL": "https://github.com/google/fonts/tree/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/montserrat",
+    "sourceSHA256": "0f7b311b2f3279e4eef9b2f968bcdbab6e28f4daeb1f049f4f278a902bcd82f7",
+    "woff2SHA256": "213ae7d8fe252d66d4080b2e062e520b86b162d7dac2e48a6c63b085f9957910",
+    "license": "SIL Open Font License 1.1",
+    "modified": "Digits/colon subset, weight range restricted to 300-800, non-weight axes pinned, tabular numeral alternates selected, derivative family renamed."
+  },
+  {
+    "id": "jetbrainsmono",
+    "label": "代码等宽 · JetBrains Mono",
+    "family": "Floating Clock JetBrains Mono",
+    "cssFamily": "Floating Clock JetBrains Mono",
+    "fallback": "monospace",
+    "weight": [
+      300,
+      800
+    ],
+    "originalFamily": "JetBrains Mono",
+    "weightMin": 300,
+    "weightMax": 800,
+    "sourceAxes": {
+      "wght": {
+        "min": 100.0,
+        "default": 400.0,
+        "max": 800.0
+      }
+    },
+    "pinnedAxes": {},
+    "tabularDigits": true,
+    "tabularMode": "native equal-width digits",
+    "unicodeRange": "U+0030-003A",
+    "woff2Bytes": 5168,
+    "sourceURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/jetbrainsmono/JetBrainsMono%5Bwght%5D.ttf",
+    "licenseURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/jetbrainsmono/OFL.txt",
+    "metadataURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/jetbrainsmono/METADATA.pb",
+    "repositoryURL": "https://github.com/google/fonts/tree/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/jetbrainsmono",
+    "sourceSHA256": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+    "woff2SHA256": "e65d34de1c5a0f688d3b72d3c34fa8c53e898de1050339a01b9ced217801e71d",
+    "license": "SIL Open Font License 1.1",
+    "modified": "Digits/colon subset, weight range restricted to 300-800, non-weight axes pinned, tabular numeral alternates selected, derivative family renamed."
+  },
+  {
+    "id": "bitter",
+    "label": "经典衬线 · Bitter",
+    "family": "Floating Clock Bitter",
+    "cssFamily": "Floating Clock Bitter",
+    "fallback": "serif",
+    "weight": [
+      300,
+      800
+    ],
+    "originalFamily": "Bitter",
+    "weightMin": 300,
+    "weightMax": 800,
+    "sourceAxes": {
+      "wght": {
+        "min": 100.0,
+        "default": 100.0,
+        "max": 900.0
+      }
+    },
+    "pinnedAxes": {},
+    "tabularDigits": true,
+    "tabularMode": "baked original tnum substitution",
+    "unicodeRange": "U+0030-003A",
+    "woff2Bytes": 7452,
+    "sourceURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/bitter/Bitter%5Bwght%5D.ttf",
+    "licenseURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/bitter/OFL.txt",
+    "metadataURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/bitter/METADATA.pb",
+    "repositoryURL": "https://github.com/google/fonts/tree/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/bitter",
+    "sourceSHA256": "ef2b9a711fb02f1e5823b34da1b7450e0fc76793b7d733a8b41006e24916d4a7",
+    "woff2SHA256": "e7a335e26d6f03dcc0afc43ad2057d62de2fcf54c16a4edf48b2a1883a6b6249",
+    "license": "SIL Open Font License 1.1",
+    "modified": "Digits/colon subset, weight range restricted to 300-800, non-weight axes pinned, tabular numeral alternates selected, derivative family renamed."
+  },
+  {
+    "id": "robotocondensed",
+    "label": "紧凑窄体 · Roboto Condensed",
+    "family": "Floating Clock Roboto Condensed",
+    "cssFamily": "Floating Clock Roboto Condensed",
+    "fallback": "sans-serif",
+    "weight": [
+      300,
+      800
+    ],
+    "originalFamily": "Roboto Condensed",
+    "weightMin": 300,
+    "weightMax": 800,
+    "sourceAxes": {
+      "wght": {
+        "min": 100.0,
+        "default": 400.0,
+        "max": 900.0
+      }
+    },
+    "pinnedAxes": {},
+    "tabularDigits": true,
+    "tabularMode": "baked original tnum substitution",
+    "unicodeRange": "U+0030-003A",
+    "woff2Bytes": 15632,
+    "sourceURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/robotocondensed/RobotoCondensed%5Bwght%5D.ttf",
+    "licenseURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/robotocondensed/OFL.txt",
+    "metadataURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/robotocondensed/METADATA.pb",
+    "repositoryURL": "https://github.com/google/fonts/tree/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/robotocondensed",
+    "sourceSHA256": "dace262afcee68a5276f200d8026c57221735c0118ab5fda8c2c0d3dc409a8d0",
+    "woff2SHA256": "c1eff97de71d81f392c4ebb8f66d8ca5be2a4559686525c82fa51038f38042e2",
+    "license": "SIL Open Font License 1.1",
+    "modified": "Digits/colon subset, weight range restricted to 300-800, non-weight axes pinned, tabular numeral alternates selected, derivative family renamed."
+  },
+  {
+    "id": "oxanium",
+    "label": "方形科技 · Oxanium",
+    "family": "Floating Clock Oxanium",
+    "cssFamily": "Floating Clock Oxanium",
+    "fallback": "sans-serif",
+    "weight": [
+      300,
+      800
+    ],
+    "originalFamily": "Oxanium",
+    "weightMin": 300,
+    "weightMax": 800,
+    "sourceAxes": {
+      "wght": {
+        "min": 200.0,
+        "default": 200.0,
+        "max": 800.0
+      }
+    },
+    "pinnedAxes": {},
+    "tabularDigits": true,
+    "tabularMode": "native equal-width digits",
+    "unicodeRange": "U+0030-003A",
+    "woff2Bytes": 2508,
+    "sourceURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/oxanium/Oxanium%5Bwght%5D.ttf",
+    "licenseURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/oxanium/OFL.txt",
+    "metadataURL": "https://raw.githubusercontent.com/google/fonts/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/oxanium/METADATA.pb",
+    "repositoryURL": "https://github.com/google/fonts/tree/1d0e46c7933245c8180fe83e47917961c913bbdb/ofl/oxanium",
+    "sourceSHA256": "2ce01d946e1e1ffc8d7eecfffbda8623bedd63eaf811a20488c4b69af45babb0",
+    "woff2SHA256": "efcb1ff286a328a47b371b4d3e360358a94dfb95324a4adf5cbdec9530e0c90f",
+    "license": "SIL Open Font License 1.1",
+    "modified": "Digits/colon subset, weight range restricted to 300-800, non-weight axes pinned, tabular numeral alternates selected, derivative family renamed."
+  }
+]

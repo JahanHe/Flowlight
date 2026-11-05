@@ -1,0 +1,32 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const fixture=JSON.parse(fs.readFileSync(__dirname+'/references/cma-hangzhou-live.json','utf8'));
+const fixed=Date.parse('2026-10-16T13:23:00Z');
+class ClockDate extends Date {constructor(...args){super(...(args.length?args:[fixed]));}static now(){return fixed;}}
+const context=vm.createContext({Date:ClockDate,Math,URLSearchParams,AbortController,DOMException,setTimeout,clearTimeout,console,fetch:null});
+vm.runInContext(fs.readFileSync(__dirname+'/solar-position.js','utf8')+'\n'+fs.readFileSync(__dirname+'/weather-provider.js','utf8'),context);
+const api=vm.runInContext('clockWeatherProvider',context),location={latitude:30.26,longitude:120.13};
+const chinese=api.findCities('杭州'),westlake=api.findCities('西湖区');
+assert(chinese.some(c=>c.name==='杭州'));assert(westlake.some(c=>c.name==='杭州 · 西湖区'));
+assert(api.findCities('北京市').some(c=>c.name==='北京'));assert(api.findCities('上海').length);
+assert.equal(api.nearestStation(location)[0],'58457');assert.equal(api.nearestStation({latitude:40.71,longitude:-74.01}),null);
+const parsed=api.fromCMA(fixture,location);
+assert.equal(parsed.providerName,'中国气象局');assert.equal(parsed.current.weather_code,2);assert.equal(parsed.current.is_day,0);
+assert.equal(parsed.current.wind_speed_10m,3.6);assert.equal(parsed.utc_offset_seconds,28800);
+assert(parsed.daily.sunrise.every(Number.isFinite));assert(parsed.daily.sunset.every(Number.isFinite));
+assert(parsed.daily.moon_phase.every(v=>v===null));assert(parsed.detail.includes('预报'));
+const stale=structuredClone(fixture);stale.data.lastUpdate='2026/10/15 21:20';assert.throws(()=>api.fromCMA(stale,location),/过期/);
+const invalid=structuredClone(fixture);invalid.data.now.windSpeed=9999;assert.throws(()=>api.fromCMA(invalid,location),/无效/);
+const unknown=structuredClone(fixture);unknown.data.daily[0].nightCode=999;assert.throws(()=>api.fromCMA(unknown,location),/暂不支持/);
+const raining=structuredClone(fixture);raining.data.now.precipitation=4;raining.data.daily[0].nightCode=1;assert.equal(api.fromCMA(raining,location).current.weather_code,63);
+(async()=>{
+ let calls=[];
+ context.fetch=async url=>{calls.push(url);return {ok:true,json:async()=>fixture};};
+ assert.equal((await api.fetchWeather(location)).providerId,'cma');assert.equal(calls.length,1);
+ calls=[];context.fetch=async url=>{calls.push(url);if(url.includes('weather.cma.cn'))throw TypeError('CORS blocked');return {ok:true,json:async()=>({current:parsed.current,daily:parsed.daily})};};
+ assert.equal((await api.fetchWeather(location)).providerId,'open-meteo');assert.equal(calls.length,2);assert(calls[1].startsWith('https://api.open-meteo.com/'));
+ calls=[];assert.equal((await api.fetchWeather({latitude:40.71,longitude:-74.01})).providerId,'open-meteo');assert.equal(calls.length,1);
+ const controller=new AbortController();controller.abort();calls=[];
+ await assert.rejects(api.fetchWeather(location,{signal:controller.signal}),{name:'AbortError'});assert.equal(calls.length,0);
+ await assert.rejects(api.fetchWeather({latitude:1000,longitude:0}),/坐标无效/);
+ console.log(JSON.stringify({passed:true,checks:['2440 official China stations and offline Chinese lookup','Hangzhou Xihu nearest station','CMA observation + clearly labelled forecast mapping','freshness and invalid-value rejection','solar dates and missing moon fallback contract','domestic-first with genuine Open-Meteo fallback','foreign coordinates direct provider','abort and coordinate validation']},null,2));
+})().catch(e=>{console.error(e);process.exitCode=1;});

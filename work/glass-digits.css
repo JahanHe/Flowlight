@@ -1,0 +1,13 @@
+/* The original accessible numeral remains available if the renderer cannot start. */
+.numeral { font-weight:var(--digit-weight,500); }
+.glass-numeral { position:absolute; left:0; width:100%; height:var(--tile-height); pointer-events:none; filter:none; }
+.top .glass-numeral { top:0; }
+.bottom .glass-numeral { bottom:0; }
+.glass-digits-ready body:not(.tv):not(.mobile-full) .numeral { opacity:0; }
+/* A new flap keeps its native numeral until its glass pixels are ready. */
+.mobile-full .glass-numeral { opacity:0; }
+.mobile-full:not(.plain-digits) .glass-half-ready .numeral { opacity:0; }
+.mobile-full:not(.plain-digits) .glass-half-ready .glass-numeral { opacity:1; }
+.tv:not(.plain-digits) .glass-half-ready .numeral { opacity:0; }
+.tv .glass-numeral { opacity:0; }
+.tv:not(.plain-digits) .glass-half-ready .glass-numeral { opacity:1; }

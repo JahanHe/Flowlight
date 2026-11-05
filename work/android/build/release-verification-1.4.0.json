@@ -1,0 +1,86 @@
+{
+  "apk": "浮光时钟.apk",
+  "bytes": 3047969,
+  "sha256": "5ab9fcc2b18fffece18b679cd1802f13caaa501fc918e83569f9c47be999292d",
+  "htmlSha256": "795f8dc223db8cdbc2d9770cd7fe9f9f8e73bdcfb5a8729390651eb570ef70bc",
+  "package": "local.fuguang.clock",
+  "versionCode": "13",
+  "versionName": "1.4.0",
+  "minSdk": 26,
+  "targetSdk": 35,
+  "signature": "Verifies\nVerified using v1 scheme (JAR signing): false\nVerified using v2 scheme (APK Signature Scheme v2): true\nVerified using v3 scheme (APK Signature Scheme v3): true\nVerified using v3.1 scheme (APK Signature Scheme v3.1): false\nVerified using v4 scheme (APK Signature Scheme v4): false\nVerified for SourceStamp: false\nNumber of signers: 1\nSigner #1 certificate DN: CN=Floating Light Local Build, OU=Personal App, O=Floating Light, C=CN\nSigner #1 certificate SHA-256 digest: 468780696fd58f9c9a7eeeff7fccae9c826ace0c69a9baa63b58a43ed96f7beb\nSigner #1 certificate SHA-1 digest: bf10597ba8d1aa7adc934dd21bcb3b7a7eaee02c\nSigner #1 certificate MD5 digest: b6905478f395544237a1b951a6f34c46\nSigner #1 key algorithm: RSA\nSigner #1 key size (bits): 2048\nSigner #1 public key SHA-256 digest: 6b59cc441bdb46bfb2135ae437a208046b61ece000fa6b4b9b091d997f45c457\nSigner #1 public key SHA-1 digest: 4604068bf74f555bb35f201b626e961467679fdd\nSigner #1 public key MD5 digest: ae54c100fc69fdd1b4a1dc1f5983b49c",
+  "permissions": [
+    "uses-permission: name='android.permission.INTERNET'",
+    "uses-permission: name='android.permission.ACCESS_COARSE_LOCATION'"
+  ],
+  "checks": [
+    "signature v2/v3",
+    "ZIP alignment",
+    "complete ZIP integrity",
+    "exact latest HTML",
+    "manifest",
+    "restricted WebView source",
+    "phone page version matches manifest",
+    "hardware acceleration enabled",
+    "foreground screen stays on",
+    "no bundled browser/runtime",
+    "32/64-bit CPU independent",
+    "portable ZIP integrity",
+    "phone and portable versions and shared page match"
+  ],
+  "runtimeVerified": false,
+  "pageUrl": "https://appassets.androidplatform.net/assets/glass-clock.html?v=13",
+  "runtimeQueryFields": [
+    "ramMB",
+    "availableMB",
+    "cores",
+    "lowRam",
+    "heapMB"
+  ],
+  "versionedApk": "浮光时钟-手机版-1.4.0.apk",
+  "portableZip": "浮光时钟-通用版-1.4.0.zip",
+  "portableZipSha256": "fce5761bf01c9f14709a8bd21aa135184dfaa6c1c0fc6725d978d62f06181ab9",
+  "calendarSettings": {
+    "passed": true,
+    "evidence": "work/calendar-settings-results.json"
+  },
+  "portableBrowser": {
+    "passed": true,
+    "evidence": "work/portable-clock-verification.json"
+  },
+  "phoneOrigin": {
+    "passed": true,
+    "evidence": "work/android/build/appassets-verification.json"
+  },
+  "daylight": {
+    "passed": true,
+    "evidence": "work/daylight-phases-results.json"
+  },
+  "weatherVisuals": {
+    "passed": true,
+    "evidence": "work/release-1.4.0/weather-contrast-results.json"
+  },
+  "weatherPipeline": {
+    "passed": true,
+    "evidence": "work/live-weather-pipeline-results.json"
+  },
+  "weatherFallback": {
+    "passed": true,
+    "evidence": "work/live-weather-fallback-results.json"
+  },
+  "nativeSourceChecks": {
+    "passed": true,
+    "command": "python3 work/android/check-phone-native.py"
+  },
+  "liveWeather": {
+    "testedAt": "2026-11-04T10:58:49.023Z",
+    "provider": "open-meteo",
+    "primaryFailed": true,
+    "physicalAndroid": false,
+    "evidence": "work/release-1.4.0/weather-api-probe.json"
+  },
+  "frozenTVUnchanged": true,
+  "calendarContentScope": "2026 solar terms and selected holidays; no leave/shift schedule; dates and lunar dates available in other years",
+  "physicalAndroidTested": false,
+  "physicalWindowsTested": false
+}

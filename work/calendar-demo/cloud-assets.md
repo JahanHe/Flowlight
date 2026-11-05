@@ -1,0 +1,13 @@
+# 演示云层素材
+
+2026-11-04 使用内置 image_gen 生成，原图为 `cloud-atlas.png`（1536 × 1024，RGBA，六格透明云图集）。由 `build.py` 嵌入本地 HTML，不依赖在线图片或外部服务。原图保留，运行时用 Canvas 采样并着色；这是艺术化天气表现，不是实拍气象观测。
+
+云种与天空布局参考 [NOAA 云种说明](https://www.noaa.gov/jetstream/clouds/four-core-types-of-clouds) 和 [美国国家气象局云图](https://www.weather.gov/media/owlie/cloud_chart.pdf)。晴空、少云、多云、阴天、小雨、大雨共用连续昼夜与光照，仅叠加不同云量、云幕、颜色和雨势。
+
+生成提示词（内置工具，`transparent_background: true`）：
+
+> Create a high-quality photorealistic cloud texture atlas for an animated sky application. Output one landscape 1536 by 1024 PNG with a TRUE TRANSPARENT background. Exact layout: three equal-width columns and two equal-height rows, six cells in a strict regular 3x2 grid. Each cell contains ONE separate natural cloud formation, with 8% transparent padding on ALL sides of its cell, no overlapping neighboring cells. No borders, no labels, no text, no sky color, no scenery, no sun. Cloud forms should span most of cell width and occupy roughly 60-70% cell height. Neutral white sunlit tops and cool-neutral gray shaded bases, monochrome tones that can be tinted at runtime. Real cloud photography fidelity, optical scattering, fine vapor and delicate semi-transparent feathered edges. Avoid illustration, cartoon, smooth marshmallow lobes, painted watercolor, gray stones, soap foam, hard outlined cutouts. Top-left: uneven fair-weather cumulus bank, 3 irregular connected major billowing masses of very different heights, intricate small vapor billows, ragged edges, flat-but-ragged soft shadowed underside. Top-middle: long fine cirrus wisps, wind-sheared irregular translucent ice-crystal feathers, not parallel lines. Top-right: broad stratocumulus bank of overlapping irregular billows, visible depth and differently sized mounds, soft dark undersides. Bottom-left: delicate altocumulus field, many unequal broken small cloudlets, perspective and varied gaps, not a regular repeating pattern. Bottom-middle: powerful tall rain-bearing cumulonimbus, asymmetric rising tower and soft spreading anvil, dense upper detail and dark base, still realistic, no drawn rain. Bottom-right: broad dense stratus / nimbostratus ceiling cloud mass with turbulent folds, contrasting diffuse gray depth, feathered edges, strong internally varied density, not flat haze. Preserve delicate partial transparency where cloud edges dissolve; dense centers should be opaque. Render every cell with equal care, sharply detailed natural vapor at high resolution.
+
+运行时六组灰度/透明度缓存为 384 × 300；最多 30 张着色纹理。图集、字段和着色画布的原始像素存储合计约 21 MiB，不代表整个网页的内存占用。每帧只变换缓存；首次解码失败时仍有程序云兜底。不会因为屏幕分辨率提高而无限扩张云纹理。
+
+检查：`node work/calendar-demo/check-weather-contrast.cjs`。测试实际绘制的云来源、柔边/实体/内部明暗、六种纹理区别、持续位移、天气覆盖与雨量差别。实际截图仍需人工查看；自动检查不等于自然度已经得到用户认可。

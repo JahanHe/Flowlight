@@ -1,0 +1,264 @@
+{
+  "pass": true,
+  "htmlSha256": "c51157ddd073c69c565640935b23b89a22f7b498e841e0ba1d7a6a3610682df8",
+  "scope": "CMA406 then Open-Meteo200 fixture through actual network/provider/app/renderer; physical phone not tested",
+  "failures": [],
+  "results": [
+    {
+      "type": "cma406-openmeteo",
+      "portrait": false,
+      "network": {
+        "code": 0,
+        "wall": "2026-10-17T12:00:00+08:00",
+        "calls": [
+          {
+            "code": 0,
+            "url": "https://weather.cma.cn/api/weather/view?stationid=58457",
+            "kind": "cma"
+          },
+          {
+            "kind": "open-meteo"
+          }
+        ],
+        "errors": []
+      },
+      "state": {
+        "timeline": true,
+        "idealCycle": false,
+        "idealPolar": null,
+        "dayProgress": 0.5,
+        "phase": "day",
+        "sunVisible": true,
+        "sunAltitude": 50.3500259816022,
+        "sunProgress": 0.5223569549790682,
+        "moonVisible": false,
+        "moonAltitude": -0.3863133172709897,
+        "moonProgress": 0.1774669506194275,
+        "moonPhase": 0.20450807048598563,
+        "condition": "clear",
+        "variant": "",
+        "cloudCover": 0.08,
+        "intensity": 0,
+        "wind": 3.6537807381151928,
+        "hail": false,
+        "rainAmount": 0,
+        "snowAmount": 0,
+        "fogAmount": 0,
+        "stormAmount": 0,
+        "hailAmount": 0,
+        "overcastAmount": 0,
+        "enhancedSky": true
+      },
+      "light": {
+        "x": 494.59462021033573,
+        "y": 168.4383119110212,
+        "rgb": "255,255,255",
+        "strength": 0.46674796065552626,
+        "shadowX": -2.6656475507117383,
+        "shadowY": 22.494977427600848,
+        "elevation": 50.3500259816022,
+        "isDay": true,
+        "visible": true,
+        "visibility": 0.2651866743613505,
+        "daylight": 1
+      },
+      "motion": 7.992,
+      "at": 8008,
+      "date": 1792209600000,
+      "mean": [
+        81.20415879017013,
+        116.33364839319471,
+        152.4224952741021
+      ],
+      "transmission": 0.2884623127989367,
+      "preview": "live",
+      "source": "open-meteo",
+      "current": {
+        "time": 1792209600,
+        "weather_code": 0,
+        "is_day": 1,
+        "cloud_cover": 8,
+        "precipitation": 0,
+        "wind_speed_10m": 3.6
+      },
+      "status": "杭州 · 西湖区 · 晴",
+      "cycle": "false",
+      "clock": [
+        "12",
+        "00"
+      ]
+    },
+    {
+      "type": "cma406-openmeteo",
+      "portrait": false,
+      "network": {
+        "code": 2,
+        "wall": "2026-10-17T12:00:00+08:00",
+        "calls": [
+          {
+            "code": 2,
+            "url": "https://weather.cma.cn/api/weather/view?stationid=58457",
+            "kind": "cma"
+          },
+          {
+            "kind": "open-meteo"
+          }
+        ],
+        "errors": []
+      },
+      "state": {
+        "timeline": true,
+        "idealCycle": false,
+        "idealPolar": null,
+        "dayProgress": 0.5,
+        "phase": "day",
+        "sunVisible": true,
+        "sunAltitude": 50.3500259816022,
+        "sunProgress": 0.5223569549790682,
+        "moonVisible": false,
+        "moonAltitude": -0.3863133172709897,
+        "moonProgress": 0.1774669506194275,
+        "moonPhase": 0.20450807048598563,
+        "condition": "overcast",
+        "variant": "",
+        "cloudCover": 0.949285600610205,
+        "intensity": 0,
+        "wind": 3.6535719969489753,
+        "hail": false,
+        "rainAmount": 0,
+        "snowAmount": 0,
+        "fogAmount": 0,
+        "stormAmount": 0,
+        "hailAmount": 0,
+        "overcastAmount": 0.9878245461479601,
+        "enhancedSky": true
+      },
+      "light": {
+        "x": 494.59462021033573,
+        "y": 168.4383119110212,
+        "rgb": "255,255,255",
+        "strength": 0.06772373883049085,
+        "shadowX": -2.6656475507117383,
+        "shadowY": 22.494977427600848,
+        "elevation": 50.3500259816022,
+        "isDay": true,
+        "visible": true,
+        "visibility": 0.00017073449739404194,
+        "daylight": 1
+      },
+      "motion": 7.9990000000000006,
+      "at": 8001,
+      "date": 1792209600000,
+      "mean": [
+        82.12665406427222,
+        97.1578449905482,
+        112.74858223062382
+      ],
+      "transmission": 0.013344778699942716,
+      "preview": "live",
+      "source": "open-meteo",
+      "current": {
+        "time": 1792209600,
+        "weather_code": 3,
+        "is_day": 1,
+        "cloud_cover": 96,
+        "precipitation": 0,
+        "wind_speed_10m": 3.6
+      },
+      "status": "杭州 · 西湖区 · 阴天",
+      "cycle": "false",
+      "clock": [
+        "12",
+        "00"
+      ]
+    },
+    {
+      "type": "cma406-openmeteo",
+      "portrait": true,
+      "network": {
+        "code": 2,
+        "wall": "2026-10-17T12:00:00+08:00",
+        "calls": [
+          {
+            "code": 2,
+            "url": "https://weather.cma.cn/api/weather/view?stationid=58457",
+            "kind": "cma"
+          },
+          {
+            "kind": "open-meteo"
+          }
+        ],
+        "errors": []
+      },
+      "state": {
+        "timeline": true,
+        "idealCycle": false,
+        "idealPolar": null,
+        "dayProgress": 0.5,
+        "phase": "day",
+        "sunVisible": true,
+        "sunAltitude": 50.3500259816022,
+        "sunProgress": 0.5223569549790682,
+        "moonVisible": false,
+        "moonAltitude": -0.3863133172709897,
+        "moonProgress": 0.1774669506194275,
+        "moonPhase": 0.20450807048598563,
+        "condition": "overcast",
+        "variant": "",
+        "cloudCover": 0.949285600610205,
+        "intensity": 0,
+        "wind": 3.6535719969489753,
+        "hail": false,
+        "rainAmount": 0,
+        "snowAmount": 0,
+        "fogAmount": 0,
+        "stormAmount": 0,
+        "hailAmount": 0,
+        "overcastAmount": 0.9878245461479601,
+        "enhancedSky": true
+      },
+      "light": {
+        "x": 200.9290644604489,
+        "y": 263.26284306092947,
+        "rgb": "255,255,255",
+        "strength": 0.2189023072931722,
+        "shadowX": -0.6973800435412609,
+        "shadowY": 22.641628638588653,
+        "elevation": 50.3500259816022,
+        "isDay": true,
+        "visible": true,
+        "visibility": 0.012742975365386822,
+        "daylight": 1
+      },
+      "motion": 7.9990000000000006,
+      "at": 8001,
+      "date": 1792209600000,
+      "mean": [
+        64.37807183364839,
+        82.51606805293005,
+        101.03308128544424
+      ],
+      "transmission": 1,
+      "preview": "live",
+      "source": "open-meteo",
+      "current": {
+        "time": 1792209600,
+        "weather_code": 3,
+        "is_day": 1,
+        "cloud_cover": 96,
+        "precipitation": 0,
+        "wind_speed_10m": 3.6
+      },
+      "status": "杭州 · 西湖区 · 阴天",
+      "cycle": "false",
+      "clock": [
+        "12",
+        "00"
+      ]
+    },
+    {
+      "type": "fallback-pixel-distance",
+      "delta": 27.371455576559548
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "file": "浮光·TV-1.0.2.apk",
+    "bytes": 205429,
+    "package": "local.fuguang.clock.tv",
+    "versionCode": "3",
+    "versionName": "1.0.2",
+    "label": "浮光·TV",
+    "apkSha256": "53f23cdb183063c3367bd07c8fc3c56febfd0ec2c9d5bc5a282e20c3bfd0a784",
+    "assetSha256": "981aad1f40671cf4e78be6e20d1ad3bef95c6e156af68130fae5529e203640b8",
+    "sameAsCurrentHTML": true,
+    "hasPreview": true,
+    "certificateSha256": "468780696fd58f9c9a7eeeff7fccae9c826ace0c69a9baa63b58a43ed96f7beb",
+    "v1v2v3": true
+  },
+  {
+    "file": "浮光·TV.apk",
+    "bytes": 205429,
+    "package": "local.fuguang.clock.tv",
+    "versionCode": "3",
+    "versionName": "1.0.2",
+    "label": "浮光·TV",
+    "apkSha256": "53f23cdb183063c3367bd07c8fc3c56febfd0ec2c9d5bc5a282e20c3bfd0a784",
+    "assetSha256": "981aad1f40671cf4e78be6e20d1ad3bef95c6e156af68130fae5529e203640b8",
+    "sameAsCurrentHTML": true,
+    "hasPreview": true,
+    "certificateSha256": "468780696fd58f9c9a7eeeff7fccae9c826ace0c69a9baa63b58a43ed96f7beb",
+    "v1v2v3": true
+  },
+  {
+    "file": "浮光时钟-TV-1.0.1.apk",
+    "bytes": 201333,
+    "package": "local.fuguang.clock.tv",
+    "versionCode": "2",
+    "versionName": "1.0.1",
+    "label": "浮光时钟·电视版",
+    "apkSha256": "d43d8eaab9dc713b262ba1bd655b70e626ab009fb9e9b9857b12ffcbc4c481ce",
+    "assetSha256": "032ad80a78fe1953484e4c2bff078086820dd11c1b84dc65ccfaf43dd4901ddf",
+    "sameAsCurrentHTML": false,
+    "hasPreview": false,
+    "certificateSha256": "468780696fd58f9c9a7eeeff7fccae9c826ace0c69a9baa63b58a43ed96f7beb",
+    "v1v2v3": true
+  },
+  {
+    "file": "浮光时钟-TV.apk",
+    "bytes": 201333,
+    "package": "local.fuguang.clock.tv",
+    "versionCode": "2",
+    "versionName": "1.0.1",
+    "label": "浮光时钟·电视版",
+    "apkSha256": "d43d8eaab9dc713b262ba1bd655b70e626ab009fb9e9b9857b12ffcbc4c481ce",
+    "assetSha256": "032ad80a78fe1953484e4c2bff078086820dd11c1b84dc65ccfaf43dd4901ddf",
+    "sameAsCurrentHTML": false,
+    "hasPreview": false,
+    "certificateSha256": "468780696fd58f9c9a7eeeff7fccae9c826ace0c69a9baa63b58a43ed96f7beb",
+    "v1v2v3": true
+  }
+]

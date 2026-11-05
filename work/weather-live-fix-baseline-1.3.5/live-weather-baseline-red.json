@@ -1,0 +1,9 @@
+{
+  "htmlSha256": "c51157ddd073c69c565640935b23b89a22f7b498e841e0ba1d7a6a3610682df8",
+  "meanPixelDifference": 6.256773787019534,
+  "minimumMeanDifference": 10,
+  "clearCloudyRangeRatio": 0.22792902396474152,
+  "minimumRangeRatio": 0.35,
+  "overcastBlueBiasRatio": 0.4275552724473817,
+  "maximumBlueBiasRatio": 0.35
+}

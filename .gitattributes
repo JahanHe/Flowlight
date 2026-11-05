@@ -1,0 +1,11 @@
+* text=auto eol=lf
+*.apk binary
+*.zip binary
+*.png binary
+*.jpg binary
+*.gif binary
+*.webp binary
+*.ttf binary
+*.woff2 binary
+
+work/fonts/*-OFL.txt -text

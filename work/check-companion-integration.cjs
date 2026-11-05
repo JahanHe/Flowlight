@@ -1,0 +1,46 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const {chromium}=require('playwright');
+const url=process.argv[2]||'http://127.0.0.1:8765/glass-clock.html';
+assert.match(url,/^http:\/\/(127\.0\.0\.1|localhost)(:\d+)?\//);
+const time=Date.parse('2026-10-16T12:34:56+08:00');
+const days=Array.from({length:4},(_,i)=>Date.parse(`2026-10-${15+i}T00:00:00+08:00`)/1000);
+const data={current:{time:time/1000,weather_code:0,is_day:1,cloud_cover:0,precipitation:0,wind_speed_10m:12},daily:{time:days,sunrise:days.map(x=>x+21600),sunset:days.map(x=>x+64800),moonrise:days.map(x=>x+61200),moonset:days.map(x=>x+18000),moon_phase:days.map(()=>.3)}};
+(async()=>{
+ const browser=await chromium.launch({headless:true,executablePath:process.env.CLOCK_CHROMIUM_PATH,args:['--enable-unsafe-swiftshader']});
+ try {
+  const context=await browser.newContext({viewport:{width:1024,height:768},timezoneId:'Asia/Shanghai',hasTouch:true});
+  await context.route('**/*',route=>{const target=new URL(route.request().url());if(target.origin===new URL(url).origin)return route.continue();if(target.hostname==='api.open-meteo.com')return route.fulfill({contentType:'application/json',body:JSON.stringify(data)});return route.abort();});
+  const page=await context.newPage(), errors=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  await page.clock.install({time:new Date(time)});await page.clock.pauseAt(new Date(time+1000));await page.clock.setSystemTime(new Date(time));
+  await page.goto(url);await page.waitForSelector('.stick-world:not([hidden])');await page.clock.runFor(80);
+  assert.equal(await page.locator('.stick-world').count(),1);assert.equal(await page.locator('.stick-canvas').count(),1);assert.equal(await page.locator('.stick-hit').count(),1);
+  assert.equal(await page.locator('#show-companion').isChecked(),true);assert.equal(await page.locator('.stick-hit').getAttribute('aria-label'),'和火柴人互动');
+  await page.locator('#appearance-toggle').tap();await page.locator('#show-companion').uncheck();assert.equal(await page.locator('.stick-world').isHidden(),true);
+  await page.reload();await page.waitForSelector('#show-companion',{state:'attached'});assert.equal(await page.locator('#show-companion').isChecked(),false);assert.equal(await page.locator('.stick-world').isHidden(),true);
+  await page.locator('#appearance-toggle').tap();await page.locator('#show-companion').check();assert.equal(await page.locator('.stick-world').isVisible(),true);await page.locator('#appearance-close').tap();
+  await page.locator('#weather-browse').tap();await page.locator('.preview-option[data-preview="night"]').tap();await page.locator('#gallery-close').tap();
+  assert.equal(await page.locator('.stick-world').getAttribute('data-mode'),'sleep');
+  await page.locator('#fullscreen').tap();await page.waitForFunction(()=>document.body.classList.contains('is-fullscreen'));
+  assert.equal(await page.locator('.stick-world').isVisible(),true);assert.equal(await page.locator('.stick-hit').evaluate(el=>el.inert),false);
+  await page.locator('.stick-hit').tap();assert.equal(await page.locator('.stick-world').getAttribute('data-mode'),'wave');
+  assert.equal(await page.locator('body').evaluate(el=>el.classList.contains('is-fullscreen')),true);
+  await page.locator('.stick-hit').tap();assert.equal(await page.locator('body').evaluate(el=>el.classList.contains('is-fullscreen')),true);
+  await page.locator('#show-companion').evaluate(el=>{el.checked=false;el.dispatchEvent(new Event('change',{bubbles:true}));});
+  assert.equal(await page.locator('#show-companion').isChecked(),true);assert.equal(await page.locator('.stick-world').isVisible(),true);
+  await page.touchscreen.tap(20,20);await page.touchscreen.tap(20,20);await page.waitForFunction(()=>!document.body.classList.contains('is-fullscreen'));
+  await page.evaluate(()=>{document.documentElement.requestFullscreen=undefined;document.documentElement.webkitRequestFullscreen=undefined;});
+  await page.locator('#fullscreen').tap();await page.waitForFunction(()=>document.body.classList.contains('is-fullscreen'));assert.equal(await page.evaluate(()=>document.fullscreenElement),null);
+  await page.locator('.stick-hit').tap();assert.equal(await page.locator('.stick-world').getAttribute('data-mode'),'wave');
+  const rect=await page.locator('.stick-hit').boundingBox();
+  await page.mouse.move(rect.x+rect.width/2,rect.y+rect.height/2);await page.mouse.down();await page.mouse.move(700,330,{steps:5});await page.mouse.up();
+  assert.equal(await page.locator('body').evaluate(el=>el.classList.contains('is-fullscreen')),true);
+  assert.equal(await page.locator('.stick-world').getAttribute('data-mode'),'curious');
+  await page.touchscreen.tap(20,20);await page.touchscreen.tap(20,20);await page.waitForFunction(()=>!document.body.classList.contains('is-fullscreen'));
+  assert.deepEqual(errors,[]);
+  const report={passed:true,checks:['single visible companion','toggle persisted through reload','night preview triggers sleep','native fullscreen touch wakes companion without exiting','fullscreen companion preference cannot edit','blank double tap exits native and fallback fullscreen','fallback fullscreen touch and drag work','no script errors'],note:'Touch-enabled Chromium at 1024x768; native iPad Safari hardware not tested.'};
+  fs.writeFileSync(path.join(__dirname,'companion-integration-results.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));
+ } finally {await browser.close();}
+})().catch(error=>{console.error(error);process.exitCode=1;});

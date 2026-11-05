@@ -1,0 +1,11 @@
+.stick-world { position:fixed; inset:0; pointer-events:none; z-index:8; overflow:hidden; }
+.stick-canvas { position:absolute; left:0; top:0; width:420px; height:330px; pointer-events:none; }
+.stick-hit {
+  position:absolute; left:0; top:0; width:84px; height:96px; padding:0;
+  border:0; border-radius:42px; background:transparent; box-shadow:none;
+  pointer-events:auto; touch-action:none; -webkit-user-select:none; user-select:none;
+  -webkit-touch-callout:none; -webkit-tap-highlight-color:transparent; cursor:grab;
+}
+.stick-hit:active { cursor:grabbing; }
+.stick-hit:focus-visible { outline:1px solid rgba(245,225,190,.8); outline-offset:1px; }
+.stick-world[hidden] { display:none !important; }

@@ -1,0 +1,97 @@
+{
+  "apk": "浮光时钟.apk",
+  "bytes": 1016353,
+  "sha256": "8c1aba3ec68c109a87792573a4b29e77fd4fd0f279ebb6206f468483c23b034a",
+  "htmlSha256": "ed4710ca132b1e3271ed5f1c8a69ece56b6fea95241b38d8daa2927da67d8ca5",
+  "package": "local.fuguang.clock",
+  "versionCode": "12",
+  "versionName": "1.3.7",
+  "minSdk": 26,
+  "targetSdk": 35,
+  "signature": "Verifies\nVerified using v1 scheme (JAR signing): false\nVerified using v2 scheme (APK Signature Scheme v2): true\nVerified using v3 scheme (APK Signature Scheme v3): true\nVerified using v3.1 scheme (APK Signature Scheme v3.1): false\nVerified using v4 scheme (APK Signature Scheme v4): false\nVerified for SourceStamp: false\nNumber of signers: 1\nSigner #1 certificate DN: CN=Floating Light Local Build, OU=Personal App, O=Floating Light, C=CN\nSigner #1 certificate SHA-256 digest: 468780696fd58f9c9a7eeeff7fccae9c826ace0c69a9baa63b58a43ed96f7beb\nSigner #1 certificate SHA-1 digest: bf10597ba8d1aa7adc934dd21bcb3b7a7eaee02c\nSigner #1 certificate MD5 digest: b6905478f395544237a1b951a6f34c46\nSigner #1 key algorithm: RSA\nSigner #1 key size (bits): 2048\nSigner #1 public key SHA-256 digest: 6b59cc441bdb46bfb2135ae437a208046b61ece000fa6b4b9b091d997f45c457\nSigner #1 public key SHA-1 digest: 4604068bf74f555bb35f201b626e961467679fdd\nSigner #1 public key MD5 digest: ae54c100fc69fdd1b4a1dc1f5983b49c",
+  "permissions": [
+    "uses-permission: name='android.permission.INTERNET'",
+    "uses-permission: name='android.permission.ACCESS_COARSE_LOCATION'"
+  ],
+  "checks": [
+    "signature v2/v3",
+    "ZIP alignment",
+    "complete ZIP integrity",
+    "exact latest HTML",
+    "manifest",
+    "restricted WebView source",
+    "phone page version matches manifest",
+    "hardware acceleration enabled",
+    "foreground screen stays on",
+    "no bundled browser/runtime",
+    "32/64-bit CPU independent",
+    "portable ZIP integrity",
+    "phone and portable versions and shared page match"
+  ],
+  "runtimeVerified": false,
+  "pageUrl": "https://appassets.androidplatform.net/assets/glass-clock.html?v=12",
+  "runtimeQueryFields": [
+    "ramMB",
+    "availableMB",
+    "cores",
+    "lowRam",
+    "heapMB"
+  ],
+  "versionedApk": "浮光时钟-手机版-1.3.7.apk",
+  "portableZip": "浮光时钟-通用版-1.3.7.zip",
+  "portableZipSha256": "8eccd0c211c988cf5432d96454dab007484b87a2a9e389942ee289c610e8c177",
+  "pairedRelease": true,
+  "tvFreezeUnchanged": true,
+  "realPhoneVerified": false,
+  "realWindowsVerified": false,
+  "checksReports": [
+    "work/daylight-phases-results.json",
+    "work/daylight-visual-results.json",
+    "work/aurora-results.json",
+    "work/android/build/appassets-verification.json",
+    "work/portable-clock-verification.json"
+  ],
+  "retainedRegressions": [
+    {
+      "report": "work/live-weather-pipeline-results.json",
+      "note": "Passed during this update before the final aurora-only refinements; cloud/weather/flip logic unchanged afterward."
+    },
+    {
+      "report": "work/live-weather-fallback-results.json",
+      "note": "Passed during this update before the final aurora-only refinements; cloud/weather/flip logic unchanged afterward."
+    },
+    {
+      "report": "work/cloud-banks-results.json",
+      "note": "Passed during this update before the final aurora-only refinements; cloud/weather/flip logic unchanged afterward."
+    },
+    {
+      "report": "work/sky-detail-check-results.json",
+      "note": "Passed during this update before the final aurora-only refinements; cloud/weather/flip logic unchanged afterward."
+    }
+  ],
+  "change": "Continuous daylight palette shared by sky, clouds and glass; restrained solar size and changing halo; soft cached immersive aurora with actual glass reflection and continuous night fill.",
+  "auroraCacheRawBytes": 393216,
+  "desktopPerformance": {
+    "scope": "Two short 6-second desktop Chromium samples with live timers after warmup; not physical phone performance, battery, or whole-app memory.",
+    "report": "work/sky-detail-after-results.json",
+    "baselineReport": "work/sky-detail-before-results.json",
+    "comparisons": [
+      {
+        "profile": "smooth",
+        "beforeFPS": 19.970292127413764,
+        "afterFPS": 20.12641383898869,
+        "extraRawCanvasBytes": 393216,
+        "beforeDesktopTaskSeconds": 0.420394,
+        "afterDesktopTaskSeconds": 0.38450100000000004
+      },
+      {
+        "profile": "fine",
+        "beforeFPS": 23.797960174842157,
+        "afterFPS": 23.988005997001498,
+        "extraRawCanvasBytes": 393216,
+        "beforeDesktopTaskSeconds": 0.48349000000000003,
+        "afterDesktopTaskSeconds": 0.41488400000000003
+      }
+    ]
+  }
+}

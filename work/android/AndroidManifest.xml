@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="local.fuguang.clock" android:versionCode="13" android:versionName="1.4.0">
+    <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="35" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-feature android:name="android.hardware.location" android:required="false" />
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <application android:label="浮光时钟" android:icon="@drawable/clock_icon" android:theme="@style/AppTheme" android:allowBackup="false" android:usesCleartextTraffic="false" android:hardwareAccelerated="true" android:enableOnBackInvokedCallback="true" android:supportsRtl="true">
+        <activity android:name=".ClockActivity" android:exported="true" android:resizeableActivity="true" android:configChanges="orientation|screenSize|keyboardHidden|screenLayout|smallestScreenSize|uiMode" android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

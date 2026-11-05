@@ -1,0 +1,59 @@
+/* The low-memory TV uses native text and one small, continuously moving weather canvas. */
+body.tv { overflow:hidden; }
+.tv .tile,.tv.plain-digits .numeral { filter:none; }
+.tv .numeral { color:#edf3fa;background:none;opacity:1;font-weight:var(--digit-weight,800);text-shadow:none; }
+.tv .tile { isolation:auto;perspective:none; }
+.tv .half { backface-visibility:visible;-webkit-backface-visibility:visible; }
+.tv .static.top { height:100%; }
+.tv .static.bottom { display:none; }
+.tv .tile.flipping .flap { display:none; }
+.tv .tile.flipping .static { animation:none; }
+.tv #weather-canvas { -webkit-mask-image:none;mask-image:none; }
+.tv .date-line { text-shadow:none; }
+.tv.tv-settings-open .shell,.tv.tv-settings-open .ambient,.tv.tv-settings-open .stick-world { visibility:hidden; }
+#tv-boot { position:fixed;top:0;right:0;bottom:0;left:0;z-index:29;background:#000;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#f4f5f7;font-size:2vw; }
+#tv-boot span { margin-top:1vw;font-size:1.25vw;color:#a4a7b2; }
+.tv-version { margin-left:.7vw;color:#a4a7b2;font-size:1.1vw;font-weight:400;letter-spacing:0; }
+.tv .ambient,.tv .stick-world { top:0;right:0;bottom:0;left:0; }
+.tv .editor-only { display:none!important; }
+.tv .shell { height:100vh;min-height:100vh;padding:5vh 5vw; }
+.tv main,.tv.panel-open:not(.is-fullscreen) main { height:90vh;min-height:0;padding:0;justify-content:center; }
+.tv .intro,.tv.is-fullscreen .intro { margin-bottom:5vh; }
+.tv .date-line time,.tv .weekday,.tv.is-fullscreen .date-line time { font-size:2.1vw;letter-spacing:.03em; }
+.tv .date-line>* { margin:0 6px; }
+.tv .colon { gap:0; }
+.tv .colon::before { margin-bottom:22px; }
+.tv .numeral,.tv .glass-numeral { left:0;right:0; }
+.tv .stick-hit { outline:none; }
+/* The preview copies the running scene; the full-screen clock keeps its original layout. */
+#tv-panel { position:fixed;left:4vw;right:4vw;top:4vh;bottom:4vh;z-index:30;display:flex;flex-direction:column;padding:2.2vw 2.4vw 1.5vw;border:1px solid #32353e;background:linear-gradient(120deg,#171a23,#0d0f15 65%);border-radius:1.8vw;box-shadow:0 2vw 6vw #000b;color:#f4f5f7;font-size:1.4vw; }
+#tv-panel[hidden] { display:none; }
+.tv-heading { display:flex;align-items:center;justify-content:space-between;flex:none;margin-bottom:2vw; }
+.tv-heading h1 { margin:0;font-size:2.4vw;font-weight:650;letter-spacing:.035em; }
+.tv-heading p { margin:.6vw 0 0;color:#a4a7b2;font-size:1.15vw; }
+#tv-panel button { min-height:4.25vw;padding:.8vw 1vw;border:2px solid transparent;border-radius:.8vw;background:#262933;color:#e8e9ed;font-size:1.4vw;font-weight:500;line-height:1.3;transition:background-color .12s,color .12s,transform .12s;box-shadow:none;cursor:pointer; }
+#tv-panel button[aria-pressed="true"],#tv-panel button[aria-selected="true"] { background:#3c414e;border-color:#777f92; }
+#tv-panel button:focus,#tv-panel button[aria-pressed="true"]:focus,#tv-panel button[aria-selected="true"]:focus { outline:2px solid #fff;outline-offset:2px;background:#f5f6fa;color:#151821;border-color:#fff;box-shadow:0 .5vw 1.5vw #0007;transform:scale(1.025); }
+#tv-panel button:disabled { opacity:.28; }
+#tv-panel #tv-close { min-width:14vw;margin-left:2vw; }
+.tv-split { display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-gap:2.7vw;flex:1;min-height:0; }
+.tv-settings-column { display:flex;flex-direction:column;min-width:0;min-height:0; }
+.tv-tabs { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-gap:.7vw;flex:none;padding:.45vw .45vw 1.2vw;border-bottom:1px solid #30343e; }
+#tv-panel .tv-tabs button { padding:.6vw .4vw; }
+.tv-content { overflow-y:auto;overflow-x:hidden;min-height:0;flex:1;padding:1.2vw .5vw .6vw;scroll-behavior:auto; }
+.tv-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-gap:.85vw;margin-bottom:1.2vw; }
+.tv-toggles { grid-template-columns:repeat(2,minmax(0,1fr)); }
+#tv-panel .tv-toggles button { padding:.8vw .45vw; }
+.tv-stepper { display:grid;grid-template-columns:1fr 4.25vw 6.2vw 4.25vw;grid-gap:.6vw;align-items:center;padding:.6vw 0;border-bottom:1px solid #2b2e38; }
+.tv-stepper output { text-align:center;font-variant-numeric:tabular-nums;font-size:1.45vw;color:#fff; }
+.tv-stepper + .tv-grid { margin-top:1.3vw; }
+.tv-copy { color:#b2b5c0;font-size:1.15vw;line-height:1.6;margin:0 0 1.3vw; }
+.tv-preview { min-width:0;align-self:center;padding:0 .3vw 1.3vw; }
+.tv-preview-heading { display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1vw; }
+.tv-preview h2 { margin:0;font-size:1.5vw;font-weight:600; }
+.tv-preview-heading span,.tv-preview p { color:#a4a7b2;font-size:1.05vw;line-height:1.6; }
+.tv-preview p { margin:1.3vw 0 0;text-align:center; }
+.tv-preview-frame { position:relative;height:0;padding-bottom:56.25%;overflow:hidden;border-radius:1vw;border:1px solid #3b3f49;background:#000;box-shadow:0 1.2vw 3vw #0006; }
+#tv-preview-canvas { position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%; }
+.tv-footer { display:flex;justify-content:space-between;flex:none;padding-top:1.2vw;color:#9297a5;font-size:1vw; }
+.tv-footer span:first-child { max-width:65%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }

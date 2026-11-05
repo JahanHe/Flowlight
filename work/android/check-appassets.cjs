@@ -1,0 +1,51 @@
+const { chromium } = require('playwright');
+const fs = require('node:fs');
+const path = require('node:path');
+const assert = require('node:assert/strict');
+(async () => {
+  const browser = await chromium.launch({executablePath:process.env.CLOCK_CHROMIUM_PATH, headless:true});
+  try {
+    const context = await browser.newContext({viewport:{width:1024,height:768},hasTouch:true});
+    const origin = 'https://appassets.androidplatform.net';
+    const pageURL = origin+'/assets/glass-clock.html';
+    const source = fs.readFileSync(path.join(__dirname,'src/local/fuguang/clock/ClockActivity.java'),'utf8');
+    const csp = source.match(/headers\.put\("Content-Security-Policy", "([^"]+)"\)/)[1];
+    assert(csp.includes('connect-src https://api.open-meteo.com https://geocoding-api.open-meteo.com https://weather.cma.cn;'),'CSP must allow the domestic weather source');
+    assert(source.includes('\"weather.cma.cn\".equals(uri.getHost())'),'native whitelist must allow domestic weather');
+    const html = fs.readFileSync(path.join(__dirname,'assets/glass-clock.html'));
+    const requests = [];
+    await context.route('**/*', route => {
+      requests.push(route.request().url());
+      if (route.request().url() === pageURL) return route.fulfill({status:200,contentType:'text/html;charset=utf-8',headers:{'Content-Security-Policy':csp},body:html});
+      return route.abort('internetdisconnected');
+    });
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', error=>errors.push(error.message));
+    await page.goto(pageURL);
+    await page.evaluate(()=>document.fonts.ready);
+    await page.waitForTimeout(1200);
+    assert.equal(await page.evaluate(()=>window.isSecureContext),true);
+    assert.equal(await page.locator('.stick-world').count(),1);
+    assert.equal(await page.locator('.tile:visible').count(),3);
+    const fonts = await page.evaluate(()=>Array.from(document.fonts).map(f=>({family:f.family,status:f.status})));
+    assert(fonts.length>=8,'all embedded fonts should be present under the native CSP');
+    assert(!requests.some(url=>/fonts\.(googleapis|gstatic)/.test(url)),'fonts must be offline');
+    await page.locator('#appearance-toggle').click();
+    await page.locator('#digit-size').fill('90');
+    await page.locator('#digit-size').dispatchEvent('input');
+    const saved = await page.evaluate(()=>localStorage.getItem('floating-light-clock'));
+    assert(saved,'HTTPS assets must persist settings');
+    await page.reload();
+    await page.waitForTimeout(1000);
+    assert.equal(await page.evaluate(()=>localStorage.getItem('floating-light-clock')),saved);
+    await page.locator('#fullscreen').click();
+    await page.waitForTimeout(250);
+    assert(await page.evaluate(()=>!!document.fullscreenElement||document.body.classList.contains('is-fullscreen')));
+    await page.evaluate(()=>document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
+    await page.waitForTimeout(250);
+    assert(await page.locator('#fullscreen').isVisible());
+    assert.deepEqual(errors,[]);
+    console.log(JSON.stringify({passed:true,checks:['secure bundled origin','native CSP compatibility','offline font faces','single companion','saved settings reload','native back Escape contract'],fontCount:fonts.length},null,2));
+  } finally { await browser.close(); }
+})().catch(e=>{console.error(e);process.exit(1);});

@@ -1,0 +1,14 @@
+{
+  "name": "fuguang-clock",
+  "private": true,
+  "scripts": {
+    "test": "node work/check-daylight-phases.cjs && node work/check-calendar-settings.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.57.0",
+    "pngjs": "7.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
