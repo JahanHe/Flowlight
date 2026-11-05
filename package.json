@@ -1,5 +1,5 @@
 {
-  "name": "fuguang-clock",
+  "name": "flowlight",
   "private": true,
   "scripts": {
     "test": "node work/check-daylight-phases.cjs && node work/check-calendar-settings.cjs"

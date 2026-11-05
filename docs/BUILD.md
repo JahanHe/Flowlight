@@ -1,6 +1,6 @@
 # 从源码构建浮光时钟
 
-直接使用时，打开仓库里的 `outputs/glass-clock.html`，或从 [Releases](https://github.com/JahanHe/fuguang-clock/releases) 下载安装包。下面的命令用于修改源码后的重建，均从仓库根目录执行。
+直接使用时，打开仓库里的 `outputs/glass-clock.html`，或从 [Releases](https://github.com/JahanHe/Flowlight/releases) 下载安装包。下面的命令用于修改源码后的重建，均从仓库根目录执行。
 
 ## 网页和 Windows／Mac 通用 ZIP
 
@@ -44,4 +44,4 @@ python3 work/android/build-apk.py
 
 脚本从 `work/android/signing/` 读取本机保管的 `local-release.jks` 与 `keystore-password`，先核对证书指纹，然后生成共享页面、手机 APK 和同版本通用 ZIP，并比较两端内嵌的网页内容。产物在 `outputs/`，校验摘要在 `work/android/build/verification.json`。正式签名需由维护者单独备份；GitHub 仓库和下载的 APK 均无法恢复其私钥。
 
-电视发布独立于手机。获取已确认的电视版本请使用[电视 1.0.4 发行页](https://github.com/JahanHe/fuguang-clock/releases/tag/tv-v1.0.4)。日历设计演示可运行 `python3 work/calendar-demo/build.py` 重建，使用归档的 `outputs/浮光时钟-通用版-1.3.7.zip` 做输入。功能测试与验收范围见[测试说明](TESTING.md)。
+电视发布独立于手机。获取已确认的电视版本请使用[电视 1.0.4 发行页](https://github.com/JahanHe/Flowlight/releases/tag/tv-v1.0.4)。日历设计演示可运行 `python3 work/calendar-demo/build.py` 重建，使用归档的 `outputs/浮光时钟-通用版-1.3.7.zip` 做输入。功能测试与验收范围见[测试说明](TESTING.md)。

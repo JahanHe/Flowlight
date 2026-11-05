@@ -43,14 +43,14 @@
 
 **安卓提示无法安装，或装好后打不开？** 如果提示缺少安装权限，按系统提示允许当前文件管理器安装 APK。如果装好后出现网页组件提示，先确认下载的是对应设备的版本，再检查系统 WebView 是否启用、版本是否满足上表要求。[手机安装说明](outputs/安卓安装说明.txt) · [电视安装说明](outputs/电视版安装说明.txt)
 
-**想反馈问题或提建议？** 请写下设备型号、系统版本、使用的是哪个版本，以及当时点了什么。画面问题可以附一张截图。[提交反馈](https://github.com/JahanHe/fuguang-clock/issues/new)
+**想反馈问题或提建议？** 请写下设备型号、系统版本、使用的是哪个版本，以及当时点了什么。画面问题可以附一张截图。[提交反馈](https://github.com/JahanHe/Flowlight/issues/new)
 
 ## 版本、源码与素材
 
-[下载与更新记录](https://github.com/JahanHe/fuguang-clock/releases) · [按功能查找源码](docs/PROJECT-MAP.md) · [从源码构建](docs/BUILD.md) · [测试说明](docs/TESTING.md)
+[下载与更新记录](https://github.com/JahanHe/Flowlight/releases) · [按功能查找源码](docs/PROJECT-MAP.md) · [从源码构建](docs/BUILD.md) · [测试说明](docs/TESTING.md)
 
 银河影像来自 ESO/S. Brunier，行星和星系影像的逐图署名、云图来源与加工说明收录在[素材说明](docs/PROJECT-MAP.md#素材与署名)。数字使用[内嵌字体](work/font-licenses.txt)，日月位置计算使用 [SunCalc](work/references/suncalc-LICENSE)。
 
-[desktop]: https://github.com/JahanHe/fuguang-clock/releases/download/v1.4.0/Fuguang-Clock-1.4.0-Desktop.zip
-[phone]: https://github.com/JahanHe/fuguang-clock/releases/download/v1.4.0/Fuguang-Clock-1.4.0-Android.apk
-[tv]: https://github.com/JahanHe/fuguang-clock/releases/download/tv-v1.0.4/Fuguang-TV-1.0.4.apk
+[desktop]: https://github.com/JahanHe/Flowlight/releases/download/v1.4.0/Fuguang-Clock-1.4.0-Desktop.zip
+[phone]: https://github.com/JahanHe/Flowlight/releases/download/v1.4.0/Fuguang-Clock-1.4.0-Android.apk
+[tv]: https://github.com/JahanHe/Flowlight/releases/download/tv-v1.0.4/Fuguang-TV-1.0.4.apk
