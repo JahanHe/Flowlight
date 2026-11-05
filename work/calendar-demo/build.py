@@ -6,6 +6,11 @@ source=root/'outputs/glass-clock.html'
 original_hash=hashlib.sha256(source.read_bytes()).hexdigest()
 with zipfile.ZipFile(root/'outputs/浮光时钟-通用版-1.3.7.zip') as archive:
     html=archive.read('浮光时钟-通用版-1.3.7/浮光时钟.html').decode('utf-8')
+# Reverse the two additions made by package-portable-clock.py to recover the approved shared page.
+html=html.replace('<span class="edition-label">通用网页版 1.3.7</span>',
+                  '<span class="edition-label">手机版 1.3.7</span>',1)
+html=re.sub(r'<template id="solar-license">.*?</template>\n','',html,count=1,flags=re.S)
+assert hashlib.sha256(html.encode('utf-8')).hexdigest()=='ed4710ca132b1e3271ed5f1c8a69ece56b6fea95241b38d8daa2927da67d8ca5', 'Unexpected 1.3.7 baseline'
 html=html.replace('floating-light-','fuguang-calendar-prototype-')
 html=re.sub(r'<title>.*?</title>','<title>浮光 · 日历与金句 · 本地演示</title>',html,count=1)
 # Reuse the clock, including its flips and shared lighting, while choosing a calendar day independently.
@@ -91,6 +96,6 @@ html=html.replace('<head>','<head>'+prelude,1)
 html=html.replace('</head>','<style>'+(root/'work/calendar-demo/demo.css').read_text()+'</style></head>',1)
 html=html.replace('</body>','<script>'+(root/'work/calendar-demo-data.js').read_text()+'\n'+(root/'work/calendar-demo/demo.js').read_text()+'\n'+(root/'work/calendar-demo/term-effects.js').read_text()+'</script></body>',1)
 output=root/'outputs/浮光-日历金句-本地演示.html'
-output.write_text(html)
+output.write_bytes(html.encode('utf-8'))
 assert hashlib.sha256(source.read_bytes()).hexdigest()==original_hash
 print(f'{output}\n{output.stat().st_size:,} bytes; production unchanged: {original_hash}')
