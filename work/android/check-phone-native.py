@@ -13,7 +13,7 @@ root = Path(__file__).resolve().parent
 ns = '{http://schemas.android.com/apk/res/android}'
 manifest = ET.parse(root / 'AndroidManifest.xml').getroot()
 assert manifest.get('package') == 'local.fuguang.clock'
-assert manifest.get(ns + 'versionName') == '1.4.0' and manifest.get(ns + 'versionCode') == '13'
+assert manifest.get(ns + 'versionName') == '1.4.1' and manifest.get(ns + 'versionCode') == '14'
 assert manifest.find('uses-sdk').get(ns + 'minSdkVersion') == '26'
 assert {p.get(ns + 'name') for p in manifest.findall('uses-permission')} == {'android.permission.INTERNET', 'android.permission.ACCESS_COARSE_LOCATION'}
 assert all(f.get(ns + 'required') == 'false' for f in manifest.findall('uses-feature'))
@@ -103,7 +103,7 @@ navigation = java[start:java.index('            @Override public boolean onRende
 navigation_harness = '''
 public class PhoneNavigationCheck {
   static final String HOST="appassets.androidplatform.net";
-  String pageUrl="https://"+HOST+"/assets/glass-clock.html?v=13", opened;
+  String pageUrl="https://"+HOST+"/assets/glass-clock.html?v=14", opened;
   static class WebView {}
   static class Uri {String raw;java.net.URI value;
     Uri(String raw){this.raw=raw;value=java.net.URI.create(raw);}

@@ -10,7 +10,7 @@ npx playwright install chromium --only-shell
 npm test
 ```
 
-`npm test` 读取 `outputs/glass-clock.html`，验证连续 24 小时光色、昼夜七个时段、极昼极夜，以及桌面和手机宽度下的日历、偏好、全屏、跨日更新。若只有源文件，先按 [构建说明](BUILD.md) 生成网页。Linux 缺少浏览器系统库时，可用 `npx playwright install --with-deps chromium --only-shell`。已安装 Chrome 或 Chromium 的机器也可以通过环境变量 `CLOCK_CHROMIUM_PATH` 指定浏览器可执行文件。
+`npm test` 读取 `outputs/glass-clock.html`，验证连续 24 小时光色、昼夜七个时段、极昼极夜，以及桌面和手机宽度下的日历、偏好、全屏、跨日更新。日盘回归另测三个屏幕短边和四个太阳高度，检查 25 CSS 像素的基准半径下限、晨昏 1.5 倍的亮核和独立的光晕尺度。若只有源文件，先按 [构建说明](BUILD.md) 生成网页。Linux 缺少浏览器系统库时，可用 `npx playwright install --with-deps chromium --only-shell`。已安装 Chrome 或 Chromium 的机器也可以通过环境变量 `CLOCK_CHROMIUM_PATH` 指定浏览器可执行文件。
 
 ## 检查下载的成品
 
@@ -18,8 +18,8 @@ npm test
 
 | 成品 | 文件名 | 命令 |
 | --- | --- | --- |
-| Windows / Mac 通用版 | `浮光时钟-通用版-1.4.0.zip` | `node work/check-portable-clock.cjs` |
-| 安卓手机版 | `浮光时钟-手机版-1.4.0.apk` | `node work/android/check-phone-appassets.cjs` |
+| Windows / Mac 通用版 | `浮光时钟-通用版-1.4.1.zip` | `node work/check-portable-clock.cjs` |
+| 安卓手机版 | `浮光时钟-手机版-1.4.1.apk` | `node work/android/check-phone-appassets.cjs` |
 | 安卓电视版 | `浮光·TV-1.0.4.apk` | `node work/android/check-tv-appassets.cjs` |
 
 通用版测试实际解压 ZIP 并以断网方式双击等效打开，检查内嵌字体、保存设置、昼夜动效和退出全屏。安卓测试直接从 APK 读出页面，按壳程序的来源地址和安全策略验证返回键与设置；可以用 `CLOCK_APK` 指向其他位置的对应 APK。Python 命令名异常时，设置 `PYTHON` 为解释器路径。
@@ -32,4 +32,4 @@ npm test
 - 原生壳：按构建说明准备 JDK 与 Android SDK 后，运行 `python3 work/android/check-phone-native.py` 或 `python3 work/android/check-tv-native.py`。
 - 日历独立演示：生成或下载对应的演示 HTML 后可运行 `node work/calendar-demo/check.cjs` 和 `node work/calendar-demo/check-term-tap.cjs`。
 
-`work/check-*.cjs` 中也保留了此前各版本的单项检查，包括旧面板结构、试验中的人物形态、历史性能基线和本地预览端口。有些断言专属于当时的页面，发布 1.4.0 时以本页列出的对应版本检查为准。测试会在本地写入报告或截图；真机的帧率、总内存、耗电及 WebView 驱动表现需要在对应设备上测量。
+`work/check-*.cjs` 中也保留了此前各版本的单项检查，包括旧面板结构、试验中的人物形态、历史性能基线和本地预览端口。有些断言专属于当时的页面，当前发布使用本页列出的对应检查。测试会在本地写入报告或截图；真机的帧率、总内存、耗电及 WebView 驱动表现需要在对应设备上测量。

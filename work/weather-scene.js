@@ -35,10 +35,13 @@ function clockDaylight(state) {
   const rim=direct.map(n=>Math.round(n+(255-n)*.35)).join(',');
   const ambientRgb=skyTop.map((n,i)=>Math.round((115+n*.48)*(1-cloud*.85)+[179,187,201][i]*cloud*.85)).join(',');
   const low=1-smooth(0,50,altitude);
-  // ponytail: a bounded artistic atmosphere, not spectral ray tracing. Keep the solar disk nearly constant;
-  // low-angle scattering changes its surrounding glow much more than its apparent size, with no extra textures.
   return {warmth,environmentWarmth,twilight,afterglow,skyTop,skyBottom,ambientRgb,rgb,halo,rim,
-    diskScale:1+low*.12,diskFlatten:1-(1-smooth(0,7,altitude))*.06,haloScale:.78+low*.62};
+    diskScale:1+low*.50,scatterScale:1+low*.12,diskFlatten:1-(1-smooth(0,7,altitude))*.06,haloScale:.78+low*.62};
+}
+function clockSunRadii(shortSide,light) {
+  const viewportRadius=shortSide*.027;
+  // The larger visible disk shares the sun's position, while the surrounding light keeps its own scale.
+  return {disk:Math.max(25,viewportRadius)*light.diskScale,scatter:Math.max(13,viewportRadius)*light.scatterScale};
 }
 function clockLightSource(state, width, height) {
   const clamp=(n,low=0,high=1)=>Math.min(high,Math.max(low,Number.isFinite(n)?n:low));
@@ -396,11 +399,11 @@ function createWeatherScene(canvas, reducedMotion, onPaint = () => {}) {
   function sun(t,cover) {
     const source=clockLightSource({...state,source:'sun'},w,h);
     const {x,y}=source,light=clockDaylight(state),tint=light.halo;
-    const r=Math.max(13,Math.min(w,h)*.027)*light.diskScale,haloRadius=r*light.haloScale;
+    const {disk,scatter}=clockSunRadii(Math.min(w,h),light),haloRadius=scatter*light.haloScale;
     const visibility=source.visibility*(full?.30+.70*solarTransmission:1);
     const motion=state.idealCycle?1.8:1;
     const breath=.98+Math.sin(t*.31*motion)*.014+Math.sin(t*.71*motion)*.006;
-    const driftX=Math.sin(t*.11*motion)*r*.35,driftY=Math.cos(t*.15*motion)*r*.25;
+    const driftX=Math.sin(t*.11*motion)*scatter*.35,driftY=Math.cos(t*.15*motion)*scatter*.25;
     glow(x+driftX,y+driftY,haloRadius*(16+Math.sin(t*.19)*.4),haloRadius*(12+Math.cos(t*.17)*.3),tint,(.23+.06*light.warmth)*(1-cover*.86)*breath*source.daylight);
     glow(x-driftX*1.8,y-driftY,haloRadius*9,haloRadius*5.5,light.ambientRgb,.07*breath*source.daylight);
     if(full&&source.daylight>.01&&source.visibility>.01) {
@@ -408,7 +411,7 @@ function createWeatherScene(canvas, reducedMotion, onPaint = () => {}) {
       const scattering=(1-solarTransmission)*(1-cover*.78)*source.daylight;
       if(scattering>.005)for(let i=0;i<5;i++) {
         const angle=-.58+i*.29+Math.sin(t*.07+i)*.035,length=h*(.45+i%2*.12),spread=.025+.018*(.5+.5*Math.sin(t*.13+i));
-        const beam=ctx.createRadialGradient(x,y,r,x,y,length);beam.addColorStop(0,`rgba(${tint},${scattering*.14})`);beam.addColorStop(.48,`rgba(${tint},${scattering*.07})`);beam.addColorStop(1,`rgba(${tint},0)`);
+        const beam=ctx.createRadialGradient(x,y,scatter,x,y,length);beam.addColorStop(0,`rgba(${tint},${scattering*.14})`);beam.addColorStop(.48,`rgba(${tint},${scattering*.07})`);beam.addColorStop(1,`rgba(${tint},0)`);
         ctx.save();ctx.globalCompositeOperation='screen';ctx.fillStyle=beam;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+Math.sin(angle-spread)*length,y+Math.cos(angle-spread)*length);ctx.lineTo(x+Math.sin(angle+spread)*length,y+Math.cos(angle+spread)*length);ctx.closePath();ctx.fill();ctx.restore();
       }
     }
@@ -416,13 +419,13 @@ function createWeatherScene(canvas, reducedMotion, onPaint = () => {}) {
     ctx.save();ctx.globalCompositeOperation='screen';ctx.globalAlpha=visibility;
     glow(x,y,haloRadius*7.5*breath,haloRadius*7.5*breath,tint,.18+.04*light.warmth);
     ctx.save();ctx.translate(x,y);ctx.scale(1,light.diskFlatten);ctx.translate(-x,-y);
-    const corona=ctx.createRadialGradient(x,y,0,x,y,r*2.5);
+    const corona=ctx.createRadialGradient(x,y,0,x,y,disk*2.5);
     corona.addColorStop(0,`rgba(${light.rim},1)`);corona.addColorStop(.28,`rgba(${light.rim},.99)`);
     corona.addColorStop(.38,`rgba(${light.rim},.94)`);
     corona.addColorStop(.47,`rgba(${tint},.48)`);
     corona.addColorStop(.67,`rgba(${tint},.12)`);corona.addColorStop(1,`rgba(${tint},0)`);
-    ctx.fillStyle=corona;ctx.fillRect(x-r*2.5,y-r*2.5,r*5,r*5);ctx.restore();
-    ctx.translate(x,y);ctx.rotate(-.22+Math.sin(t*.07)*.025);glow(0,0,haloRadius*8,r*.6,tint,.04*breath);ctx.restore();
+    ctx.fillStyle=corona;ctx.fillRect(x-disk*2.5,y-disk*2.5,disk*5,disk*5);ctx.restore();
+    ctx.translate(x,y);ctx.rotate(-.22+Math.sin(t*.07)*.025);glow(0,0,haloRadius*8,scatter*.6,tint,.04*breath);ctx.restore();
   }
   function moon(t) {
     const source=clockLightSource({...state,source:'moon'},w,h);

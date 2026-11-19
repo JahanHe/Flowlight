@@ -20,13 +20,19 @@ node work/android/check-phone-appassets.cjs
 
 ## 当前交付
 
+2026-11-19，手机版与 Windows / Mac 通用版同步升级到 **1.4.1 / Android code 14**。太阳亮核的基础半径取屏幕短边的 2.7%，最低 25 CSS 像素。从太阳高度 50° 到地平线，水平直径平滑增至高空时的 1.5 倍。外圈光晕、云隙光仍使用各自原有的尺度；太阳沿原轨迹经过数字后方。用「显示 → 天气与昼夜动效 → 昼夜快放」可在一分钟内看完晨昏变化。
+
+成品为 `outputs/浮光时钟-手机版-1.4.1.apk` 与 `outputs/浮光时钟-通用版-1.4.1.zip`，签名沿用上版。下载见 [1.4.1 发行页](https://github.com/JahanHe/Flowlight/releases/tag/v1.4.1)，构建与验收记录见 [1.4.1 发布校验](work/android/build/release-verification-1.4.1.json)。浮光·TV 继续使用独立的 1.0.4。
+
+### 1.4.0 日历与天气
+
 2026-11-04：用户确认日历演示与新版云场，正式发布 **1.4.0 / Android code 13**。手机版与 Windows / Mac 通用版同时包含日历/农历、精选节日、金句及自定义句子、可点击及整点节气彩蛋、天气铺满/四周渐黑开关、新云场和雨势分层。主云 10 组、前景 2 层，复用六种透明纹理，保留原昼夜/天气/玻璃/人物联动。正式共享模块为 `work/calendar-data.js`、`calendar-ui.js`、`calendar-ui.css`、`calendar-effects.js`、`weather-scene.js`、`weather-app.js`；云素材复用 `work/calendar-demo/cloud-atlas.png`。不把演示的禁网或强制重置偏好带入正式版。
 
 交付：`outputs/浮光时钟-手机版-1.4.0.apk`（3,047,969 bytes）、`outputs/浮光时钟-通用版-1.4.0.zip`（3,027,558 bytes）。正式 HTML SHA256 为 `795f8dc223db8cdbc2d9770cd7fe9f9f8e73bdcfb5a8729390651eb570ef70bc`。APK 沿用原签名，可覆盖升级；保留已有时钟设置，日历/金句/背景开关/整点偏好另存。选日期只用于浏览，进入全屏或重新打开回到今天。内容范围仍为 2026 节气及精选节日，不包含调休或完整世界节日；其他年份显示日期与农历。
 
 校验：签名/ZIP/两端 HTML 一致性；`check-phone-native.py` 原生返回、前台常亮、Java 编译、仅用户手势 HTTPS 来源外链；`check-portable-clock.cjs` 解压包离线打开；`check-phone-appassets.cjs` 原生来源/CSP/返回/跨版本偏好；`check-calendar-settings.cjs` 持久化、旧设置、全屏日期安全、跨日、异常存储、手机布局；新天气六场景实渲染、昼夜光照、provider→页面→渲染的 10 分钟更新及 CMA 失败回退均通过。实图在 `work/release-1.4.0/`，最终记录 `work/android/build/release-verification.json`。联网实测主源请求失败后 Open-Meteo 返回 200，界面显示杭州西湖区阴天；没有实体安卓或 Windows 真机测试，未验证真机帧率/耗电。TV 1.0.4 全部冻结哈希未变。
 
-### 上一正式版本
+### 1.3.7 昼夜光照
 
 2026-10-19：手机版与通用版同步为 **1.3.7 / Android code 12**。太阳高度与连续的一日相位共同驱动天空、云层、玻璃和普通数字光色；正午保持蓝天白光，低角度晨昏更暖，余晖渐变到夜色。太阳盘仅小幅变化，光晕的高度变化更明显；复用原有云场，极光另用一张有界 384KiB 柔化缓存。月出月落与真实极昼跨午夜颜色均连续。沉浸天空的晚间及深夜加强三层边缘渐隐的蓝绿紫色极光云雾，沿用同一细节画布；实际可见极光同时为玻璃提供柔和的反射与背光填充，厚云时随天空一起遮蔽。
 

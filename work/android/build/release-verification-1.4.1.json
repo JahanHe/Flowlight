@@ -1,0 +1,266 @@
+{
+  "apk": "浮光时钟.apk",
+  "bytes": 3052065,
+  "sha256": "9ef5323c9331181980b637fff0a2e2c1c506f0653b8c3e8b3895eed4b2c192e9",
+  "htmlSha256": "743604f9c5f89877e987ead95a7d2a7c572f8172132d10fda1e40473b1e8db84",
+  "package": "local.fuguang.clock",
+  "versionCode": "14",
+  "versionName": "1.4.1",
+  "minSdk": 26,
+  "targetSdk": 35,
+  "signature": "Verifies\nVerified using v1 scheme (JAR signing): false\nVerified using v2 scheme (APK Signature Scheme v2): true\nVerified using v3 scheme (APK Signature Scheme v3): true\nVerified using v3.1 scheme (APK Signature Scheme v3.1): false\nVerified using v4 scheme (APK Signature Scheme v4): false\nVerified for SourceStamp: false\nNumber of signers: 1\nSigner #1 certificate DN: CN=Floating Light Local Build, OU=Personal App, O=Floating Light, C=CN\nSigner #1 certificate SHA-256 digest: 468780696fd58f9c9a7eeeff7fccae9c826ace0c69a9baa63b58a43ed96f7beb\nSigner #1 certificate SHA-1 digest: bf10597ba8d1aa7adc934dd21bcb3b7a7eaee02c\nSigner #1 certificate MD5 digest: b6905478f395544237a1b951a6f34c46\nSigner #1 key algorithm: RSA\nSigner #1 key size (bits): 2048\nSigner #1 public key SHA-256 digest: 6b59cc441bdb46bfb2135ae437a208046b61ece000fa6b4b9b091d997f45c457\nSigner #1 public key SHA-1 digest: 4604068bf74f555bb35f201b626e961467679fdd\nSigner #1 public key MD5 digest: ae54c100fc69fdd1b4a1dc1f5983b49c",
+  "permissions": [
+    "uses-permission: name='android.permission.INTERNET'",
+    "uses-permission: name='android.permission.ACCESS_COARSE_LOCATION'"
+  ],
+  "checks": [
+    "signature v2/v3",
+    "ZIP alignment",
+    "complete ZIP integrity",
+    "exact latest HTML",
+    "manifest",
+    "restricted WebView source",
+    "phone page version matches manifest",
+    "hardware acceleration enabled",
+    "foreground screen stays on",
+    "no bundled browser/runtime",
+    "32/64-bit CPU independent",
+    "portable ZIP integrity",
+    "phone and portable versions and shared page match"
+  ],
+  "runtimeVerified": false,
+  "pageUrl": "https://appassets.androidplatform.net/assets/glass-clock.html?v=14",
+  "runtimeQueryFields": [
+    "ramMB",
+    "availableMB",
+    "cores",
+    "lowRam",
+    "heapMB"
+  ],
+  "versionedApk": "浮光时钟-手机版-1.4.1.apk",
+  "portableZip": "浮光时钟-通用版-1.4.1.zip",
+  "portableZipSha256": "8c2d32b4436a7070f18c833b7addd8e6274305e239906b7b28e2605f78defc0e",
+  "solarVisuals": {
+    "pass": true,
+    "scope": "Headless Chromium screenshots and native Canvas gradient draw transforms. Fixed Hangzhou date/location, CMA response fixture, seeded sky, desktop 1280x720 and mobile-size 390x844. Android hardware not exercised. Halo region samples annulus from 1.2 to 5 disk radii.",
+    "previewSha256": "59a1bfcafdf93d43eabeb32aa415f0e1f45c5f9bbaf35d694f49acef2580ee8f",
+    "productionSha256": "743604f9c5f89877e987ead95a7d2a7c572f8172132d10fda1e40473b1e8db84",
+    "samples": [
+      {
+        "scene": "morning-desktop",
+        "pass": true,
+        "diskRadiusCssPx": 37.3863,
+        "diskRadiusVersusPreviewMaxDeltaPx": 7.5e-07,
+        "fullMeanRgbDeltaOf255": 0.00154,
+        "diskRegionMeanRgbDeltaOf255": 0.00032,
+        "haloRegionMeanRgbDeltaOf255": 0.00103,
+        "cover": 0.08,
+        "solarTransmission": 1,
+        "clock": "11:11",
+        "glassHasInk": true
+      },
+      {
+        "scene": "morning-phone",
+        "pass": true,
+        "diskRadiusCssPx": 37.3863,
+        "diskRadiusVersusPreviewMaxDeltaPx": 1.54e-06,
+        "fullMeanRgbDeltaOf255": 0.00021,
+        "diskRegionMeanRgbDeltaOf255": 0.00011,
+        "haloRegionMeanRgbDeltaOf255": 9e-05,
+        "cover": 0.08,
+        "solarTransmission": 1,
+        "clock": "11:11",
+        "glassHasInk": true
+      },
+      {
+        "scene": "noon-desktop",
+        "pass": true,
+        "diskRadiusCssPx": 25.0022,
+        "diskRadiusVersusPreviewMaxDeltaPx": 3.5e-07,
+        "fullMeanRgbDeltaOf255": 8e-05,
+        "diskRegionMeanRgbDeltaOf255": 0.0,
+        "haloRegionMeanRgbDeltaOf255": 0.00026,
+        "cover": 0.08,
+        "solarTransmission": 0.9966,
+        "clock": "11:11",
+        "glassHasInk": true
+      },
+      {
+        "scene": "noon-phone",
+        "pass": true,
+        "diskRadiusCssPx": 25.0022,
+        "diskRadiusVersusPreviewMaxDeltaPx": 2e-08,
+        "fullMeanRgbDeltaOf255": 0.00029,
+        "diskRegionMeanRgbDeltaOf255": 0.00057,
+        "haloRegionMeanRgbDeltaOf255": 0.00075,
+        "cover": 0.08,
+        "solarTransmission": 0.8611,
+        "clock": "11:11",
+        "glassHasInk": true
+      },
+      {
+        "scene": "evening-desktop",
+        "pass": true,
+        "diskRadiusCssPx": 37.2087,
+        "diskRadiusVersusPreviewMaxDeltaPx": 1.5e-06,
+        "fullMeanRgbDeltaOf255": 0.00414,
+        "diskRegionMeanRgbDeltaOf255": 0.01311,
+        "haloRegionMeanRgbDeltaOf255": 0.0022,
+        "cover": 0.08,
+        "solarTransmission": 1,
+        "clock": "11:11",
+        "glassHasInk": true
+      },
+      {
+        "scene": "evening-phone",
+        "pass": true,
+        "diskRadiusCssPx": 37.2087,
+        "diskRadiusVersusPreviewMaxDeltaPx": 1.46e-06,
+        "fullMeanRgbDeltaOf255": 0.00163,
+        "diskRegionMeanRgbDeltaOf255": 0.00037,
+        "haloRegionMeanRgbDeltaOf255": 0.0009,
+        "cover": 0.08,
+        "solarTransmission": 1,
+        "clock": "11:11",
+        "glassHasInk": true
+      },
+      {
+        "scene": "overcast-desktop",
+        "pass": true,
+        "diskRadiusCssPx": 25.0022,
+        "diskRadiusVersusPreviewMaxDeltaPx": 3.5e-07,
+        "fullMeanRgbDeltaOf255": 0.14657,
+        "diskRegionMeanRgbDeltaOf255": 0.29999,
+        "haloRegionMeanRgbDeltaOf255": 0.3064,
+        "cover": 0.5135,
+        "solarTransmission": 0.2577,
+        "clock": "11:11",
+        "glassHasInk": true
+      },
+      {
+        "scene": "overcast-phone",
+        "pass": true,
+        "diskRadiusCssPx": 25.0022,
+        "diskRadiusVersusPreviewMaxDeltaPx": 2e-08,
+        "fullMeanRgbDeltaOf255": 0.0,
+        "diskRegionMeanRgbDeltaOf255": 0.0,
+        "haloRegionMeanRgbDeltaOf255": 0.0,
+        "cover": 0.5144,
+        "solarTransmission": 0.2878,
+        "clock": "11:11",
+        "glassHasInk": true
+      },
+      {
+        "scene": "settled-cloud-desktop",
+        "pass": true,
+        "diskRadiusCssPx": 25.0022,
+        "diskRadiusVersusPreviewMaxDeltaPx": 3.5e-07,
+        "fullMeanRgbDeltaOf255": 0.00329,
+        "diskRegionMeanRgbDeltaOf255": 0.0055,
+        "haloRegionMeanRgbDeltaOf255": 0.00489,
+        "cover": 0.9998,
+        "solarTransmission": 0.0282,
+        "clock": "11:11",
+        "glassHasInk": true
+      },
+      {
+        "scene": "settled-cloud-phone",
+        "pass": true,
+        "diskRadiusCssPx": 25.0022,
+        "diskRadiusVersusPreviewMaxDeltaPx": 2e-08,
+        "fullMeanRgbDeltaOf255": 0.0,
+        "diskRegionMeanRgbDeltaOf255": 0.0,
+        "haloRegionMeanRgbDeltaOf255": 0.0,
+        "cover": 0.9998,
+        "solarTransmission": 0.0388,
+        "clock": "11:11",
+        "glassHasInk": true
+      }
+    ]
+  },
+  "daylight": {
+    "passed": true,
+    "sourceSHA256": "f0f9546d0da611b9f9f07baeb1e10f7d5a8e7289a7ce4f4af8a32ccdf760e27a",
+    "timelines": [
+      {
+        "name": "Hangzhou",
+        "samples": 1441,
+        "maxColorStep": 5.7488632332484,
+        "maxStrengthStep": 0.016449827209558343,
+        "maxSolarSizeStep": 0.003528948977442159
+      },
+      {
+        "name": "Longyearbyen-polar-day",
+        "samples": 1441,
+        "maxColorStep": 1,
+        "maxStrengthStep": 0.0003440516241868252,
+        "maxSolarSizeStep": 0.000946580717333001
+      },
+      {
+        "name": "ideal",
+        "samples": 1441,
+        "maxColorStep": 7.508178821317344,
+        "maxStrengthStep": 0.021536663101932862,
+        "maxSolarSizeStep": 0.004902280900131117
+      },
+      {
+        "name": "polar-day",
+        "samples": 1441,
+        "maxColorStep": 1,
+        "maxStrengthStep": 0.0006767746746545455,
+        "maxSolarSizeStep": 0.0009728230409011829
+      },
+      {
+        "name": "polar-night",
+        "samples": 1441,
+        "maxColorStep": 1,
+        "maxStrengthStep": 0.00020087474278257522,
+        "maxSolarSizeStep": 0
+      }
+    ],
+    "command": "node work/check-daylight-phases.cjs"
+  },
+  "calendarSettings": {
+    "passed": true,
+    "command": "node work/check-calendar-settings.cjs"
+  },
+  "portableBrowser": {
+    "pass": true,
+    "browser": "157.0.8103.79",
+    "platform": "darwin",
+    "entryProtocol": "file:",
+    "offline": true,
+    "extractedFromZip": true,
+    "movements": [
+      "noon",
+      "night"
+    ],
+    "settingsPersist": true,
+    "fullscreenExit": true,
+    "scriptErrors": []
+  },
+  "phoneOrigin": {
+    "passed": true,
+    "versionName": "1.4.1",
+    "versionCode": "14",
+    "pageURL": "https://appassets.androidplatform.net/assets/glass-clock.html?v=14&ramMB=4096&availableMB=2048&cores=8&lowRam=0&heapMB=256",
+    "checks": [
+      "packaged phone version matches manifest",
+      "native secure origin and CSP",
+      "native local no-store and no-referrer headers",
+      "one companion",
+      "inline calendar/display controls allow native exit; native Back closes visible city form and CSS fullscreen",
+      "portrait/landscape",
+      "settings survive version and memory URL change",
+      "weather requests contain no native memory/CPU hints"
+    ],
+    "runtime": "desktop Chromium emulating touch; not physical Android or memory/FPS verification"
+  },
+  "nativeSourceChecks": {
+    "passed": true,
+    "command": "python3 work/android/check-phone-native.py"
+  },
+  "frozenTVUnchanged": true,
+  "physicalAndroidTested": false,
+  "physicalWindowsTested": false
+}

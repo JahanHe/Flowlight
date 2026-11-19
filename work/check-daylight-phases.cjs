@@ -3,7 +3,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('nod
 const sceneSource=fs.readFileSync(process.env.CLOCK_SCENE||'work/weather-scene.js','utf8');
 const sandbox=vm.createContext({});
 vm.runInContext(fs.readFileSync('work/solar-position.js','utf8')+sceneSource,sandbox);
-const {clockSkyAt,clockIdealSky,clockDaylight,clockLightSource}=vm.runInContext('({clockSkyAt,clockIdealSky,clockDaylight,clockLightSource})',sandbox);
+const {clockSkyAt,clockIdealSky,clockDaylight,clockLightSource,clockSunRadii}=vm.runInContext('({clockSkyAt,clockIdealSky,clockDaylight,clockLightSource,clockSunRadii})',sandbox);
 const rgb=value=>typeof value==='string'?value.split(',').map(Number):Array.from(value);
 const distance=(a,b)=>Math.hypot(...rgb(a).map((n,i)=>n-rgb(b)[i]));
 const warmth=value=>{const c=rgb(value);return c[0]-c[2];};
@@ -16,7 +16,7 @@ const colorKeys=['rgb','halo','rim','skyTop','skyBottom','ambientRgb'];
 for(const [name,{day,light}] of Object.entries(samples)){
  for(const key of colorKeys){const color=rgb(day[key]);assert.equal(color.length,3,`${name}.${key}`);assert(color.every(n=>Number.isFinite(n)&&n>=0&&n<=255),`${name}.${key} invalid`);}
  assert(Object.values(light).filter(value=>typeof value==='number').every(Number.isFinite),`${name} light contains invalid geometry`);
- for(const [key,min,max] of [['diskScale',.95,1.2],['haloScale',.7,1.5],['diskFlatten',.9,1.01],['twilight',0,1],['afterglow',0,1]])assert(Number.isFinite(day[key])&&day[key]>=min&&day[key]<=max,`${name}.${key} must stay physically restrained: ${day[key]}`);
+ for(const [key,min,max] of [['diskScale',1,1.5],['scatterScale',1,1.12],['haloScale',.7,1.5],['diskFlatten',.9,1.01],['twilight',0,1],['afterglow',0,1]])assert(Number.isFinite(day[key])&&day[key]>=min&&day[key]<=max,`${name}.${key} outside its range: ${day[key]}`);
 }
 const noon=rgb(samples.noon.light.rgb);
 assert(Math.max(...noon)-Math.min(...noon)<=16,`high daytime light must remain near white, got ${noon}`);
@@ -29,7 +29,14 @@ assert(samples.afternoon.light.x-samples.morning.light.x>1280*.3,'morning and af
 assert(warmth(samples.night.light.rgb)<-25,'night light should retain a cool moonlit tint');
 assert(samples.noon.light.strength>samples.night.light.strength*1.4,'daylight must remain stronger than moonlight');
 assert(samples.noon.light.strength>samples.dawn.light.strength,'high sun must be stronger than low sunrise');
-assert(samples.dawn.day.diskScale>samples.noon.day.diskScale+.02,'near-horizon solar appearance should be modestly broader');
+assert(samples.dawn.day.diskScale>samples.noon.day.diskScale+.4,'the dawn solar disk should be visibly larger than at noon');
+for(const [shortSide,highDisk,highScatter] of [[390,25,13],[720,25,19.44],[1080,29.16,29.16]]){
+ for(const [altitude,diskScale,scatterScale] of [[0,1.5,1.12],[25,1.25,1.06],[50,1,1],[90,1,1]]){
+  const {disk,scatter}=clockSunRadii(shortSide,clockDaylight({sunAltitude:altitude}));
+  assert(Math.abs(disk-highDisk*diskScale)<1e-8,`incorrect solar disk at ${shortSide}px and ${altitude}°`);
+  assert(Math.abs(scatter-highScatter*scatterScale)<1e-8,`incorrect scattering radius at ${shortSide}px and ${altitude}°`);
+ }
+}
 assert(samples.sunset.day.haloScale>samples.noon.day.haloScale+.1,'low sun must have a more diffuse halo');
 assert(samples.sunset.day.diskFlatten<samples.noon.day.diskFlatten,'low sun should flatten subtly near the horizon');
 assert(distance(samples.morning.day.skyTop,samples.noon.day.skyTop)>8,'morning and noon sky must differ');
