@@ -13,6 +13,7 @@ const parsed=api.fromCMA(fixture,location);
 assert.equal(parsed.providerName,'中国气象局');assert.equal(parsed.current.weather_code,2);assert.equal(parsed.current.is_day,0);
 assert.equal(parsed.current.wind_speed_10m,3.6);assert.equal(parsed.utc_offset_seconds,28800);
 assert.equal(parsed.timezone,'Asia/Shanghai');assert.equal(parsed.current.temperature_2m,22.7);
+assert.deepEqual([parsed.current.apparent_temperature,parsed.current.relative_humidity_2m,parsed.current.wind_direction_10m,parsed.current.uv_index],[25.2,77,104,null]);
 const tomorrow=Date.parse('2026-10-17T00:00:00+08:00')/1000,index=parsed.daily.time.indexOf(tomorrow);
 assert.deepEqual([parsed.daily.weather_code[index],parsed.daily.temperature_2m_min[index],parsed.daily.temperature_2m_max[index]],[2,23,30]);
 assert(parsed.daily.sunrise.every(Number.isFinite));assert(parsed.daily.sunset.every(Number.isFinite));
@@ -25,8 +26,8 @@ const raining=structuredClone(fixture);raining.data.now.precipitation=4;raining.
  let calls=[],cmaFixture=fixture;
  // The first three future ticks cross midnight in Hangzhou; the provider preserves their UTC instants.
  const hours=[-3,-2,-1,0,1].map(offset=>tomorrow+offset*3600);
- const model={utc_offset_seconds:28800,timezone:'Asia/Shanghai',current:{...parsed.current,temperature_2m:-1},
-   hourly:{time:hours,temperature_2m:[10,0,-2,null,9999]},
+ const model={utc_offset_seconds:28800,timezone:'Asia/Shanghai',current:{...parsed.current,time:fixed/1000,temperature_2m:-1,apparent_temperature:-4,relative_humidity_2m:68,wind_direction_10m:45,uv_index:0},
+   hourly:{time:hours,temperature_2m:[10,0,-2,null,9999],apparent_temperature:[6,0,-5,9999,null],precipitation_probability:[0,10,65,101,null],precipitation:[0,0,.7,-1,9999],weather_code:[0,2,80,42,9999]},
    daily:{time:[tomorrow,tomorrow+86400],weather_code:[65,0],temperature_2m_min:[-2,0],temperature_2m_max:[0,3]}};
  const ok=data=>({ok:true,json:async()=>structuredClone(data)});
  let cmaDown=false,modelDown=false;
@@ -43,13 +44,25 @@ const raining=structuredClone(fixture);raining.data.now.precipitation=4;raining.
  assert.equal(mixed.current.temperature_2m,22.7);assert.equal(mixed.daily.weather_code[index],2);
  assert.equal(mixed.hourly.fetchedAt,fixed);assert.deepEqual(Array.from(mixed.hourly.time),hours);
  assert.deepEqual(Array.from(mixed.hourly.temperature_2m),[10,0,-2,null,null]);assert.match(mixed.detail,/Open-Meteo/);
- assert.equal(calls[1].searchParams.get('current'),'temperature_2m');assert.equal(calls[1].searchParams.get('forecast_hours'),'12');
+ const currentVars=['apparent_temperature','relative_humidity_2m','temperature_2m','uv_index','wind_direction_10m'];
+ const hourVars=['apparent_temperature','precipitation','precipitation_probability','temperature_2m','weather_code'];
+ assert.deepEqual(calls[1].searchParams.get('current').split(',').sort(),currentVars);assert.equal(calls[1].searchParams.get('forecast_hours'),'12');
+ assert.deepEqual(calls[1].searchParams.get('hourly').split(',').sort(),hourVars);
+ assert.deepEqual([mixed.current.apparent_temperature,mixed.current.relative_humidity_2m,mixed.current.wind_direction_10m,mixed.current.uv_index],[25.2,77,104,0]);
+ assert.equal(mixed.current.field_times.uv_index,fixed/1000);assert.equal(mixed.current.field_times.apparent_temperature,undefined);
+ assert.deepEqual(Array.from(mixed.hourly.apparent_temperature),[6,0,-5,null,null]);
+ assert.deepEqual(Array.from(mixed.hourly.precipitation_probability),[0,10,65,null,null]);
+ assert.deepEqual(Array.from(mixed.hourly.precipitation),[0,0,.7,null,null]);
+ assert.deepEqual(Array.from(mixed.hourly.weather_code),[0,2,80,null,null]);
  assert.equal(calls[1].searchParams.get('timezone'),'Asia/Shanghai');
  cmaFixture=structuredClone(fixture);cmaFixture.data.now.temperature=9999;
+ cmaFixture.data.now.feelst=9999;cmaFixture.data.now.humidity=9999;cmaFixture.data.now.windDirectionDegree=-1;
  cmaFixture.data.daily[index].low=-9999;
  cmaFixture.data.daily.splice(index+1,1); // only the model has this day
  const patched=await api.fetchWeather(location);
  assert.equal(patched.current.temperature_2m,-1);assert.equal(patched.current.temperature_time,model.current.time);
+ assert.deepEqual([patched.current.apparent_temperature,patched.current.relative_humidity_2m,patched.current.wind_direction_10m],[-4,68,45]);
+ assert.equal(patched.current.field_times.apparent_temperature,model.current.time);
  assert.equal(patched.daily.temperature_2m_min[index],-2);assert.equal(patched.daily.temperature_2m_max[index],30);
  const extraDay=patched.daily.time.indexOf(tomorrow+86400);
  assert.deepEqual([patched.daily.weather_code[extraDay],patched.daily.temperature_2m_min[extraDay],patched.daily.temperature_2m_max[extraDay]],[0,0,3]);
@@ -61,15 +74,19 @@ const raining=structuredClone(fixture);raining.data.now.precipitation=4;raining.
  cmaFixture=fixture;cmaDown=true;calls=[];
  const fallback=await api.fetchWeather(location);assert.equal(fallback.providerId,'open-meteo');assert.equal(calls.length,2);
  assert.equal(fallback.current.temperature_2m,-1);assert.equal(fallback.hourly.fetchedAt,fixed);assert.equal(fallback.daily.temperature_2m_max[0],0);
- assert(calls[1].searchParams.get('current').includes('weather_code'));assert.equal(calls[1].searchParams.get('hourly'),'temperature_2m');
+ assert(calls[1].searchParams.get('current').includes('weather_code'));assert.deepEqual(calls[1].searchParams.get('hourly').split(',').sort(),hourVars);
  assert(calls[1].searchParams.get('daily').includes('temperature_2m_min'));assert.equal(calls[1].searchParams.get('timeformat'),'unixtime');
  calls=[];assert.equal((await api.fetchWeather({latitude:40.71,longitude:-74.01})).providerId,'open-meteo');assert.equal(calls.length,1);
  assert.equal(calls[0].searchParams.get('timezone'),'auto');
- model.hourly.temperature_2m=[];assert.equal((await api.fetchWeather({latitude:40.71,longitude:-74.01})).hourly,null);
+ model.hourly={time:hours,precipitation_probability:[0,0,80,20,15],temperature_2m:[9999]};
+ const rainOnly=await api.fetchWeather({latitude:40.71,longitude:-74.01});
+ assert.deepEqual(Array.from(rainOnly.hourly.precipitation_probability),[0,0,80,20,15]);
+ assert(rainOnly.hourly.temperature_2m.every(v=>v===null));
+ model.hourly.precipitation_probability=[];assert.equal((await api.fetchWeather({latitude:40.71,longitude:-74.01})).hourly,null);
  const delayed=new AbortController();cmaDown=false;
  await assert.rejects(api.fetchWeather(location,{signal:delayed.signal,onCurrent:()=>delayed.abort()}),{name:'AbortError'});
  const controller=new AbortController();controller.abort();calls=[];
  await assert.rejects(api.fetchWeather(location,{signal:controller.signal}),{name:'AbortError'});assert.equal(calls.length,0);
  await assert.rejects(api.fetchWeather({latitude:1000,longitude:0}),/坐标无效/);
- console.log(JSON.stringify({passed:true,checks:['2440 official China stations and offline Chinese lookup','Hangzhou Xihu nearest station','CMA observation + clearly labelled forecast mapping','freshness and invalid-value rejection','solar dates and missing moon fallback contract','domestic-first with genuine Open-Meteo fallback','foreign coordinates direct provider','immediate CMA current and tomorrow; separate hourly forecast and attribution','same-city model fills missing fields by local date','negative and zero Celsius, midnight rollover, invalid sentinel and optional-data failures','abort and coordinate validation']},null,2));
+ console.log(JSON.stringify({passed:true,checks:['2440 official China stations and offline Chinese lookup','Hangzhou Xihu nearest station','CMA observation + clearly labelled forecast mapping','freshness and invalid-value rejection','solar dates and missing moon fallback contract','domestic-first with genuine Open-Meteo fallback','foreign coordinates direct provider','immediate CMA current and tomorrow; separate hourly forecast and attribution','same-city model fills missing fields by local date','negative and zero Celsius, midnight rollover, invalid sentinel and optional-data failures','current feels-like, humidity, wind and UV with per-field source time','hourly feels-like, rain probability, totals and weather codes survive independent missing values','abort and coordinate validation']},null,2));
 })().catch(e=>{console.error(e);process.exitCode=1;});

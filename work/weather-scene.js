@@ -86,7 +86,7 @@ function createWeatherScene(canvas, reducedMotion, onPaint = () => {}) {
   let w=1,h=1,frame=0,lastPaint=0,lastFrameTime=0,cloudTime=0,starTravel=0,skyOrbit=0,lastDayProgress=null,rainTravel=0,snowTravel=0,windTravel=0,lastMotionTime=null,iceAmount=0,motionTime=0,immersion=0;
   let planetEpoch=null,starAtlas=null,galaxyStars=null,spiralLayers=null,detailCanvas=null,detailCtx=null;
   const skyImages=new Map();let frontCanvas=null,frontCtx=null,readableAreas=[],dateArea=null;
-  function refreshReadableAreas(){dateArea=document.querySelector('.date-line')?.getBoundingClientRect();readableAreas=Array.from(document.querySelectorAll('.tile:not([hidden]),.date-line,.demo-dayline,.demo-quote')).map(el=>el.getBoundingClientRect()).filter(r=>r.width&&r.height);}
+  function refreshReadableAreas(){dateArea=document.querySelector('.date-line')?.getBoundingClientRect();readableAreas=Array.from(document.querySelectorAll('.tile:not([hidden]),.date-line,.demo-dayline,#demo-weather-outlook,.demo-quote')).map(el=>el.getBoundingClientRect()).filter(r=>r.width&&r.height);}
   function foreground(){
     if(!frontCanvas){frontCanvas=document.createElement('canvas');frontCanvas.id='weather-foreground';frontCanvas.setAttribute('aria-hidden','true');frontCanvas.style.cssText='position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;opacity:.32';const mask=getComputedStyle(canvas).maskImage||getComputedStyle(canvas).webkitMaskImage;frontCanvas.style.maskImage=mask;frontCanvas.style.webkitMaskImage=mask;(document.querySelector('.shell')||document.body).appendChild(frontCanvas);frontCtx=frontCanvas.getContext('2d');refreshReadableAreas();}
     const width=Math.max(1,Math.round(canvas.width*.65)),height=Math.max(1,Math.round(canvas.height*.65));

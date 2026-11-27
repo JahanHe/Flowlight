@@ -3,7 +3,7 @@ body.calendar-demo { --demo-accent:#d5deea; --demo-muted:#92949c; font-family:-a
 .calendar-demo { --calendar-edge-mask:radial-gradient(ellipse 50% 50% at center,#000 42%,rgba(0,0,0,.93) 64%,rgba(0,0,0,.5) 80%,transparent 96%); }
 .calendar-demo.weather-edge-to-edge { --calendar-edge-mask:none; }
 .calendar-demo #weather-canvas,.calendar-demo #sky-detail-canvas,.calendar-demo #weather-foreground { -webkit-mask-image:var(--calendar-edge-mask)!important; mask-image:var(--calendar-edge-mask)!important; }
-.calendar-demo .date-line,.calendar-demo .demo-dayline,.calendar-demo .demo-quote { text-shadow:0 1px 3px #000c,0 0 8px #0006; }
+.calendar-demo .date-line,.calendar-demo .demo-dayline,.calendar-demo .demo-quote,#demo-weather-outlook { text-shadow:0 1px 3px #000c,0 0 8px #0006; }
 .calendar-demo .demo-fill-row { margin-top:8px; border:0; min-height:44px; color:#ccd0d8; }
 #demo-wide-sky { appearance:none; -webkit-appearance:none; width:36px; height:22px; border:0; border-radius:20px; background:#51545c; position:relative; cursor:pointer; flex-shrink:0; transition:background .15s; }
 #demo-wide-sky::after { content:''; position:absolute; left:3px; top:3px; width:16px; height:16px; background:white; border-radius:50%; transition:transform .15s; }
@@ -22,8 +22,11 @@ body.calendar-demo { --demo-accent:#d5deea; --demo-muted:#92949c; font-family:-a
 .demo-day-captions:empty { display:none; }
 #demo-forecast { max-width:100%; gap:3px 14px; color:#c9ced6; font-variant-numeric:tabular-nums; letter-spacing:0; }
 #demo-forecast b { color:#e5e8ed; font-weight:500; }
-.forecast-now,.forecast-hour,.forecast-tomorrow,.forecast-cache { white-space:nowrap; }
+#demo-forecast > span:not(.forecast-hours),.forecast-hour,.forecast-tomorrow,.forecast-cache { white-space:nowrap; }
 .forecast-cache { color:inherit; font-size:.9em; }
+#demo-weather-outlook { margin:5px auto 0; display:flex; flex-wrap:wrap; align-items:baseline; justify-content:center; gap:2px 12px; max-width:100%; font-size:13px; line-height:1.55; color:#c7cbd3; letter-spacing:0; }
+#demo-weather-outlook .forecast-advice { text-wrap:balance; }
+.forecast-tomorrow { font-variant-numeric:tabular-nums; }
 @media(max-width:759px) { #demo-forecast { gap:3px 10px; font-size:12px; } .demo-dayline { row-gap:4px; } }
 .demo-dayline .day-event { color:var(--accent,#dfc19c); font-weight:500; }
 #clock-stage .demo-term-trigger { appearance:none; background:none; border:0; border-radius:5px; padding:11px 8px; margin:-11px -8px; min-height:44px; min-width:44px; font:inherit; font-weight:500; letter-spacing:inherit; text-shadow:inherit; cursor:pointer; pointer-events:auto; touch-action:manipulation; text-decoration:underline dotted #ffffff50; text-underline-offset:4px; }
@@ -35,6 +38,10 @@ body.calendar-demo { --demo-accent:#d5deea; --demo-muted:#92949c; font-family:-a
 .demo-quote p { margin:0; font-family:inherit; font-size:clamp(17px,1.8vw,24px); font-weight:400; line-height:1.6; letter-spacing:.025em; text-wrap:balance; }
 .demo-quote cite { display:block; margin-top:10px; font-style:normal; color:#90949d; font-size:12px; letter-spacing:.015em; }
 .calendar-demo.is-fullscreen .demo-quote { margin-top:34px; }
+.demo-quote.outdoor-note { width:95%; max-width:680px; }
+.demo-quote.outdoor-note p { font-size:clamp(15px,1.45vw,20px); font-weight:500; line-height:1.5; }
+.demo-quote.outdoor-note cite { color:#bcc1c9; margin-top:4px; }
+.outdoor-note :empty { display:none; }
 .calendar-demo [hidden] { display:none!important; }
 .demo-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:21px; }
 .demo-head h1 { font-size:23px; font-weight:600; letter-spacing:.025em; margin:0; }
@@ -86,11 +93,14 @@ body.calendar-demo { --demo-accent:#d5deea; --demo-muted:#92949c; font-family:-a
 .demo-note { color:#747a85; font-size:10px; line-height:1.7; margin:15px 0 0; }
 .demo-note a { color:#a5a9b2; }
 .demo-label { display:block; color:#8d929d; font-size:11px; margin:19px 0 9px; }
-.demo-mode { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; background:#ffffff05; padding:4px; border-radius:12px; }
+.demo-mode { display:grid; grid-template-columns:1fr 1.55fr .8fr; gap:4px; background:#ffffff05; padding:4px; border-radius:12px; }
 #demo-console .demo-mode button { border:0; border-radius:9px; background:none; color:#969ca6; font-size:11px; padding:0; }
 #demo-console .demo-mode button[aria-pressed=true] { background:#393b40; color:#f4f4f6; }
 .demo-row { display:flex; justify-content:space-between; align-items:center; min-height:52px; border-bottom:1px solid #ffffff0d; gap:15px; font-size:12px; color:#d5d6dc; }
 .demo-row input[type=checkbox] { width:18px; height:18px; accent-color:#cdb897; }
+.demo-metrics { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 8px; }
+.demo-metrics label { display:flex; align-items:center; min-height:42px; gap:6px; font-size:12px; }
+.demo-metrics input { accent-color:#cdb897; }
 .demo-row select { width:128px; min-height:36px; border:1px solid #ffffff18; background:#25272c; color:#ddd; border-radius:8px; padding:6px; font-size:11px; }
 .demo-row input[type=range] { width:130px; accent-color:#d6be9b; }
 .demo-quote-preview { padding:25px 10px; text-align:center; border-bottom:1px solid #ffffff0d; }
@@ -101,7 +111,7 @@ body.calendar-demo { --demo-accent:#d5deea; --demo-muted:#92949c; font-family:-a
 .demo-source { display:block; font-size:11px; color:#9ea5b1; text-align:center; margin-top:12px; }
 @media(max-width:1050px) and (min-width:760px) { .calendar-demo:not(.is-fullscreen) .shell { grid-template-columns:minmax(0,1fr) 328px; padding:18px; gap:20px; } .calendar-demo .control-panel { padding:20px; max-height:calc(100dvh - 36px); } }
 @media(max-width:759px) { .calendar-demo:not(.is-fullscreen) .shell { display:flex; padding:0 16px 20px; gap:0; } .calendar-demo:not(.is-fullscreen) #clock-stage { height:48dvh; min-height:340px; max-height:470px; padding:50px 0 20px; top:auto; } .calendar-demo .control-panel { max-height:none; padding:22px; width:100%; } .calendar-demo #clock-stage .intro { margin-bottom:18px; } .demo-dayline { margin-top:9px; font-size:11px; } .demo-quote { margin-top:14px; } .demo-quote p { font-size:16px; letter-spacing:.035em; } .demo-quote cite { margin-top:5px; font-size:10px; } }
-@media(max-height:520px) { .calendar-demo.is-fullscreen .demo-quote { display:none!important; } .calendar-demo.is-fullscreen #clock-stage .intro { margin-bottom:12px; } }
+@media(max-height:520px) { .calendar-demo.is-fullscreen .demo-quote:not(.outdoor-note) { display:none!important; } .calendar-demo.is-fullscreen #clock-stage .intro { margin-bottom:12px; } .calendar-demo.is-fullscreen .outdoor-note { margin-top:8px; } .outdoor-note .forecast-advice { font-size:14px; } }
 
 /* Restored controls stay inside the same settings column, with their original listeners. */
 #demo-console .demo-settings-group { border:1px solid #ffffff16; border-radius:12px; padding:0 14px; margin:0 0 12px; }

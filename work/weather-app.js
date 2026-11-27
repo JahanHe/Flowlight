@@ -21,7 +21,7 @@
     foldTop:element.querySelector('.flap.top .numeral'), foldBottom:element.querySelector('.flap.bottom .numeral')
   }));
   const REFRESH_MS = 10 * 60 * 1000;
-  const knownCodes = [0,1,2,3,45,48,51,53,55,56,57,61,63,65,66,67,71,73,75,77,80,81,82,85,86,95,96,97,99];
+  const knownCodes = clockWeatherProvider.weatherCodes;
   const previewBase = {condition:'clear',variant:'',cloudCover:.12,intensity:0,wind:8,hail:false};
   const previews = [
     ['sunrise','日出',{cloudCover:.12}],
@@ -195,6 +195,52 @@
     if ([45,48].includes(code)) return ['fog','雾'];
     return code === 3 ? ['overcast','阴天'] : code === 2 ? ['cloudy','多云'] : ['clear',code === 1 ? '晴间多云' : '晴'];
   }
+  const windThresholds=[.3,1.6,3.4,5.5,8,10.8,13.9,17.2,20.8,24.5,28.5,32.7];
+  function precipitationType(code){
+    if(!knownCodes.includes(code))return '';
+    const [kind,label]=weatherKind(code);
+    return kind==='storm'||kind==='snow'?label:kind==='rain'?([80,81,82].includes(code)?'阵雨':label):'';
+  }
+  function outdoorAdvice(hourly,next,stamp,feels,current,windForce,uv,rain){
+    // Compare temperatures from the same hourly model; station observations can differ at the same time.
+    const baseline=hourly?.time.findIndex(time=>time<=stamp&&stamp-time<3600)??-1;
+    const field=next.some(h=>Number.isFinite(hourly.apparent_temperature?.[h.index]))?'apparent_temperature':'temperature_2m';
+    const label=field==='apparent_temperature'?'体感':'气温';
+    const values=hourly?.[field]||[],points=next.filter(h=>Number.isFinite(values[h.index]));
+    const end=points[points.length-1],period=end?'到'+end.label:'';
+    let trend='',dressingTemp=feels??current;
+    if(end){
+      const temps=points.map(h=>values[h.index]),target=temps[temps.length-1],last=Math.round(target)+'°';
+      const before=values[baseline];
+      const first=points[0];
+      const fraction=baseline>=0?(stamp-hourly.time[baseline])/(first.time-hourly.time[baseline]):0;
+      const start=Number.isFinite(before)&&first.time-hourly.time[baseline]===3600?before+(temps[0]-before)*fraction:null;
+      // Use the coolest expected feel when choosing a layer for the walk.
+      if(field==='apparent_temperature'||dressingTemp===null)dressingTemp=Math.min(...temps,...(dressingTemp===null?[]:[dressingTemp]));
+      if(start===null)trend=period+label+'约'+last;
+      else if(temps.length===2&&temps[0]-start>=1&&temps[0]-target>=1)trend=label+'先升后降，最高'+Math.round(temps[0])+'°';
+      else if(temps.length===2&&start-temps[0]>=1&&target-temps[0]>=1)trend=label+'先降后升，最低'+Math.round(temps[0])+'°';
+      else if(Math.max(start,...temps)-Math.min(start,...temps)<1)trend=period+label+'平稳';
+      else trend=period+label+(target>=start?'升至':'降至')+last;
+    }
+    const outfit=dressingTemp===null?'':dressingTemp<=0?'穿厚外套':dressingTemp<=10?'穿件保暖外套':dressingTemp<=17?(windForce>=4?'穿件防风外套':'带件薄外套'):dressingTemp<=23?'穿件长袖':'穿轻薄衣物';
+    const types=next.map(h=>precipitationType(hourly.weather_code?.[h.index]));
+    const chances=next.map(h=>hourly.precipitation_probability?.[h.index]);
+    const wet=types.some(Boolean)||chances.some(p=>Number.isFinite(p)&&p>=30)||next.some(h=>hourly.precipitation?.[h.index]>0);
+    const snow=types.includes('降雪'),storm=types.some(t=>t.includes('雷雨')),ice=types.includes('冻雨');
+    const nowWet=!!rain&&rain!=='无雨'&&rain!=='雨况暂无';
+    const gear=windForce>=6?'带件雨衣':'带把伞';
+    let outlook='';
+    if(storm)outlook='可能有雷雨，留意避雨';
+    else if(ice)outlook='可能有冻雨，留意路滑';
+    else if(snow)outlook='可能下雪，穿防滑鞋';
+    else if(wet)outlook=(types.includes('阵雨')?'可能有阵雨，':'可能有降水，')+gear;
+    else if(nowWet)outlook=rain==='降雪'?'雪天穿防滑鞋':gear;
+    else if(next.length===2&&chances.every(p=>Number.isFinite(p)&&p<20))outlook='降雨可能性低';
+    else if(chances.some(p=>Number.isFinite(p)&&p>=20))outlook='有小概率降雨';
+    if(!trend&&!outfit&&!outlook)return '';
+    return [trend,outfit,outlook,uv>=6?'戴上遮阳帽':''].filter(Boolean).join('，')+'。';
+  }
   function updateForecast(now) {
     if(tv)return;
     const stamp=now.getTime(),minute=Math.floor(stamp/60000);
@@ -206,8 +252,22 @@
       const seconds=stamp/1000,offset=Number.isFinite(data.utc_offset_seconds)?data.utc_offset_seconds:0;
       const temp=v=>Number.isFinite(v)&&v>=-100&&v<=70?Math.round(v):null;
       const cached=usingLastWeather||!navigator.onLine||age>REFRESH_MS*2;
-      const observationAge=seconds-(data.current.temperature_time??data.current.time);
-      const current=observationAge>=-600&&observationAge<6*3600?temp(data.current.temperature_2m):null;
+      const c=data.current;
+      function reading(key,min,max){
+        const time=c.field_times?.[key]??(key==='temperature_2m'?c.temperature_time:undefined)??c.time;
+        const value=c[key],age=seconds-time;
+        return age>=-600&&age<6*3600&&Number.isFinite(value)&&value>=min&&value<=max?value:null;
+      }
+      const current=temp(reading('temperature_2m',-100,65)),apparent=reading('apparent_temperature',-120,90),feels=apparent===null?null:Math.round(apparent);
+      const humidity=reading('relative_humidity_2m',0,100),speed=reading('wind_speed_10m',0,550),direction=reading('wind_direction_10m',0,360);
+      const uvReading=reading('uv_index',0,50),uvLevel=uvReading===null?null:Math.round(uvReading);
+      const uv=uvLevel===null?'':uvLevel+'（'+(uvLevel<3?'低':uvLevel<6?'中':uvLevel<8?'高':uvLevel<11?'很高':'极高')+'）';
+      const windForce=speed===null?null:windThresholds.filter(limit=>speed/3.6>=limit).length;
+      const from=direction===null?'':['北','东北','东','东南','南','西南','西','西北'][Math.round(direction/45)%8];
+      const wind=windForce===null?'':windForce===0?'静风':from+'风 '+windForce+(windForce===12?'级以上':'级');
+      const precip=reading('precipitation',0,500);
+      const type=data.providerId==='open-meteo'?precipitationType(reading('weather_code',0,99)):'';
+      const rain=type||(precip===null?'雨况暂无':precip>0?'有降水':'无雨');
       const hours=[],hourly=data.hourly;
       let cityTime;
       if(data.timezone){
@@ -218,12 +278,15 @@
         const date=new Date((time+offset)*1000);
         return {year:date.getUTCFullYear(),month:date.getUTCMonth()+1,day:date.getUTCDate(),hour:pad(date.getUTCHours()),minute:pad(date.getUTCMinutes())};
       }
-      if(Array.isArray(hourly?.time)&&Array.isArray(hourly.temperature_2m)&&Number.isFinite(hourly.fetchedAt)&&stamp-hourly.fetchedAt<6*3600000&&hourly.fetchedAt<=stamp+60000){
-        for(let i=0;i<hourly.time.length&&hours.length<3;i++){
-          const time=hourly.time[i],value=temp(hourly.temperature_2m[i]);
-          if(!Number.isFinite(time)||time<=seconds||time>seconds+3*3600||value===null)continue;
+      const next=[],hasHourly=Array.isArray(hourly?.time)&&Number.isFinite(hourly.fetchedAt)&&stamp-hourly.fetchedAt<6*3600000&&hourly.fetchedAt<=stamp+60000;
+      if(hasHourly){
+        for(let i=0;i<hourly.time.length;i++){
+          const time=hourly.time[i],value=temp(hourly.temperature_2m?.[i]);
+          if(!Number.isFinite(time)||time<=seconds||time>seconds+3*3600)continue;
           const {hour,minute}=cityParts(time);
-          hours.push({label:minute==='00'?hour+'时':hour+':'+minute,temp:value});
+          const label=minute==='00'?hour+'时':hour+':'+minute;
+          if(value!==null&&hours.length<3)hours.push({label,temp:value});
+          if(time<=seconds+7200&&next.length<2)next.push({time,label,index:i});
         }
       }
       const here=cityParts(seconds),nextDay=Date.UTC(here.year,here.month-1,Number(here.day)+1)/86400000;
@@ -232,7 +295,11 @@
       const code=d.weather_code?.[i],low=temp(d.temperature_2m_min?.[i]),high=temp(d.temperature_2m_max?.[i]);
       const condition=knownCodes.includes(code)?weatherKind(code)[1]:'';
       const tomorrow=i>=0&&(condition||low!==null||high!==null)?{condition,low,high}:null;
-      if(current!==null||hours.length||tomorrow)forecast={current,hours,tomorrow,cached,hoursCached:!!hours.length&&(!!weather.retainedHours||stamp-hourly.fetchedAt>REFRESH_MS*2)};
+      if(current!==null||feels!==null||humidity!==null||wind||uv||rain!=='雨况暂无'||next.length||hours.length||tomorrow){
+        const advice=outdoorAdvice(hasHourly?hourly:null,next,seconds,feels,current,windForce,uvLevel,rain);
+        forecast={current,feels,humidity:humidity===null?null:Math.round(humidity),wind,uv,rain,advice,hours,tomorrow,cached,
+          hoursCached:hasHourly&&(!!weather.retainedHours||stamp-hourly.fetchedAt>REFRESH_MS*2)};
+      }
     }
     const display=JSON.stringify(forecast);
     if(display===lastForecast)return;
@@ -248,7 +315,7 @@
     // A failed refresh is not evidence that rain stopped: retain a recent observation.
     const fresh=data && stamp-weather.fetchedAt<6*3600000 && stamp>=weather.fetchedAt-3600000;
     const code=fresh?data.current.weather_code:0, kind=weatherKind(code);
-    const observed=fresh?{condition:kind[0],variant:[56,57,66,67].includes(code)?'freezing-rain':'',hail:[96,99].includes(code),cloudCover:clamp(data.current.cloud_cover/100),intensity:code>=51?clamp(data.current.precipitation/5,.16,1):0,wind:data.current.wind_speed_10m}:realSky;
+    const observed=fresh?{condition:kind[0],variant:[56,57,66,67].includes(code)?'freezing-rain':'',hail:[96,99].includes(code),cloudCover:clamp(data.current.cloud_cover/100),intensity:code>=51?clamp((data.current.precipitation??0)/5,.16,1):0,wind:data.current.wind_speed_10m??realSky.wind}:realSky;
     const selected=previewIndex<0?observed:{...previewBase,...previews[previewIndex][2]};
     const polar=previewIndex<0?'':previews[previewIndex][2].idealPolar||'';
     let sky=realSky;
@@ -414,7 +481,7 @@
   }
   function validateWeather(data) {
     const c=data?.current, d=data?.daily;
-    if (!c || !d || !knownCodes.includes(c.weather_code) || ![0,1].includes(c.is_day) || ![c.time,c.cloud_cover,c.precipitation,c.wind_speed_10m].every(Number.isFinite) || c.cloud_cover<0 || c.cloud_cover>100 || c.precipitation<0 || c.wind_speed_10m<0) throw Error('天气数据不完整');
+    if (!c || !d || !knownCodes.includes(c.weather_code) || ![0,1].includes(c.is_day) || ![c.time,c.cloud_cover].every(Number.isFinite) || c.cloud_cover<0 || c.cloud_cover>100 || ![c.precipitation,c.wind_speed_10m].every(v=>v==null||Number.isFinite(v)&&v>=0)) throw Error('天气数据不完整');
     if (!Array.isArray(d.time) || !d.time.length || !d.time.every(Number.isFinite) || !['sunrise','sunset','moonrise','moonset','moon_phase'].every(key => Array.isArray(d[key]) && d[key].length===d.time.length && d[key].every(v => v===null || Number.isFinite(v)))) throw Error('日月数据不完整');
     return data;
   }
