@@ -1,0 +1,171 @@
+{
+  "apk": "浮光时钟.apk",
+  "bytes": 3052065,
+  "sha256": "dc04afc045f3fd29761e393ba17e838838692c1febbf203b19f7b14c684be5a9",
+  "htmlSha256": "305efa7a08605035fbdfffded79e78458a8152dea36d119883e64babf0b5b29b",
+  "package": "local.fuguang.clock",
+  "versionCode": "15",
+  "versionName": "1.5.0",
+  "minSdk": 26,
+  "targetSdk": 35,
+  "signature": "Verifies\nVerified using v1 scheme (JAR signing): false\nVerified using v2 scheme (APK Signature Scheme v2): true\nVerified using v3 scheme (APK Signature Scheme v3): true\nVerified using v3.1 scheme (APK Signature Scheme v3.1): false\nVerified using v4 scheme (APK Signature Scheme v4): false\nVerified for SourceStamp: false\nNumber of signers: 1\nSigner #1 certificate DN: CN=Floating Light Local Build, OU=Personal App, O=Floating Light, C=CN\nSigner #1 certificate SHA-256 digest: 468780696fd58f9c9a7eeeff7fccae9c826ace0c69a9baa63b58a43ed96f7beb\nSigner #1 certificate SHA-1 digest: bf10597ba8d1aa7adc934dd21bcb3b7a7eaee02c\nSigner #1 certificate MD5 digest: b6905478f395544237a1b951a6f34c46\nSigner #1 key algorithm: RSA\nSigner #1 key size (bits): 2048\nSigner #1 public key SHA-256 digest: 6b59cc441bdb46bfb2135ae437a208046b61ece000fa6b4b9b091d997f45c457\nSigner #1 public key SHA-1 digest: 4604068bf74f555bb35f201b626e961467679fdd\nSigner #1 public key MD5 digest: ae54c100fc69fdd1b4a1dc1f5983b49c",
+  "permissions": [
+    "uses-permission: name='android.permission.INTERNET'",
+    "uses-permission: name='android.permission.ACCESS_COARSE_LOCATION'"
+  ],
+  "checks": [
+    "signature v2/v3",
+    "ZIP alignment",
+    "complete ZIP integrity",
+    "exact latest HTML",
+    "manifest",
+    "restricted WebView source",
+    "phone page version matches manifest",
+    "hardware acceleration enabled",
+    "foreground screen stays on",
+    "no bundled browser/runtime",
+    "32/64-bit CPU independent",
+    "portable ZIP integrity",
+    "phone and portable versions and shared page match"
+  ],
+  "runtimeVerified": false,
+  "pageUrl": "https://appassets.androidplatform.net/assets/glass-clock.html?v=15",
+  "runtimeQueryFields": [
+    "ramMB",
+    "availableMB",
+    "cores",
+    "lowRam",
+    "heapMB"
+  ],
+  "versionedApk": "浮光时钟-手机版-1.5.0.apk",
+  "portableZip": "浮光时钟-通用版-1.5.0.zip",
+  "portableZipSha256": "11bf330a7f439aed9710370282db6acba3da562f230b6aaae14447e6c41d0fa2",
+  "weatherPipeline": {
+    "passed": true,
+    "scope": "Offline network fixtures with actual CMA provider parser, app controls and renderer; Android UA desktop Chromium, not physical Android or live provider availability",
+    "sampleCount": 9
+  },
+  "weatherFallback": {
+    "passed": true,
+    "scope": "CMA406 then Open-Meteo200 fixture through actual network/provider/app/renderer; physical phone not tested",
+    "sampleCount": 4
+  },
+  "liveForecast": {
+    "city": "杭州 · 西湖区 · 晴",
+    "text": "现在 16°C\n18时 16°\n19时 15°\n20时 14°\n明天 晴 7–18°",
+    "source": "open-meteo",
+    "version": "手机版 1.5.0",
+    "checkedAt": "2026-11-27T09:46:32.240Z",
+    "forecast": {
+      "current": 16,
+      "hours": [
+        {
+          "label": "18时",
+          "temp": 16
+        },
+        {
+          "label": "19时",
+          "temp": 15
+        },
+        {
+          "label": "20时",
+          "temp": 14
+        }
+      ],
+      "tomorrow": {
+        "condition": "晴",
+        "low": 7,
+        "high": 18
+      },
+      "cached": false,
+      "hoursCached": false
+    },
+    "network": [
+      {
+        "host": "weather.cma.cn",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "host": "api.open-meteo.com",
+        "status": 200
+      }
+    ],
+    "htmlSha256": "305efa7a08605035fbdfffded79e78458a8152dea36d119883e64babf0b5b29b"
+  },
+  "daylight": {
+    "passed": true,
+    "scope": "Pure Node shared daylight palette/light-source behavior; not a visual or device-performance test"
+  },
+  "calendarSettings": {
+    "passed": true,
+    "scope": "Desktop Chromium with phone viewport, not physical Android"
+  },
+  "portableBrowser": {
+    "pass": true,
+    "version": "1.5.0",
+    "browser": "158.0.8127.37",
+    "platform": "darwin",
+    "offline": true,
+    "extractedFromZip": true,
+    "movements": [
+      "noon",
+      "night"
+    ],
+    "settingsPersist": true,
+    "fullscreenExit": true,
+    "scriptErrors": []
+  },
+  "phoneOrigin": {
+    "passed": true,
+    "versionName": "1.5.0",
+    "versionCode": "15",
+    "pageURL": "https://appassets.androidplatform.net/assets/glass-clock.html?v=15&ramMB=4096&availableMB=2048&cores=8&lowRam=0&heapMB=256",
+    "checks": [
+      "packaged phone version matches manifest",
+      "native secure origin and CSP",
+      "native local no-store and no-referrer headers",
+      "one companion",
+      "inline calendar/display controls allow native exit; native Back closes visible city form and CSS fullscreen",
+      "portrait/landscape",
+      "settings survive version and memory URL change",
+      "weather requests contain no native memory/CPU hints"
+    ],
+    "runtime": "desktop Chromium emulating touch; not physical Android or memory/FPS verification"
+  },
+  "nativeSourceChecks": {
+    "passed": true,
+    "command": "python3 work/android/check-phone-native.py"
+  },
+  "forecastTests": {
+    "passed": true,
+    "commands": [
+      "node work/check-weather-provider.cjs",
+      "node work/check-clock-forecast.cjs"
+    ],
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        1280,
+        720
+      ]
+    ],
+    "layoutModes": [
+      "settings",
+      "fullscreen"
+    ]
+  },
+  "frozenTVUnchanged": true,
+  "physicalAndroidTested": false,
+  "physicalWindowsTested": false
+}

@@ -61,6 +61,7 @@
   let weatherController, searchController, locating = false;
   const DEFAULT_LOCATION = {latitude:30.26, longitude:120.13, label:'杭州 · 西湖区', source:'city'};
   let weather = {location:DEFAULT_LOCATION, data:null, fetchedAt:0};
+  let usingLastWeather=true, forecastMinute=-1, lastForecast='';
   let latestScene = {phase:'unknown', condition:'clear', sunProgress:.5, cloudCover:0, intensity:0, wind:0, moonPhase:.5, moonVisible:false};
   // ponytail: preferences and weather cache are optional; storage denial must never break the clock.
   try {
@@ -194,6 +195,50 @@
     if ([45,48].includes(code)) return ['fog','雾'];
     return code === 3 ? ['overcast','阴天'] : code === 2 ? ['cloudy','多云'] : ['clear',code === 1 ? '晴间多云' : '晴'];
   }
+  function updateForecast(now) {
+    if(tv)return;
+    const stamp=now.getTime(),minute=Math.floor(stamp/60000);
+    if(minute===forecastMinute)return;
+    forecastMinute=minute;
+    const {data,fetchedAt}=weather, age=stamp-fetchedAt;
+    let forecast=null;
+    if(data && age>=-60000 && age<6*3600000){
+      const seconds=stamp/1000,offset=Number.isFinite(data.utc_offset_seconds)?data.utc_offset_seconds:0;
+      const temp=v=>Number.isFinite(v)&&v>=-100&&v<=70?Math.round(v):null;
+      const cached=usingLastWeather||!navigator.onLine||age>REFRESH_MS*2;
+      const observationAge=seconds-(data.current.temperature_time??data.current.time);
+      const current=observationAge>=-600&&observationAge<6*3600?temp(data.current.temperature_2m):null;
+      const hours=[],hourly=data.hourly;
+      let cityTime;
+      if(data.timezone){
+        try{cityTime=new Intl.DateTimeFormat('en-GB',{timeZone:data.timezone,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});}catch{}
+      }
+      function cityParts(time){
+        if(cityTime)return Object.fromEntries(cityTime.formatToParts(time*1000).map(p=>[p.type,p.value]));
+        const date=new Date((time+offset)*1000);
+        return {year:date.getUTCFullYear(),month:date.getUTCMonth()+1,day:date.getUTCDate(),hour:pad(date.getUTCHours()),minute:pad(date.getUTCMinutes())};
+      }
+      if(Array.isArray(hourly?.time)&&Array.isArray(hourly.temperature_2m)&&Number.isFinite(hourly.fetchedAt)&&stamp-hourly.fetchedAt<6*3600000&&hourly.fetchedAt<=stamp+60000){
+        for(let i=0;i<hourly.time.length&&hours.length<3;i++){
+          const time=hourly.time[i],value=temp(hourly.temperature_2m[i]);
+          if(!Number.isFinite(time)||time<=seconds||time>seconds+3*3600||value===null)continue;
+          const {hour,minute}=cityParts(time);
+          hours.push({label:minute==='00'?hour+'时':hour+':'+minute,temp:value});
+        }
+      }
+      const here=cityParts(seconds),nextDay=Date.UTC(here.year,here.month-1,Number(here.day)+1)/86400000;
+      // The daily API labels calendar dates using its fixed offset, even across a DST change.
+      const d=data.daily,i=d.time.findIndex(time=>Math.floor((time+offset)/86400)===nextDay);
+      const code=d.weather_code?.[i],low=temp(d.temperature_2m_min?.[i]),high=temp(d.temperature_2m_max?.[i]);
+      const condition=knownCodes.includes(code)?weatherKind(code)[1]:'';
+      const tomorrow=i>=0&&(condition||low!==null||high!==null)?{condition,low,high}:null;
+      if(current!==null||hours.length||tomorrow)forecast={current,hours,tomorrow,cached,hoursCached:!!hours.length&&(!!weather.retainedHours||stamp-hourly.fetchedAt>REFRESH_MS*2)};
+    }
+    const display=JSON.stringify(forecast);
+    if(display===lastForecast)return;
+    lastForecast=display;window.clockForecast=forecast;
+    window.dispatchEvent(new Event('clockforecastchange'));
+  }
   function updateSky(now,updateLabel=true) {
     const data=weather.data, stamp=now.getTime(), elapsed=performance.now();
     const location=weather.location||DEFAULT_LOCATION, offset=data?.utc_offset_seconds/60;
@@ -282,6 +327,7 @@
     description.textContent = `${dateElement.textContent} ${weekdayElement.textContent} ${values.hours}时${values.minutes}分${settings.seconds ? values.seconds+'秒' : ''}`;
     const offset = -now.getTimezoneOffset();
     $('#timezone').textContent = `本地时间 · UTC${offset<0?'−':'+'}${pad(Math.floor(Math.abs(offset)/60))}:${pad(Math.abs(offset)%60)}`;
+    updateForecast(now);
     updateSky(now);
   }
   function tick(animate = true) { clearTimeout(timer); if(document.hidden) return; render(animate); if(tv)queueTVSky(); const interval=tv&&!settings.seconds?60000:1000; timer = setTimeout(tick,interval-Date.now()%interval+12); }
@@ -378,22 +424,32 @@
     const request=++weatherRequest; weatherController?.abort(); weatherController=new AbortController();
     const controller=weatherController, timeout=setTimeout(()=>controller.abort(),15000);
     lastAttempt=Date.now(); status.textContent=`${location.label} · 正在更新天气…`; scheduleRefresh();
-    try {
-      const data=validateWeather(await clockFetchWeather(location,{signal:controller.signal}));if(request!==weatherRequest)return;
-      weather={location,data,fetchedAt:Date.now()};
+    function commit(raw){
+      if(request!==weatherRequest)return;
+      const data=validateWeather(raw),previous=weather.data?.hourly,stamp=Date.now();
+      const retainedHours=!data.hourly&&Number.isFinite(previous?.fetchedAt)&&stamp-previous.fetchedAt<6*3600000;
+      weather={location,data:retainedHours?{...data,hourly:previous}:data,fetchedAt:stamp,retainedHours};
+      usingLastWeather=false;forecastMinute=-1;
       try {localStorage.setItem(weatherKey,JSON.stringify(weather));} catch {}
       status.textContent=`${location.label} · ${weatherKind(data.current.weather_code)[1]}`;
       const credit=$('#weather-source');credit.textContent=data.providerName||'Open-Meteo';credit.href=data.providerId==='cma'?'https://weather.cma.cn/':'https://open-meteo.com/';$('#weather-source-detail').textContent=data.detail?` · ${data.detail}`:'';
       tick(false);
+    }
+    try {
+      commit(await clockFetchWeather(location,{signal:controller.signal,onCurrent:commit}));
     } catch(error) {
       if(request!==weatherRequest) return;
+      usingLastWeather=true;forecastMinute=-1;
       status.textContent=weather.data&&Date.now()-weather.fetchedAt<6*3600000?`${location.label} · 暂时无法更新，沿用上次天气`:`${location.label} · 天气暂时无法更新，离线晴天 · 日月位置跟随当地时间`;tick(false);
     } finally {clearTimeout(timeout);}
   }
   function selectLocation(location) {
     const changed=!weather.location || location.latitude!==weather.location.latitude || location.longitude!==weather.location.longitude;
     weather.location=location;
-    if(changed) {weather.data=null;weather.fetchedAt=0;}
+    if(changed) {
+      weather={location,data:null,fetchedAt:0};usingLastWeather=true;forecastMinute=-1;
+      try{localStorage.setItem(weatherKey,JSON.stringify(weather));}catch{}
+    }
     tick(false); loadWeather();
   }
   if(tv) window.addEventListener('clocktvlocation',event=>{
@@ -464,7 +520,7 @@
   $('#show-companion').addEventListener('change',event=>{if(isFullscreen()){applySettings();return;}settings.companion=event.target.checked;applySettings();saveSettings();});
   locateButton.addEventListener('click',()=>{if(!isFullscreen()) locate();});
   document.addEventListener('visibilitychange',()=>{if(tv)clearTimeout(skyFrame);else{cancelAnimationFrame(skyFrame);skyFrame=requestAnimationFrame(animateSky);}tick(false);if(!document.hidden && Date.now()-lastAttempt>=REFRESH_MS) refreshWeather();});
-  window.addEventListener('offline',()=>{status.textContent=weather.data&&Date.now()-weather.fetchedAt<6*3600000?`${weather.location.label} · 已离线，沿用上次天气`:`${weather.location.label} · 离线晴天 · 日月位置跟随当地时间`;tick(false);});
+  window.addEventListener('offline',()=>{usingLastWeather=true;forecastMinute=-1;status.textContent=weather.data&&Date.now()-weather.fetchedAt<6*3600000?`${weather.location.label} · 已离线，沿用上次天气`:`${weather.location.label} · 离线晴天 · 日月位置跟随当地时间`;tick(false);});
   window.addEventListener('online',()=>{if(weather.location) loadWeather();});
   window.addEventListener('pageshow',()=>tick(false));
   window.addEventListener('resize',layoutDigits);
@@ -508,7 +564,7 @@
     if(validLocation(cached?.location)) {
       weather.location={...cached.location,label:typeof cached.location.label==='string'?cached.location.label:'上次位置'};
       if(Number.isFinite(cached.fetchedAt) && Date.now()-cached.fetchedAt<6*3600000 && cached.fetchedAt<=Date.now()+60000) {
-        weather.data=validateWeather(cached.data);weather.fetchedAt=cached.fetchedAt;
+        weather.data=validateWeather(cached.data);weather.fetchedAt=cached.fetchedAt;weather.retainedHours=cached.retainedHours===true;
         status.textContent='显示上次天气，正在更新…';
       }
     }

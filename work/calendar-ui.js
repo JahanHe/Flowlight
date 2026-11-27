@@ -6,7 +6,7 @@
   const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const today=()=>key(new Date());
   const settingsKey='floating-light-calendar';
-  const state={date:today(),month:new Date().getMonth(),year:new Date().getFullYear(),mode:'quote',tab:'calendar',quoteOffset:0,quoteSize:21,quoteKind:'daily',custom:'',traditional:true,world:true,terms:true,wideSky:true};
+  const state={date:today(),month:new Date().getMonth(),year:new Date().getFullYear(),mode:'quote',tab:'calendar',quoteOffset:0,quoteSize:21,quoteKind:'daily',custom:'',traditional:true,world:true,terms:true,wideSky:true,showForecast:true};
   // Only calendar preferences are restored. Browsed dates never become the real clock's date.
   try{
     const saved=JSON.parse(localStorage.getItem(settingsKey));
@@ -14,9 +14,9 @@
     if(['daily','nature','custom'].includes(saved?.quoteKind))state.quoteKind=saved.quoteKind;
     if(Number.isFinite(saved?.quoteSize)&&saved.quoteSize>=14&&saved.quoteSize<=30)state.quoteSize=saved.quoteSize;
     if(typeof saved?.custom==='string')state.custom=saved.custom.slice(0,64);
-    for(const name of ['traditional','world','terms','wideSky'])if(typeof saved?.[name]==='boolean')state[name]=saved[name];
+    for(const name of ['traditional','world','terms','wideSky','showForecast'])if(typeof saved?.[name]==='boolean')state[name]=saved[name];
   }catch{}
-  function saveSettings(){try{const {mode,quoteSize,quoteKind,custom,traditional,world,terms,wideSky}=state;localStorage.setItem(settingsKey,JSON.stringify({mode,quoteSize,quoteKind,custom,traditional,world,terms,wideSky}));}catch{}}
+  function saveSettings(){try{const {mode,quoteSize,quoteKind,custom,traditional,world,terms,wideSky,showForecast}=state;localStorage.setItem(settingsKey,JSON.stringify({mode,quoteSize,quoteKind,custom,traditional,world,terms,wideSky,showForecast}));}catch{}}
   const dayNames=['初一','初二','初三','初四','初五','初六','初七','初八','初九','初十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十','廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十'];
   let lunarFormat;try{lunarFormat=new Intl.DateTimeFormat('zh-CN-u-ca-chinese',{month:'long',day:'numeric'});}catch{}
   function lunar(date,short=false){if(!lunarFormat)return '';const parts=lunarFormat.formatToParts(localDate(date)),month=parts.find(p=>p.type==='month')?.value||'',day=dayNames[Number(parts.find(p=>p.type==='day')?.value)-1]||'';return short?(day==='初一'?month:day):month+day;}
@@ -28,6 +28,8 @@
   document.body.classList.toggle('weather-edge-to-edge',state.wideSky);window.calendarDemoWideSky=state.wideSky;
   const intro=$('.intro'),line=document.createElement('div'),quote=document.createElement('blockquote');
   line.className='demo-dayline';quote.className='demo-quote';quote.innerHTML='<p></p><cite></cite>';
+  line.innerHTML='<span class="demo-day-captions"></span><span id="demo-forecast" role="group" aria-label="当地天气，温度单位为摄氏度" hidden></span>';
+  const dayCaptions=line.firstElementChild,forecast=line.lastElementChild;
   intro.append(line);$('.clock').after(quote);
   window.calendarDemoQuoteHeight=()=>getComputedStyle(quote).display==='none'?0:quote.getBoundingClientRect().height+parseFloat(getComputedStyle(quote).marginTop);
   const panel=$('.control-panel'),consoleView=document.createElement('div');consoleView.id='demo-console';panel.append(consoleView);
@@ -58,6 +60,7 @@
       <details id="demo-appearance-settings" class="demo-settings-group" open><summary>时钟与液态玻璃</summary><div id="demo-material-controls"></div><div id="demo-appearance-controls"></div></details>
       <details id="demo-motion-settings" class="demo-settings-group"><summary>天气与昼夜动效</summary><div id="demo-playback-controls"></div><div id="demo-weather-controls"></div></details>
       <span class="demo-label">钟面内容</span><div class="demo-mode" aria-label="显示模式"><button data-mode="clock" aria-pressed="false">纯时钟</button><button data-mode="calendar" aria-pressed="false">节日日历</button><button data-mode="quote" aria-pressed="true">节日＋金句</button></div>
+      <label class="demo-row"><span>气温与明天天气</span><input id="demo-show-forecast" type="checkbox" checked></label>
       <label class="demo-row"><span>中国节日与纪念日</span><input id="demo-traditional" type="checkbox" checked></label>
       <label class="demo-row"><span>二十四节气</span><input id="demo-terms" type="checkbox" checked></label>
       <label class="demo-row"><span>国际纪念日</span><input id="demo-world" type="checkbox" checked></label>
@@ -81,6 +84,7 @@
   $('#weather-browse').hidden=true;
   for(const name of ['traditional','world','terms'])$('#demo-'+name).checked=state[name];
   $('#demo-wide-sky').checked=state.wideSky;
+  $('#demo-show-forecast').checked=state.showForecast;
   $('#demo-quote-kind').value=state.quoteKind;$('#demo-custom').value=state.custom;$('#demo-quote-size').value=state.quoteSize;
 
   $('#demo-sources').innerHTML=data.sources.map(x=>`<p><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.name)} ↗</a></p>`).join('');
@@ -93,16 +97,39 @@
     }).join('');
     $('#demo-prev').disabled=state.year<=1901&&state.month===0;$('#demo-next').disabled=state.year>=2099&&state.month===11;
   }
+  function renderForecast(){
+    const weather=window.clockForecast,parts=[];
+    if(state.showForecast&&state.mode!=='clock'&&state.date===today()&&weather){
+      if(Number.isFinite(weather.current))parts.push(`<span class="forecast-now">现在 <b>${Math.round(weather.current)}°C</b></span>`);
+      const hours=(weather.hours||[]).filter(h=>Number.isFinite(h.temp)&&h.label).slice(0,3);
+      if(hours.length){
+        const values=hours.map(h=>`<span class="forecast-hour">${esc(h.label)} <b>${Math.round(h.temp)}°</b></span>`).join('');
+        const marker=weather.hoursCached&&!weather.cached?'<small class="forecast-cache">逐时缓存</small>':'';
+        parts.push(`<span class="forecast-hours" role="group" aria-label="未来三小时气温">${values}${marker}</span>`);
+      }
+      const tomorrow=weather.tomorrow;
+      if(tomorrow){
+        const low=Number.isFinite(tomorrow.low),high=Number.isFinite(tomorrow.high);
+        const range=low&&high?`${Math.round(tomorrow.low)}–${Math.round(tomorrow.high)}°`:low?`最低 ${Math.round(tomorrow.low)}°`:high?`最高 ${Math.round(tomorrow.high)}°`:'';
+        const summary=[tomorrow.condition,range].filter(Boolean).join(' ');
+        if(summary)parts.push(`<span class="forecast-tomorrow">明天 <b>${esc(summary)}</b></span>`);
+      }
+      if(parts.length&&weather.cached)parts.push('<small class="forecast-cache">缓存</small>');
+    }
+    forecast.innerHTML=parts.join('');
+    forecast.hidden=!parts.length;
+  }
+  window.addEventListener('clockforecastchange',()=>{renderForecast();window.dispatchEvent(new Event('resize'));});
   function refresh(){
     const date=localDate(state.date),all=items(state.date),q=selectedQuote(),cn=date.toLocaleDateString('zh-CN',{month:'long',day:'numeric'});
     window.calendarDemoDate=state.date===today()?null:state.date;
     const previous=data.terms.filter(x=>x.date<=state.date).slice(-1)[0];
     const season=state.terms&&state.date.startsWith('2026-')&&!terms(state.date).length&&previous?previous.name+'时节':'';
     const captions=[lunar(state.date),...all.slice(0,2).map(x=>x.name)];if(all.length===0&&season)captions.push(season);
-    line.innerHTML=captions.filter(Boolean).map((x,i)=>{
+    dayCaptions.innerHTML=captions.filter(Boolean).map((x,i)=>{
       const term=data.terms.find(t=>x===t.name||x===t.name+'时节'||x===t.name+'节');
       return `${i?'<span class="dot">·</span>':''}${term?`<button type="button" class="day-event demo-term-trigger" data-calendar-term="${esc(term.name)}" title="点击播放${esc(term.name)}彩蛋" aria-label="播放${esc(term.name)}节气彩蛋">${esc(x)}</button>`:`<span class="${i?'day-event':''}">${esc(x)}</span>`}`;
-    }).join('');line.hidden=state.mode==='clock';
+    }).join('');line.hidden=state.mode==='clock';renderForecast();
     quote.hidden=state.mode!=='quote';quote.querySelector('p').textContent=q.text;quote.querySelector('p').style.fontSize=`${state.quoteSize}px`;quote.querySelector('cite').textContent=[q.author,q.source].filter(Boolean).join(' · ');
     $('#demo-detail-date').textContent=`${cn} · ${date.toLocaleDateString('zh-CN',{weekday:'long'})}`;$('#demo-lunar').textContent=lunar(state.date);
     $('#demo-events').innerHTML=all.length?all.map(x=>`<div class="demo-event"><div><a href="${esc(x.sourceUrl||data.sources[0].url)}" target="_blank" rel="noopener">${esc(x.name)} ↗</a><small>${esc(x.description||({world:'国际纪念日',traditional:'中国传统节日',china:'国内纪念日',term:'二十四节气'}[x.type]))}</small></div></div>`).join(''):`<p>${season?esc(season):'暂无节日'}</p>`;
@@ -126,6 +153,7 @@
   $('#demo-custom').oninput=e=>{state.custom=e.target.value.slice(0,64);saveSettings();refresh();};
   $('#demo-quote-size').oninput=e=>{state.quoteSize=Number(e.target.value);saveSettings();refresh();};
   for(const k of ['traditional','world','terms'])$('#demo-'+k).onchange=e=>{state[k]=e.target.checked;saveSettings();refresh();};
+  $('#demo-show-forecast').onchange=e=>{state.showForecast=e.target.checked;saveSettings();renderForecast();window.dispatchEvent(new Event('resize'));};
   $('#demo-wide-sky').onchange=e=>{state.wideSky=e.target.checked;window.calendarDemoWideSky=state.wideSky;document.body.classList.toggle('weather-edge-to-edge',state.wideSky);saveSettings();};
   $('#demo-sky').onchange=e=>{if(e.target.value==='live')$('[data-return-live]').click();else $('[data-preview="'+e.target.value+'"]').click();};
   document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!window.calendarDemoDate)chooseDate(today());});

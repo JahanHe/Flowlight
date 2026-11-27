@@ -4,17 +4,23 @@
 
 **下载**　[Windows / Mac 通用版][desktop]　·　[安卓手机 / 平板版][phone]　·　[安卓电视轻量版][tv]
 
-![浮光 1.4.0 的全屏画面。多云的午后，玻璃数字显示 12:36，钟面下方是一句诗。](docs/images/flowlight-preview.webp)
+![浮光 1.5.0 在杭州的全屏画面。小雪时节后依次显示当前 16°C、18 至 20 时的气温和明天晴、7 至 18°C，玻璃时钟显示 17:47。](docs/images/flowlight-forecast-1.5.0.webp)
 
 ## 选一个版本，打开就能用
 
 | 你的设备 | 下载 | 第一次打开 |
 | --- | --- | --- |
-| Windows 或 Mac 电脑 | [通用 ZIP · 1.4.1][desktop] | 解压，双击文件夹里的 **浮光时钟.html**，用浏览器打开。也可以把 ZIP 转发给朋友。 |
-| 安卓手机或平板 | [手机 APK · 1.4.1][phone] | 在设备的「文件」中点开 APK 安装，再打开「浮光时钟」。适用于 Android 8.0 及以上，系统 WebView 建议使用 Chromium 90 或更新版本。 |
+| Windows 或 Mac 电脑 | [通用 ZIP · 1.5.0][desktop] | 解压，双击文件夹里的 **浮光时钟.html**，用浏览器打开。也可以把 ZIP 转发给朋友。 |
+| 安卓手机或平板 | [手机 APK · 1.5.0][phone] | 在设备的「文件」中点开 APK 安装，再打开「浮光时钟」。适用于 Android 8.0 及以上，系统 WebView 建议使用 Chromium 90 或更新版本。 |
 | 可以安装 APK 的安卓电视 | [电视 APK · 1.0.4][tv] | 用 U 盘或电视的文件传输功能复制 APK，在电视上安装「浮光·TV」。需要 Android 6.0 及以上、Chromium 66 或更新的系统 WebView。 |
 
 手机和电脑都有玻璃翻页、沉浸天空和节气日历。**浮光·TV** 为低内存横屏电视设计，使用大号数字、持续飘动的云和轻量雨雪动画。左侧用遥控器选设置，右侧就能看到效果。按一次确认键即可全屏，也可以等待 15 秒自动进入。
+
+## 看现在、接下来三小时和明天的天气
+
+在「节日日历」或「节日＋金句」模式下，时节后面会显示现在的气温、接下来三个整点的气温，以及明天的天气和高低温。预报按所选城市的当地时间排列，跨过午夜也能接着看。天气动效快放时，这一行继续显示真实预报。
+
+预报默认开启。想简化钟面，可以在 **显示 → 钟面内容** 关闭 **气温与明天天气**。断网时，最近可用的数据会标明「缓存」，缺少的预报项目会自动收起。
 
 ## 用一分钟看完一天
 
@@ -53,6 +59,6 @@
 
 银河影像来自 ESO/S. Brunier，行星和星系影像的逐图署名、云图来源与加工说明收录在[素材说明](docs/PROJECT-MAP.md#素材与署名)。数字使用[内嵌字体](work/font-licenses.txt)，日月位置计算使用 [SunCalc](work/references/suncalc-LICENSE)。
 
-[desktop]: https://github.com/JahanHe/Flowlight/releases/download/v1.4.1/Flowlight-1.4.1-Desktop.zip
-[phone]: https://github.com/JahanHe/Flowlight/releases/download/v1.4.1/Flowlight-1.4.1-Android.apk
+[desktop]: https://github.com/JahanHe/Flowlight/releases/download/v1.5.0/Flowlight-1.5.0-Desktop.zip
+[phone]: https://github.com/JahanHe/Flowlight/releases/download/v1.5.0/Flowlight-1.5.0-Android.apk
 [tv]: https://github.com/JahanHe/Flowlight/releases/download/tv-v1.0.4/Fuguang-TV-1.0.4.apk

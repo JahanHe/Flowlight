@@ -12,7 +12,7 @@ python3 work/build-weather-clock.py
 python3 work/package-portable-clock.py
 ```
 
-第一条命令安装 esbuild。后两条生成 `outputs/glass-clock.html` 和 `outputs/浮光时钟-通用版-1.4.1.zip`。开发时可以用 `python3 work/build-weather-clock.py --output work/preview.html` 单独生成预览，在浏览器打开。Windows 上可用 `py -3 -X utf8` 代替 `python3`，并设置环境变量 `PYTHONUTF8=1` 供子进程读取中文源码。
+第一条命令安装 esbuild。后两条生成 `outputs/glass-clock.html` 和 `outputs/浮光时钟-通用版-1.5.0.zip`。开发时可以用 `python3 work/build-weather-clock.py --output work/preview.html` 单独生成预览，在浏览器打开。Windows 上可用 `py -3 -X utf8` 代替 `python3`，并设置环境变量 `PYTHONUTF8=1` 供子进程读取中文源码。
 
 ## 在自己的安卓设备上测试
 
@@ -42,6 +42,6 @@ python3 work/android/build-apk.py --dev --tv
 python3 work/android/build-apk.py
 ```
 
-脚本从 `work/android/signing/` 读取本机保管的 `local-release.jks` 与 `keystore-password`，先核对证书指纹，然后生成共享页面、手机 APK 和同版本通用 ZIP，并比较两端内嵌的网页内容。产物在 `outputs/`。1.4.1 的 GitHub Release 附件分别命名为 `Flowlight-1.4.1-Android.apk` 和 `Flowlight-1.4.1-Desktop.zip`。校验摘要在 `work/android/build/verification.json`。正式签名需由维护者单独备份；GitHub 仓库和下载的 APK 均无法恢复其私钥。
+脚本从 `work/android/signing/` 读取本机保管的 `local-release.jks` 与 `keystore-password`，先核对证书指纹，然后生成共享页面、手机 APK 和同版本通用 ZIP，并比较两端内嵌的网页内容。产物在 `outputs/`。1.5.0 的 GitHub Release 附件分别命名为 `Flowlight-1.5.0-Android.apk` 和 `Flowlight-1.5.0-Desktop.zip`。校验摘要在 `work/android/build/verification.json`。正式签名需由维护者单独备份；GitHub 仓库和下载的 APK 均无法恢复其私钥。
 
 电视发布独立于手机。获取已确认的电视版本请使用[电视 1.0.4 发行页](https://github.com/JahanHe/Flowlight/releases/tag/tv-v1.0.4)。日历设计演示可运行 `python3 work/calendar-demo/build.py` 重建，使用归档的 `outputs/浮光时钟-通用版-1.3.7.zip` 做输入。功能测试与验收范围见[测试说明](TESTING.md)。

@@ -31,6 +31,8 @@ const clockWeatherProvider=(()=>{
   }
   // CMA's icon codes describe a daytime/nighttime forecast, not a measured current cloud fraction.
   const cmaCodes={0:0,1:2,2:3,3:80,4:95,5:96,6:66,7:61,8:63,9:65,10:65,11:65,12:65,13:85,14:71,15:73,16:75,17:75,18:45,19:67,20:45,21:63,22:65,23:65,24:65,25:65,26:73,27:75,28:75,29:45,30:45,31:45,53:45};
+  const temperature=value=>Number.isFinite(value)&&value>=-100&&value<=65?value:null;
+  const forecastFields=['weather_code','temperature_2m_min','temperature_2m_max'];
   function fromCMA(payload,location,now=new Date()){
     const d=payload?.data,c=d?.now;
     if(payload?.code!==0||!c||!Array.isArray(d.daily)||!d.daily.length)throw Error('国内天气数据不完整');
@@ -39,7 +41,7 @@ const clockWeatherProvider=(()=>{
     if(!Number.isFinite(time)||now.getTime()/1000-time>10800||time-now.getTime()/1000>600)throw Error('国内天气实况已过期');
     if(!Number.isFinite(c.precipitation)||c.precipitation<0||c.precipitation>500||!Number.isFinite(c.windSpeed)||c.windSpeed<0||c.windSpeed>150)throw Error('国内天气实况无效');
     const utc_offset_seconds=28800,day=Math.floor((now.getTime()/1000+utc_offset_seconds)/86400)*86400-utc_offset_seconds;
-    const daily={time:[],sunrise:[],sunset:[],moonrise:[],moonset:[],moon_phase:[]};
+    const daily={time:[],sunrise:[],sunset:[],moonrise:[],moonset:[],moon_phase:[],weather_code:[],temperature_2m_min:[],temperature_2m_max:[]};
     let forecast=null;
     for(const row of d.daily){
       const parts=/^(\d{4})\/(\d{2})\/(\d{2})$/.exec(row.date||'');if(!parts)continue;
@@ -48,6 +50,8 @@ const clockWeatherProvider=(()=>{
       const times=clockSolarPosition.times(new Date((start+43200)*1000),location.latitude,location.longitude,0,480);
       daily.time.push(start);daily.sunrise.push(times.sunrise?times.sunrise.getTime()/1000:null);daily.sunset.push(times.sunset?times.sunset.getTime()/1000:null);
       daily.moonrise.push(null);daily.moonset.push(null);daily.moon_phase.push(null);
+      daily.weather_code.push(Number.isInteger(row.dayCode)?cmaCodes[row.dayCode]??null:null);
+      daily.temperature_2m_min.push(temperature(row.low));daily.temperature_2m_max.push(temperature(row.high));
     }
     if(!forecast)throw Error('国内天气缺少当天预报');
     const is_day=clockSolarPosition(now,location.latitude,location.longitude).altitude>-.833?1:0;
@@ -56,21 +60,58 @@ const clockWeatherProvider=(()=>{
     let weather_code=cmaCodes[icon];
     if(c.precipitation>0 && weather_code<45)weather_code=c.precipitation>8?65:c.precipitation>2?63:61;
     const cloud_cover=weather_code===0?8:weather_code===2?50:weather_code===3?100:weather_code===45?85:90;
-    return {utc_offset_seconds,current:{time,weather_code,is_day,cloud_cover,precipitation:c.precipitation,wind_speed_10m:c.windSpeed*3.6},daily,
+    return {utc_offset_seconds,timezone:'Asia/Shanghai',current:{time,weather_code,is_day,cloud_cover,precipitation:c.precipitation,wind_speed_10m:c.windSpeed*3.6,temperature_2m:temperature(c.temperature)},daily,
       providerName:'中国气象局',providerId:'cma',sourceURL:'https://weather.cma.cn/',detail:'实况风雨 · 日夜天气预报',stationName:d.location?.name||'',cloudCoverEstimated:true};
   }
-  async function openMeteo(location,signal){
-    const params=new URLSearchParams({latitude:String(location.latitude),longitude:String(location.longitude),current:'weather_code,cloud_cover,is_day,precipitation,wind_speed_10m',daily:'sunrise,sunset,moonrise,moonset,moon_phase',timezone:'auto',timeformat:'unixtime',past_days:'1',forecast_days:'3'});
-    const data=await json(`https://api.open-meteo.com/v1/forecast?${params}`,signal,8500);
-    if(!data?.current||!data?.daily)throw Error('天气数据不完整');
+  async function openMeteo(location,signal,supplement=false){
+    const params=new URLSearchParams({latitude:String(location.latitude),longitude:String(location.longitude),
+      current:supplement?'temperature_2m':'weather_code,cloud_cover,is_day,precipitation,wind_speed_10m,temperature_2m',
+      hourly:'temperature_2m',forecast_hours:'12',daily:[...forecastFields,...(supplement?[]:['sunrise','sunset','moonrise','moonset','moon_phase'])].join(','),
+      timezone:supplement?'Asia/Shanghai':'auto',timeformat:'unixtime',past_days:supplement?'0':'1',forecast_days:'3'});
+    const data=await json(`https://api.open-meteo.com/v1/forecast?${params}`,signal,supplement?4500:8500);
+    if(!data||(!supplement&&(!data.current||!data.daily)))throw Error('天气数据不完整');
+    if(data.current)data.current.temperature_2m=temperature(data.current.temperature_2m);
+    const daily=data.daily;
+    if(Array.isArray(daily?.time)){
+      for(const key of ['temperature_2m_min','temperature_2m_max'])daily[key]=daily.time.map((_,i)=>temperature(daily[key]?.[i]));
+    }
+    const hourly=data.hourly,validHours=Array.isArray(hourly?.time)&&Array.isArray(hourly.temperature_2m)&&hourly.time.length===hourly.temperature_2m.length&&hourly.time.length>0&&hourly.time.every((t,i)=>Number.isFinite(t)&&(!i||t>hourly.time[i-1]));
+    data.hourly=validHours&&hourly.temperature_2m.some(v=>temperature(v)!==null)?{time:hourly.time,temperature_2m:hourly.temperature_2m.map(temperature),fetchedAt:Date.now()}:null;
     return {...data,providerName:'Open-Meteo',providerId:'open-meteo',sourceURL:'https://open-meteo.com/',detail:'天气模型'};
   }
-  async function fetchWeather(location,{signal}={}){
+  function withForecast(station,model){
+    const current={...station.current},base=station.daily,daily={};
+    const modelDays=Array.isArray(model.daily?.time)?model.daily.time:[];
+    // Match local midnights. One provider can omit a whole day or just its temperature.
+    daily.time=[...new Set([...base.time,...modelDays.filter(Number.isFinite)])].sort((a,b)=>a-b);
+    let supplemented=!!model.hourly;
+    for(const key of Object.keys(base)){
+      if(key==='time')continue;
+      daily[key]=daily.time.map(time=>{
+        const observed=base[key][base.time.indexOf(time)];
+        if(observed!=null||!forecastFields.includes(key))return observed??null;
+        const value=model.daily?.[key]?.[modelDays.indexOf(time)];
+        if(Number.isFinite(value)){supplemented=true;return value;}
+        return null;
+      });
+    }
+    if(current.temperature_2m===null&&model.current?.temperature_2m!=null&&Number.isFinite(model.current.time)){
+      current.temperature_2m=model.current.temperature_2m;current.temperature_time=model.current.time;supplemented=true;
+    }
+    return supplemented?{...station,current,daily,hourly:model.hourly,detail:station.detail+' · Open-Meteo 补充气温与预报'}:station;
+  }
+  async function fetchWeather(location,{signal,onCurrent}={}){
     if(!location||!Number.isFinite(location.latitude)||Math.abs(location.latitude)>90||!Number.isFinite(location.longitude)||Math.abs(location.longitude)>180)throw Error('城市坐标无效');
     const station=nearestStation(location);
     if(station){
-      try{return fromCMA(await json(`https://weather.cma.cn/api/weather/view?stationid=${encodeURIComponent(station[0])}`,signal,4500),location);}
+      let local;
+      try{local=fromCMA(await json(`https://weather.cma.cn/api/weather/view?stationid=${encodeURIComponent(station[0])}`,signal,4500),location);}
       catch(error){if(signal?.aborted)throw error;}
+      if(local){
+        onCurrent?.(local);
+        try{return withForecast(local,await openMeteo(location,signal,true));}
+        catch(error){if(signal?.aborted)throw error;return local;}
+      }
     }
     return openMeteo(location,signal);
   }

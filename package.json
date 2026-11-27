@@ -2,7 +2,7 @@
   "name": "flowlight",
   "private": true,
   "scripts": {
-    "test": "node work/check-daylight-phases.cjs && node work/check-calendar-settings.cjs"
+    "test": "node work/check-daylight-phases.cjs && node work/check-calendar-settings.cjs && node work/check-weather-provider.cjs && node work/check-clock-forecast.cjs"
   },
   "devDependencies": {
     "playwright": "1.57.0",

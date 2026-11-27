@@ -18,6 +18,13 @@ body.calendar-demo { --demo-accent:#d5deea; --demo-muted:#92949c; font-family:-a
 .calendar-demo #clock-stage .intro { margin-bottom:28px; }
 .calendar-demo #clock-stage .date-line { color:#e5e5e9; }
 .demo-dayline { margin:15px 0 0; display:flex; flex-wrap:wrap; gap:9px; justify-content:center; color:#b5b7bd; font-size:13px; line-height:1.6; letter-spacing:.045em; min-height:21px; }
+.demo-day-captions,#demo-forecast,.forecast-hours { display:inline-flex; align-items:baseline; justify-content:center; flex-wrap:wrap; gap:3px 9px; }
+.demo-day-captions:empty { display:none; }
+#demo-forecast { max-width:100%; gap:3px 14px; color:#c9ced6; font-variant-numeric:tabular-nums; letter-spacing:0; }
+#demo-forecast b { color:#e5e8ed; font-weight:500; }
+.forecast-now,.forecast-hour,.forecast-tomorrow,.forecast-cache { white-space:nowrap; }
+.forecast-cache { color:inherit; font-size:.9em; }
+@media(max-width:759px) { #demo-forecast { gap:3px 10px; font-size:12px; } .demo-dayline { row-gap:4px; } }
 .demo-dayline .day-event { color:var(--accent,#dfc19c); font-weight:500; }
 #clock-stage .demo-term-trigger { appearance:none; background:none; border:0; border-radius:5px; padding:11px 8px; margin:-11px -8px; min-height:44px; min-width:44px; font:inherit; font-weight:500; letter-spacing:inherit; text-shadow:inherit; cursor:pointer; pointer-events:auto; touch-action:manipulation; text-decoration:underline dotted #ffffff50; text-underline-offset:4px; }
 #clock-stage .demo-term-trigger:hover { text-decoration-style:solid; }
